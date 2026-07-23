@@ -1,0 +1,33 @@
+{
+  "name": "Crudo — доставка еды и пиццы",
+  "short_name": "Crudo",
+  "description": "Закажите пиццу и готовые блюда с доставкой. Конструктор пиццы, живой трекинг заказа.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FAFAF7",
+  "theme_color": "#0D5C57",
+  "categories": ["food", "shopping", "lifestyle"],
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Меню",
+      "url": "/menu",
+      "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Конструктор пиццы",
+      "url": "/pizza-builder",
+      "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }]
+    }
+  ]
+}
