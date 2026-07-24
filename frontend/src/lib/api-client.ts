@@ -24,14 +24,16 @@ export function setToken(token: string | null) {
   }
 }
 
-/** Базовый клиент. В браузере ходит через /api-прокси Next.js; на сервере — напрямую. */
+/** Базовый клиент. В браузере ходит через NEXT_PUBLIC_API_URL; на сервере — напрямую. */
 function createClient(): KyInstance {
   const isServer = typeof window === 'undefined';
-  const prefixUrl = isServer
-    ? process.env.BACKEND_URL ?? 'http://localhost:3001/api'
-    : 'http://localhost:3001/api';
+  const apiBase = process.env.NEXT_PUBLIC_API_URL
+    ? `${process.env.NEXT_PUBLIC_API_URL}/api`
+    : isServer
+      ? 'http://localhost:3001/api'
+      : 'http://localhost:3001/api';
   return ky.create({
-    prefixUrl,
+    prefixUrl: apiBase,
     timeout: 15000,
     retry: { limit: 1, methods: ['get'] },
     hooks: {
