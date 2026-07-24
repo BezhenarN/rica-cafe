@@ -27,9 +27,11 @@ export function setToken(token: string | null) {
 /** Базовый клиент. В браузере ходит через /api-прокси Next.js; на сервере — напрямую. */
 function createClient(): KyInstance {
   const isServer = typeof window === 'undefined';
-  const prefixUrl = isServer ? process.env.BACKEND_URL ?? 'http://localhost:3001' : '';
+  const prefixUrl = isServer
+    ? process.env.BACKEND_URL ?? 'http://localhost:3001/api'
+    : 'http://localhost:3001/api';
   return ky.create({
-    prefixUrl: `${prefixUrl}/api`,
+    prefixUrl,
     timeout: 15000,
     retry: { limit: 1, methods: ['get'] },
     hooks: {

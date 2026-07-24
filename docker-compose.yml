@@ -1,37 +1,35 @@
-# Локальная инфраструктура для проекта Crudo (кафе с доставкой).
-# Поднимает PostgreSQL и pgAdmin одной командой:  docker compose up -d
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: crudo-postgres
+    container_name: rica-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: crudo
-      POSTGRES_PASSWORD: crudo_pass
-      POSTGRES_DB: crudo
+      POSTGRES_USER: rica
+      POSTGRES_PASSWORD: rica_pass
+      POSTGRES_DB: rica
     ports:
       - "5432:5432"
     volumes:
-      - crudo_pgdata:/var/lib/postgresql/data
+      - rica_pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U crudo -d crudo"]
+      test: ["CMD-SHELL", "pg_isready -U rica -d rica"]
       interval: 5s
       timeout: 5s
       retries: 10
 
   pgadmin:
     image: dpage/pgadmin4:8
-    container_name: crudo-pgadmin
+    container_name: rica-pgadmin
     restart: unless-stopped
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@crudo.local
+      PGADMIN_DEFAULT_EMAIL: admin@rica.local
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
       - "5050:80"
     depends_on:
       postgres:
         condition: service_healthy
-    profiles: ["tools"]   # запускается только при явном вызове профиля
+    profiles: ["tools"]
 
 volumes:
-  crudo_pgdata:
+  rica_pgdata:

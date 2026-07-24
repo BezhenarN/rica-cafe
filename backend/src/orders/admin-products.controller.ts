@@ -5,7 +5,6 @@ import {
   Delete,
   Get,
   Param,
-  ParseCuidPipe,
   Patch,
   Post,
   UploadedFile,
@@ -15,6 +14,7 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiOperation, ApiConsumes, ApiBody, ApiTags } from '@nestjs/swagger';
 import { Role } from '@prisma/client';
+import { ParseCuidPipe } from '../common/cuid.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard } from '../auth/roles.guard';
 import { Roles } from '../auth/roles.decorator';
@@ -80,7 +80,7 @@ export class AdminProductsController {
   @UseInterceptors(FileInterceptor('file', { storage: productImageStorage() }))
   uploadImage(
     @Param('id', ParseCuidPipe) id: string,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile() file: any,
   ) {
     if (!file) throw new BadRequestException('Файл не загружен');
     return this.service.setProductImage(id, file.filename);

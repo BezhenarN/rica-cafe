@@ -3,13 +3,13 @@ import {
   Controller,
   Get,
   Param,
-  ParseCuidPipe,
   Post,
   Query,
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { OrderStatus } from '@prisma/client';
+import { ParseCuidPipe } from '../common/cuid.pipe';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CurrentUser } from '../auth/current-user.decorator';
 import { CreateOrderDto } from './dto/order.dto';

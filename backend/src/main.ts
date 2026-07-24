@@ -1,14 +1,21 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe, Logger } from '@nestjs/common';
+import { ExpressAdapter } from '@nestjs/platform-express';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as path from 'path';
 import * as fs from 'fs';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { bufferLogs: true });
+  const express = require('express');
+  const appInstance = express();
+  const app = await NestFactory.create(
+    AppModule,
+    new ExpressAdapter(appInstance),
+    { bufferLogs: true },
+  );
 
-  const corsOrigin = process.env.CORS_ORIGIN?.split(',').map((s) => s.trim()) ?? '*';
+  const corsOrigin = process.env.CORS_ORIGIN?.split(',').map((s: string) => s.trim()) ?? '*';
   app.enableCors({
     origin: corsOrigin,
     credentials: true,
@@ -29,7 +36,7 @@ async function bootstrap() {
   // Статические файлы — загрузки фото товаров: /uploads/<файл>
   const uploadsDir = path.join(__dirname, '..', 'uploads', 'products');
   fs.mkdirSync(uploadsDir, { recursive: true });
-  app.useStaticAssets(uploadsDir, { prefix: '/uploads/' });
+  app.use(express.static(uploadsDir, { prefix: '/uploads/' }));
 
   // Swagger-документация: /api/docs
   const config = new DocumentBuilder()

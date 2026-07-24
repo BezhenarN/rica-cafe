@@ -4,7 +4,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Decimal, OrderStatus, PaymentMethod, Prisma } from '@prisma/client';
+import { OrderStatus, PaymentMethod, Prisma } from '@prisma/client';
+import { Decimal } from '@prisma/client/runtime/library';
 import { PrismaService } from '../common/prisma.service';
 import { CatalogOrderItemDto, CreateOrderDto, CustomPizzaItemDto } from './dto/order.dto';
 import { OrdersGateway } from './orders.gateway';

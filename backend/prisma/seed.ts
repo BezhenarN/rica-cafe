@@ -64,7 +64,7 @@ async function main() {
   type T = {
     slug: string;
     name: string;
-    desc?: string;
+    description?: string;
     category: string;
     image: ImageType;
     basePrice: number;
@@ -72,7 +72,7 @@ async function main() {
     kcal?: number;
     vegan?: boolean;
     spicy?: boolean;
-    featured?: boolean;
+    isFeatured?: boolean;
     variants?: { name: string; price: number; isDefault?: boolean }[];
   };
 
@@ -81,29 +81,29 @@ async function main() {
     {
       slug: 'pork-suvlaki-wrap',
       name: 'Сувлаки свинина',
-      desc: 'Свинина на гриле, лаваш, помидор, лук, соус цацики',
+      description: 'Свинина на гриле, лаваш, помидор, лук, соус цацики',
       category: 'suvlaki',
       image: ImageType.OTHER,
       basePrice: 349,
       weight: 280,
       kcal: 520,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'chicken-suvlaki-wrap',
       name: 'Сувлаки курица',
-      desc: 'Куриное филе, лаваш, салат, томат, чесночный соус',
+      description: 'Куриное филе, лаваш, салат, томат, чесночный соус',
       category: 'suvlaki',
       image: ImageType.OTHER,
       basePrice: 329,
       weight: 270,
       kcal: 480,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'shrimp-kebab',
       name: 'Кebab из креветок',
-      desc: 'Тигровые креветки, ананас, болгарский перец, соус ориентале',
+      description: 'Тигровые креветки, ананас, болгарский перец, соус ориентале',
       category: 'suvlaki',
       image: ImageType.OTHER,
       basePrice: 499,
@@ -113,18 +113,18 @@ async function main() {
     {
       slug: 'mixed-suvlaki-plate',
       name: 'Сувлаки-плат микс',
-      desc: 'Свинина + курица на тарелке с картофелем фри и соусами',
+      description: 'Свинина + курица на тарелке с картофелем фри и соусами',
       category: 'suvlaki',
       image: ImageType.OTHER,
       basePrice: 549,
       weight: 420,
       kcal: 780,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'falafel-wrap',
       name: 'Шаурма-фалафель',
-      desc: 'Хрустящий фалафель, хумус, салат табуле, маринованный лук',
+      description: 'Хрустящий фалафель, хумус, салат табуле, маринованный лук',
       category: 'suvlaki',
       image: ImageType.OTHER,
       basePrice: 299,
@@ -137,18 +137,18 @@ async function main() {
     {
       slug: 'grilled-mix-plate',
       name: 'Гриль-плат морепродуктов',
-      desc: 'Креветки, мидии, кальмары, лимон, зелень',
+      description: 'Креветки, мидии, кальмары, лимон, зелень',
       category: 'seafood',
       image: ImageType.OTHER,
       basePrice: 899,
       weight: 380,
       kcal: 320,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'shrimp-pasta',
       name: 'Паста с креветками',
-      desc: 'Тальятелле, тигровые креветки, сливочный томатный соус',
+      description: 'Тальятелле, тигровые креветки, сливочный томатный соус',
       category: 'seafood',
       image: ImageType.OTHER,
       basePrice: 649,
@@ -158,7 +158,7 @@ async function main() {
     {
       slug: 'grilled-swordfish',
       name: 'Стейк из рыбы-меч',
-      desc: 'Рыба-меч на углях, соус верде, овощи гриль',
+      description: 'Рыба-меч на углях, соус верде, овощи гриль',
       category: 'seafood',
       image: ImageType.OTHER,
       basePrice: 799,
@@ -169,18 +169,18 @@ async function main() {
     {
       slug: 'seafood-pizza',
       name: 'Пицца с морепродуктами',
-      desc: 'Креветки, мидии, кальмар, моцарелла, сливочный соус',
+      description: 'Креветки, мидии, кальмар, моцарелла, сливочный соус',
       category: 'pizza',
       image: ImageType.PIZZA,
       basePrice: 649,
       weight: 450,
       kcal: 720,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'mussels-in-cream',
       name: 'Мидии в сливочном соусе',
-      desc: 'Мидии, сливки, чеснок, петрушка, гренки',
+      description: 'Мидии, сливки, чеснок, петрушка, гренки',
       category: 'seafood',
       image: ImageType.OTHER,
       basePrice: 549,
@@ -192,18 +192,18 @@ async function main() {
     {
       slug: 'khachapuri-adjarian',
       name: 'Хачапури по-аджарски',
-      desc: 'Лодочка с сыром сулугуни, маслом и желтком',
+      description: 'Лодочка с сыром сулугуни, маслом и желтком',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 399,
       weight: 320,
       kcal: 620,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'khinkali',
       name: 'Хинкали (5 шт)',
-      desc: 'Сумочки с говядиной и свининой, кинза, чёрный перец',
+      description: 'Сумочки с говядиной и свининой, кинза, чёрный перец',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 449,
@@ -214,7 +214,7 @@ async function main() {
     {
       slug: 'khinkali-cheese',
       name: 'Хинкали сырные (5 шт)',
-      desc: 'Сумочки с сыром сулугуни и аджьарули',
+      description: 'Сумочки с сыром сулугуни и аджьарули',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 379,
@@ -224,7 +224,7 @@ async function main() {
     {
       slug: 'khachapuri-mixed',
       name: 'Хачапури «Мегрельский»',
-      desc: 'Открытый пирог с сыром, яйцом и маслом',
+      description: 'Открытый пирог с сыром, яйцом и маслом',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 429,
@@ -234,7 +234,7 @@ async function main() {
     {
       slug: 'lobio',
       name: 'Лобио',
-      desc: 'Фасоль с грецким орехом, кинзой и специями',
+      description: 'Фасоль с грецким орехом, кинзой и специями',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 299,
@@ -245,7 +245,7 @@ async function main() {
     {
       slug: 'pkhali',
       name: 'Пхлаги микс (6 шт)',
-      desc: 'Шпинат, свёкла, фасоль — с грецким орехом',
+      description: 'Шпинат, свёкла, фасоль — с грецким орехом',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 349,
@@ -256,7 +256,7 @@ async function main() {
     {
       slug: 'adjap-sandal',
       name: 'Аджапсандал',
-      desc: 'Баклажан, картофель, перец, томат, ореховый соус',
+      description: 'Баклажан, картофель, перец, томат, ореховый соус',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 319,
@@ -267,7 +267,7 @@ async function main() {
     {
       slug: 'mchadi-with-cheese',
       name: 'Мчади с сыром и зеленью',
-      desc: 'Кукурузная лепёшка, сулугуни, кинза, базилик',
+      description: 'Кукурузная лепёшка, сулугуни, кинза, базилик',
       category: 'georgian',
       image: ImageType.OTHER,
       basePrice: 349,
@@ -279,18 +279,18 @@ async function main() {
     {
       slug: 'mediteranean-salad',
       name: 'Средиземноморский',
-      desc: 'Руккола, моцарелла, вяленые томаты, кедровый орех, бальзамик',
+      description: 'Руккола, моцарелла, вяленые томаты, кедровый орех, бальзамик',
       category: 'salads',
       image: ImageType.SALAD,
       basePrice: 389,
       weight: 250,
       kcal: 280,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'greek-salad',
       name: 'Греческий',
-      desc: 'Овечий сыр, томаты, огурцы, оливки, каперсы',
+      description: 'Овечий сыр, томаты, огурцы, оливки, каперсы',
       category: 'salads',
       image: ImageType.SALAD,
       basePrice: 329,
@@ -301,7 +301,7 @@ async function main() {
     {
       slug: 'tuna-salad',
       name: 'Салат с тунцом',
-      desc: 'Тунец, микс салатов, авокадо, тайский соус',
+      description: 'Тунец, микс салатов, авокадо, тайский соус',
       category: 'salads',
       image: ImageType.SALAD,
       basePrice: 429,
@@ -311,7 +311,7 @@ async function main() {
     {
       slug: 'cobb-salad',
       name: 'Кобб',
-      desc: 'Курица, бекон, яйцо, авокадо, голубой сыр',
+      description: 'Курица, бекон, яйцо, авокадо, голубой сыр',
       category: 'salads',
       image: ImageType.SALAD,
       basePrice: 449,
@@ -323,7 +323,7 @@ async function main() {
     {
       slug: 'churchkhela-soup',
       name: 'Чирбуладжи',
-      desc: 'Грузинский суп с яйцом и айраном',
+      description: 'Грузинский суп с яйцом и айраном',
       category: 'soups',
       image: ImageType.SOUP,
       basePrice: 289,
@@ -333,7 +333,7 @@ async function main() {
     {
       slug: 'tomato-soup',
       name: 'Томатный суп-крем',
-      desc: 'Печёные томаты, базилик, сливки, гренки',
+      description: 'Печёные томаты, базилик, сливки, гренки',
       category: 'soups',
       image: ImageType.SOUP,
       basePrice: 259,
@@ -344,20 +344,20 @@ async function main() {
     {
       slug: 'lobster-soup',
       name: 'Суп из морепродуктов',
-      desc: 'Креветки, мидии, рыба, томатный бульон, шафран',
+      description: 'Креветки, мидии, рыба, томатный бульон, шафран',
       category: 'soups',
       image: ImageType.SOUP,
       basePrice: 499,
       weight: 380,
       kcal: 280,
-      featured: true,
+      isFeatured: true,
     },
 
     // ── Детские блюда ───────────────────────────────────────────────────────
     {
       slug: 'kids-nuggets',
       name: 'Наггетсы детские',
-      desc: '5 шт куриных наггетсов с картофелем фри и соусом',
+      description: '5 шт куриных наггетсов с картофелем фри и соусом',
       category: 'kids',
       image: ImageType.SNACK,
       basePrice: 299,
@@ -367,7 +367,7 @@ async function main() {
     {
       slug: 'kids-mac-cheese',
       name: 'Макароны с сыром детские',
-      desc: 'Макароны, сливочный сыр, гренки',
+      description: 'Макароны, сливочный сыр, гренки',
       category: 'kids',
       image: ImageType.OTHER,
       basePrice: 279,
@@ -377,7 +377,7 @@ async function main() {
     {
       slug: 'kids-suvlaki',
       name: 'Мини-сувлаки',
-      desc: 'Нежная курица в лаваше с детским соусом',
+      description: 'Нежная курица в лаваше с детским соусом',
       category: 'kids',
       image: ImageType.OTHER,
       basePrice: 319,
@@ -389,18 +389,18 @@ async function main() {
     {
       slug: 'churchkhela',
       name: 'Чурчхела',
-      desc: 'Грузинская чурчхела с грецким орехом и виноградным соком',
+      description: 'Грузинская чурчхела с грецким орехом и виноградным соком',
       category: 'desserts',
       image: ImageType.DESSERT,
       basePrice: 199,
       weight: 80,
       kcal: 340,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'basbousa',
       name: 'Басбуса',
-      desc: 'Восточный десерт из манки с кокосом и сиропом',
+      description: 'Восточный десерт из манки с кокосом и сиропом',
       category: 'desserts',
       image: ImageType.DESSERT,
       basePrice: 219,
@@ -410,7 +410,7 @@ async function main() {
     {
       slug: 'baklava',
       name: 'Баглава',
-      desc: 'Слоёное тесто с орехами и мёдом',
+      description: 'Слоёное тесто с орехами и мёдом',
       category: 'desserts',
       image: ImageType.DESSERT,
       basePrice: 249,
@@ -422,7 +422,7 @@ async function main() {
     {
       slug: 'compote-grape',
       name: 'Компот виноградный',
-      desc: 'Домашний, 0.7 л',
+      description: 'Домашний, 0.7 л',
       category: 'drinks',
       image: ImageType.DRINK,
       basePrice: 199,
@@ -433,7 +433,7 @@ async function main() {
     {
       slug: 'tarhun',
       name: 'Тархун домашний',
-      desc: 'Свежий тархун с мятой, 0.5 л',
+      description: 'Свежий тархун с мятой, 0.5 л',
       category: 'drinks',
       image: ImageType.DRINK,
       basePrice: 179,
@@ -444,7 +444,7 @@ async function main() {
     {
       slug: 'fruit-juice',
       name: 'Сок натуральный',
-      desc: 'Апельсин / яблоко / виноград',
+      description: 'Апельсин / яблоко / виноград',
       category: 'drinks',
       image: ImageType.DRINK,
       basePrice: 149,
@@ -455,7 +455,7 @@ async function main() {
     {
       slug: 'cola',
       name: 'Кола 0.5',
-      desc: 'Освежающий газированный напиток',
+      description: 'Освежающий газированный напиток',
       category: 'drinks',
       image: ImageType.DRINK,
       basePrice: 129,
@@ -465,7 +465,7 @@ async function main() {
     {
       slug: 'lemonade',
       name: 'Лимонад домашний',
-      desc: 'Лимон-мято-имбирь, 0.5 л',
+      description: 'Лимон-мято-имбирь, 0.5 л',
       category: 'drinks',
       image: ImageType.DRINK,
       basePrice: 169,
@@ -478,13 +478,13 @@ async function main() {
     {
       slug: 'margherita',
       name: 'Маргарита',
-      desc: 'Томатный соус, моцарелла, базилик',
+      description: 'Томатный соус, моцарелла, базилик',
       category: 'pizza',
       image: ImageType.PIZZA,
       basePrice: 549,
       weight: 480,
       kcal: 980,
-      featured: true,
+      isFeatured: true,
       variants: [
         { name: '25 см', price: 549 },
         { name: '30 см', price: 749, isDefault: true },
@@ -494,14 +494,14 @@ async function main() {
     {
       slug: 'pepperoni',
       name: 'Пепперони',
-      desc: 'Острая пепперони, моцарелла, томатный соус',
+      description: 'Острая пепперони, моцарелла, томатный соус',
       category: 'pizza',
       image: ImageType.PIZZA,
       basePrice: 649,
       weight: 510,
       kcal: 1100,
       spicy: true,
-      featured: true,
+      isFeatured: true,
       variants: [
         { name: '25 см', price: 649 },
         { name: '30 см', price: 849, isDefault: true },
@@ -511,7 +511,7 @@ async function main() {
     {
       slug: 'quattro-formaggi',
       name: 'Четыре сыра',
-      desc: 'Моцарелла, дорблю, пармезан, чеддер',
+      description: 'Моцарелла, дорблю, пармезан, чеддер',
       category: 'pizza',
       image: ImageType.PIZZA,
       basePrice: 699,
@@ -526,18 +526,18 @@ async function main() {
     {
       slug: 'classic-burger',
       name: 'Классический бургер',
-      desc: 'Говяжья котлета, чеддер, салат, соус',
+      description: 'Говяжья котлета, чеддер, салат, соус',
       category: 'burgers',
       image: ImageType.BURGER,
       basePrice: 389,
       weight: 240,
       kcal: 620,
-      featured: true,
+      isFeatured: true,
     },
     {
       slug: 'double-cheese',
       name: 'Двойной чизбургер',
-      desc: 'Две котлеты, двойной чеддер, бекон',
+      description: 'Две котлеты, двойной чеддер, бекон',
       category: 'burgers',
       image: ImageType.BURGER,
       basePrice: 459,
@@ -547,7 +547,7 @@ async function main() {
     {
       slug: 'fries',
       name: 'Картофель фри',
-      desc: 'Хрустящий картофель с солью',
+      description: 'Хрустящий картофель с солью',
       category: 'snacks',
       image: ImageType.SNACK,
       basePrice: 149,
@@ -561,7 +561,7 @@ async function main() {
     {
       slug: 'nuggets',
       name: 'Куриные наггетсы',
-      desc: '6 шт. с соусом на выбор',
+      description: '6 шт. с соусом на выбор',
       category: 'snacks',
       image: ImageType.SNACK,
       basePrice: 219,

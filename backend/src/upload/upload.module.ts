@@ -15,8 +15,8 @@ export function productImageStorage() {
   ensureUploadDir();
   return diskStorage({
     destination: UPLOAD_DIR,
-    filename: (req, file, cb) => {
-      const id = (req.params?.id as string) || Date.now().toString(36);
+    filename: (_req: any, file: any, cb: any) => {
+      const id = Date.now().toString(36);
       const ext = path.extname(file.originalname) || '.jpg';
       const safe = id.replace(/[^a-zA-Z0-9_-]/g, '_');
       cb(null, `${safe}${ext}`);

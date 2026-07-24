@@ -1,12 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, Clock, Truck, Pizza as PizzaIcon, MapPin, ShoppingBag } from 'lucide-react';
-import { CategoryStrip } from '@/components/product/category-strip';
-import { ProductCard } from '@/components/product/product-card';
-import { catalogApi } from '@/lib/api';
 import type { Metadata } from 'next';
-
-// ISR: каталог обновляется раз в 60 сек.
-export const revalidate = 60;
+import { HomeHero } from './home-page-client';
 
 export const metadata: Metadata = {
   title: 'Рица — кафе и доставка, Сочи',
@@ -21,13 +16,7 @@ const PERKS = [
   { icon: ShoppingBag, title: 'Честные цены', text: 'Пересчёт стоимости на сервере' },
 ];
 
-export default async function HomePage() {
-  // Серверные запросы напрямую к бэкенду (без участия браузера).
-  const [categories, featured] = await Promise.all([
-    catalogApi.categories().catch(() => []),
-    catalogApi.featured(8).catch(() => []),
-  ]);
-
+export default function HomePage() {
   return (
     <div className="container-page space-y-16 py-6 sm:py-10">
       {/* HERO */}
@@ -54,7 +43,6 @@ export default async function HomePage() {
             </Link>
           </div>
         </div>
-        {/* Декоративные круги */}
         <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 right-24 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
       </section>
@@ -72,35 +60,8 @@ export default async function HomePage() {
         ))}
       </section>
 
-      {/* КАТЕГОРИИ */}
-      {categories.length > 0 && (
-        <section>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-xl font-bold sm:text-2xl">Категории</h2>
-            <Link href="/menu" className="text-sm font-medium text-primary hover:underline">
-              Весь каталог →
-            </Link>
-          </div>
-          <CategoryStrip categories={categories} />
-        </section>
-      )}
-
-      {/* ХИТЫ */}
-      {featured.length > 0 && (
-        <section>
-          <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-xl font-bold sm:text-2xl">Популярное</h2>
-            <Link href="/menu" className="text-sm font-medium text-primary hover:underline">
-              Смотреть все →
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            {featured.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
-        </section>
-      )}
+      {/* ХИТЫ + КАТЕГОРИИ — динамические */}
+      <HomeHero />
     </div>
   );
 }

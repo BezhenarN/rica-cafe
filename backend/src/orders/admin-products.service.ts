@@ -36,11 +36,10 @@ export class AdminProductsService {
 
   // ── Товары ───────────────────────────────────────────────────────────────
   async createProduct(input: CreateProductInput) {
-    const { variants, basePrice, ...rest } = input;
+    const { variants, ...rest } = input;
     return this.prisma.product.create({
       data: {
         ...rest,
-        basePrice: rest.basePrice ?? basePrice,
         variants: variants?.length
           ? {
               create: variants.map((v) => ({
@@ -63,9 +62,8 @@ export class AdminProductsService {
   }
 
   async updateProduct(id: string, input: UpdateProductInput) {
-    const { variants, basePrice, ...rest } = input;
+    const { variants, ...rest } = input;
     const data: Prisma.ProductUpdateInput = { ...rest };
-    if (basePrice !== undefined) data.basePrice = basePrice;
 
     if (variants) {
       // Простая стратегия: заменить все варианты новыми.
