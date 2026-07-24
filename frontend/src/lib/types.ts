@@ -62,6 +62,7 @@ export interface Product {
   slug: string;
   name: string;
   description: string | null;
+  imagePath: string | null;
   imageType: ImageType;
   categoryId: string;
   isVegan: boolean;
@@ -144,8 +145,9 @@ export interface Order {
   guestEmail: string | null;
   status: OrderStatus;
   paymentMethod: PaymentMethod;
-  street: string;
-  building: string;
+  deliveryType?: 'DELIVERY' | 'PICKUP';
+  street: string | null;
+  building: string | null;
   apt: string | null;
   floor: string | null;
   entrance: string | null;

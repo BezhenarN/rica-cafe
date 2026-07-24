@@ -284,7 +284,7 @@ function AuthForm() {
         </p>
 
         <p className="rounded-lg bg-line/50 p-2 text-center text-xs text-muted">
-          Демо-админ: admin@crudo.local / admin12345
+          Демо-админ: admin@rica.local / rica123456
         </p>
       </div>
     </div>

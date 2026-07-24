@@ -99,8 +99,10 @@ export default function OrderTrackingPage() {
               <div className="flex gap-2">
                 <MapPin className="h-4 w-4 shrink-0 text-muted" />
                 <span>
-                  {order.street}, {order.building}
-                  {order.apt ? `, кв. ${order.apt}` : ''}
+                  {order.deliveryType === 'PICKUP'
+                    ? '🏪 Самовывоз из кафе «Рица»'
+                    : `${order.street ?? ''}, ${order.building ?? ''}${order.apt ? `, кв. ${order.apt}` : ''}`
+                  }
                 </span>
               </div>
               <div className="flex gap-2">

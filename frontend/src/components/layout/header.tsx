@@ -12,6 +12,7 @@ import { cn } from '@/lib/cn';
 const NAV = [
   { href: '/menu', label: 'Меню' },
   { href: '/pizza-builder', label: 'Конструктор пиццы' },
+  { href: '/about', label: 'О кафе' },
   { href: '/orders', label: 'Заказы' },
 ];
 
@@ -38,7 +39,7 @@ export function Header() {
             <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-white">
               <PizzaIcon className="h-4 w-4" />
             </span>
-            <span className="text-lg font-extrabold tracking-tight">Crudo</span>
+            <span className="text-lg font-extrabold tracking-tight">Рица</span>
           </Link>
         </div>
 

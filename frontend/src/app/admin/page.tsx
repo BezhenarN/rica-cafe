@@ -1,16 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Power, PowerOff } from 'lucide-react';
+import { ChevronLeft, Power, PowerOff, Pencil, Trash2, Plus, X, Upload } from 'lucide-react';
 import { AdminGuard } from '@/components/admin/admin-guard';
 import { OrderStatusManager } from '@/components/admin/order-status-manager';
 import { useAdminOrders, useAdminProducts, useAdminToggleProduct } from '@/hooks/use-queries';
 import { Badge } from '@/components/ui/badge';
 import { formatPrice } from '@/lib/cn';
 import { getStatusMeta } from '@/lib/order-status';
-import type { OrderStatus } from '@/lib/types';
+import { adminApi, catalogApi } from '@/lib/api';
+import { unwrapError } from '@/lib/api-client';
+import { showToast } from '@/components/ui/toast';
+import type { OrderStatus, Category, Product as ProductType } from '@/lib/types';
 
 const STATUS_FILTERS: { value: OrderStatus | 'ALL'; label: string }[] = [
   { value: 'ALL', label: 'Все' },
@@ -68,6 +71,8 @@ function AdminContent() {
     </div>
   );
 }
+
+/* ─────────────── Заказы ─────────────────────── */
 
 function OrdersAdmin({
   statusFilter,
@@ -160,40 +165,349 @@ function OrdersAdmin({
   );
 }
 
+/* ─────────────── Товары ─────────────────────── */
+
 function ProductsAdmin() {
   const { data: products, isLoading } = useAdminProducts();
+  const { data: categories } = catalogApi.categories();
   const toggle = useAdminToggleProduct();
 
+  const [editing, setEditing] = useState<ProductType | null>(null);
+  const [showForm, setShowForm] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
+      {/* Кнопка «Добавить товар» */}
+      <button
+        onClick={() => {
+          setEditing(null);
+          setShowForm(true);
+        }}
+        className="btn-primary inline-flex items-center gap-2"
+      >
+        <Plus className="h-4 w-4" /> Добавить товар
+      </button>
+
+      {/* Форма создания / редактирования */}
+      {showForm && (
+        <ProductForm
+          product={editing}
+          categories={categories}
+          onClose={() => {
+            setShowForm(false);
+            setEditing(null);
+          }}
+        />
+      )}
+
+      {/* Список товаров */}
       {isLoading ? (
         <p className="py-8 text-center text-muted">Загрузка...</p>
       ) : (
         products?.map((p) => (
           <div key={p.id} className="card flex items-center gap-3 p-4">
-            <div className="flex-1">
+            {/* Превью фото */}
+            {p.imagePath ? (
+              <img src={p.imagePath} alt={p.name} className="h-16 w-16 rounded-lg object-cover" />
+            ) : (
+              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-line text-muted">
+                <Plus className="h-5 w-5" />
+              </div>
+            )}
+
+            <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2">
-                <p className="font-semibold">{p.name}</p>
+                <p className="font-semibold truncate">{p.name}</p>
                 {!p.isAvailable && <Badge variant="danger">Скрыт</Badge>}
                 {p.isFeatured && <Badge variant="success">Хит</Badge>}
               </div>
-              <p className="text-xs text-muted">
+              <p className="text-xs text-muted truncate">
                 {p.category.name} · {formatPrice(p.basePrice)} · slug: {p.slug}
               </p>
             </div>
-            <button
-              onClick={() => toggle.mutate({ id: p.id, isAvailable: !p.isAvailable })}
-              className={p.isAvailable ? 'btn-outline' : 'btn-primary'}
-            >
-              {p.isAvailable ? (
-                <><PowerOff className="h-4 w-4" /> Скрыть</>
-              ) : (
-                <><Power className="h-4 w-4" /> Показать</>
-              )}
-            </button>
+
+            <div className="flex items-center gap-1">
+              {/* Кнопка загрузки фото */}
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="btn-outline h-9 w-9 rounded-full p-0"
+                title="Загрузить фото"
+              >
+                <Upload className="h-4 w-4" />
+              </button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (!file) return;
+                  const fd = new FormData();
+                  fd.append('file', file);
+                  fetch(`/api/admin/products/${p.id}/image`, {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                    body: fd,
+                  })
+                    .then((r) => r.json())
+                    .then(() => {
+                      showToast('Фото загружено', 'success');
+                      window.location.reload();
+                    })
+                    .catch(() => showToast('Ошибка загрузки фото', 'error'));
+                }}
+              />
+
+              <button
+                onClick={() => {
+                  setEditing(p);
+                  setShowForm(true);
+                }}
+                className="btn-outline h-9 w-9 rounded-full p-0"
+                title="Редактировать"
+              >
+                <Pencil className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => toggle.mutate({ id: p.id, isAvailable: !p.isAvailable })}
+                className={p.isAvailable ? 'btn-outline' : 'btn-primary'}
+              >
+                {p.isAvailable ? (
+                  <><PowerOff className="h-4 w-4" /> Скрыть</>
+                ) : (
+                  <><Power className="h-4 w-4" /> Показать</>
+                )}
+              </button>
+            </div>
           </div>
         ))
       )}
     </div>
+  );
+}
+
+/* ─────────────── Форма товара ───────────────── */
+
+function ProductForm({
+  product,
+  categories,
+  onClose,
+}: {
+  product: ProductType | null;
+  categories: Category[] | undefined;
+  onClose: () => void;
+}) {
+  const isEdit = !!product;
+
+  const [slug, setSlug] = useState(product?.slug ?? '');
+  const [name, setName] = useState(product?.name ?? '');
+  const [description, setDescription] = useState(product?.description ?? '');
+  const [categoryId, setCategoryId] = useState(product?.categoryId ?? (categories?.[0]?.id ?? ''));
+  const [basePrice, setBasePrice] = useState(product?.basePrice ?? '');
+  const [weight, setWeight] = useState(product?.weight?.toString() ?? '');
+  const [kcal, setKcal] = useState(product?.kcal?.toString() ?? '');
+  const [isVegan, setIsVegan] = useState(product?.isVegan ?? false);
+  const [isSpicy, setIsSpicy] = useState(product?.isSpicy ?? false);
+  const [isFeatured, setIsFeatured] = useState(product?.isFeatured ?? false);
+  const [isAvailable, setIsAvailable] = useState(product?.isAvailable ?? true);
+
+  // Варианты: имя + цена
+  const [variantNames, setVariantNames] = useState<string[]>(
+    product?.variants?.length
+      ? product.variants.map((v) => v.name)
+      : ['Стандарт']
+  );
+  const [variantPrices, setVariantPrices] = useState<string[]>(
+    product?.variants?.length
+      ? product.variants.map((v) => v.price)
+      : [product?.basePrice ?? '']
+  );
+
+  const addVariant = () => {
+    setVariantNames((prev) => [...prev, '']);
+    setVariantPrices((prev) => [...prev, '']);
+  };
+  const removeVariant = (idx: number) => {
+    if (variantNames.length <= 1) return;
+    setVariantNames((prev) => prev.filter((_, i) => i !== idx));
+    setVariantPrices((prev) => prev.filter((_, i) => i !== idx));
+  };
+  const setVariantName = (idx: number, val: string) =>
+    setVariantNames((prev) => prev.map((v, i) => (i === idx ? val : v)));
+  const setVariantPrice = (idx: number, val: string) =>
+    setVariantPrices((prev) => prev.map((v, i) => (i === idx ? val : v)));
+
+  if (!categories || categories.length === 0) return <p className="py-4 text-muted">Категории не загружены.</p>;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const variants = variantNames
+      .filter(Boolean)
+      .map((v, i) => ({ name: v, price: parseFloat(variantPrices[i] ?? '0'), isDefault: i === 0 }));
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      showToast('Не авторизованы', 'error');
+      return;
+    }
+
+    try {
+      const data: Record<string, unknown> = {
+        slug,
+        name,
+        description: description || undefined,
+        categoryId,
+        basePrice: parseFloat(basePrice) || 0,
+        weight: weight ? parseInt(weight) : undefined,
+        kcal: kcal ? parseInt(kcal) : undefined,
+        isVegan,
+        isSpicy,
+        isFeatured,
+        isAvailable,
+        variants: variants.filter((v) => v.name.trim()),
+      };
+
+      if (isEdit && product) {
+        await adminApi.updateProduct(product.id, data);
+      } else {
+        await adminApi.createProduct(data);
+      }
+
+      showToast(isEdit ? 'Товар обновлён' : 'Товар создан', 'success');
+      onClose();
+      window.location.reload();
+    } catch (err) {
+      let msg = 'Что-то пошло не так';
+      if (err instanceof Error) msg = err.message;
+      showToast(msg, 'error');
+    }
+  };
+
+  return (
+    <div className="card space-y-4 p-5">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-bold">{isEdit ? 'Редактировать товар' : 'Добавить товар'}</h2>
+        <button onClick={onClose} className="btn-outline h-8 w-8 rounded-full p-0">
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field label="Slug" error="">
+            <input className="input" value={slug} onChange={(e) => setSlug(e.target.value)} required />
+          </Field>
+          <Field label="Название" error="">
+            <input className="input" value={name} onChange={(e) => setName(e.target.value)} required />
+          </Field>
+        </div>
+
+        <Field label="Описание">
+          <textarea className="input min-h-[60px]" value={description} onChange={(e) => setDescription(e.target.value)} />
+        </Field>
+
+        <div className="grid gap-3 sm:grid-cols-3">
+          <Field label="Категория">
+            <select className="input" value={categoryId} onChange={(e) => setCategoryId(e.target.value)}>
+              {categories.map((c) => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          </Field>
+          <Field label="Цена (₽)">
+            <input className="input" type="number" value={basePrice} onChange={(e) => setBasePrice(e.target.value)} required />
+          </Field>
+          <Field label="Вес (г)">
+            <input className="input" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />
+          </Field>
+        </div>
+
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Field label="Ккал">
+            <input className="input" type="number" value={kcal} onChange={(e) => setKcal(e.target.value)} />
+          </Field>
+          <div className="flex items-center gap-6 pt-4">
+            <label className="flex items-center gap-2">
+              <input type="checkbox" checked={isVegan} onChange={(e) => setIsVegan(e.target.checked)} />
+              <span className="text-sm">Веган</span>
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" checked={isSpicy} onChange={(e) => setIsSpicy(e.target.checked)} />
+              <span className="text-sm">Острое</span>
+            </label>
+            <label className="flex items-center gap-2">
+              <input type="checkbox" checked={isFeatured} onChange={(e) => setIsFeatured(e.target.checked)} />
+              <span className="text-sm">Хит</span>
+            </label>
+          </div>
+        </div>
+
+        {/* Варианты */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <label className="label">Варианты</label>
+            <button type="button" onClick={addVariant} className="text-xs font-medium text-primary hover:underline">
+              + Вариант
+            </button>
+          </div>
+          {variantNames.map((vn, i) => (
+            <div key={i} className="flex gap-2">
+              <input
+                className="input flex-1"
+                placeholder="Название (напр. 30 см)"
+                value={vn}
+                onChange={(e) => setVariantName(i, e.target.value)}
+              />
+              <input
+                className="input w-28"
+                type="number"
+                placeholder="Цена"
+                value={variantPrices[i] ?? ''}
+                onChange={(e) => setVariantPrice(i, e.target.value)}
+              />
+              {variantNames.length > 1 && (
+                <button
+                  type="button"
+                  onClick={() => removeVariant(i)}
+                  className="btn-outline h-9 w-9 rounded-full p-0"
+                >
+                  <X className="h-3 w-3" />
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="flex items-center gap-4">
+          <label className="flex items-center gap-2">
+            <input type="checkbox" checked={isAvailable} onChange={(e) => setIsAvailable(e.target.checked)} />
+            <span className="text-sm">Доступен</span>
+          </label>
+          <button type="submit" className="btn-primary">
+            {isEdit ? 'Сохранить' : 'Создать'}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
+function Field({
+  label,
+  error,
+  children,
+}: {
+  label: string;
+  error?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <label className="block">
+      <span className="label">{label}</span>
+      {children}
+      {error && <span className="mt-1 block text-xs text-danger">{error}</span>}
+    </label>
   );
 }

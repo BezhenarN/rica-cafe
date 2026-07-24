@@ -100,11 +100,12 @@ export interface CreateOrderPayload {
   items?: CatalogItemInput[];
   pizzas?: CustomPizzaInput[];
   paymentMethod: 'CASH' | 'CARD_ON_DELIVERY';
+  deliveryType?: 'DELIVERY' | 'PICKUP';
   name?: string;
   phone?: string;
   email?: string;
-  street: string;
-  building: string;
+  street?: string;
+  building?: string;
   apt?: string;
   floor?: string;
   entrance?: string;
@@ -131,6 +132,8 @@ export const adminApi = {
       .json<(Product & { category: { name: string; slug: string } })[]>(),
   createProduct: (data: Record<string, unknown>) =>
     api.post('admin/products', { json: data }).json(),
+  updateProduct: (id: string, data: Record<string, unknown>) =>
+    api.patch(`admin/products/${id}`, { json: data }).json(),
   toggleProduct: (id: string, isAvailable: boolean) =>
     api.patch(`admin/products/${id}/availability`, { json: { isAvailable } }).json(),
   deleteProduct: (id: string) => api.delete(`admin/products/${id}`).json(),

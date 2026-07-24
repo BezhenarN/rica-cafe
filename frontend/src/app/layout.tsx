@@ -13,28 +13,31 @@ import { AuthHydrator } from '@/components/layout/auth-hydrator';
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter', display: 'swap' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://crudo.example.com'),
+  metadataBase: new URL('https://rica-cafe.local'),
   title: {
-    default: 'Crudo — доставка пиццы и готовых блюд',
-    template: '%s · Crudo',
+    default: 'Рица — кафе и доставка, Сочи',
+    template: '%s · Рица',
   },
   description:
-    'Закажите свежую пиццу и готовые блюда с доставкой. Соберите пиццу в конструкторе, отслеживайте заказ в реальном времени.',
-  applicationName: 'Crudo',
+    'Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз.',
+  applicationName: 'Рица',
   manifest: '/manifest.json',
-  keywords: ['доставка пиццы', 'доставка еды', 'конструктор пиццы', 'кафе', 'Crudo'],
+  keywords: [
+    'кафе Сочи', 'доставка еды Сочи', 'сувлаки Сочи', 'морепродукты Сочи',
+    'грузинская кухня Сочи', 'рица кафе', 'пицца Сочи', 'самовывоз Сочи',
+  ],
   openGraph: {
     type: 'website',
-    siteName: 'Crudo',
-    title: 'Crudo — доставка пиццы и готовых блюд',
-    description: 'Соберите пиццу в конструкторе и отследите заказ в реальном времени.',
+    siteName: 'Рица',
+    title: 'Рица — кафе и доставка, Сочи',
+    description: 'Сувлаки, морепродукты, грузинская кухня и пицца. Доставка и самовывоз.',
   },
   twitter: { card: 'summary_large_image' },
   icons: { icon: '/icons/icon.svg', apple: '/icons/icon.svg' },
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0D5C57',
+  themeColor: '#0B6E6E',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,

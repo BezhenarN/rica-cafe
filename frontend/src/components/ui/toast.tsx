@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, createContext, useContext, type ReactNode } from 'react';
+import { useState, useCallback, useEffect, createContext, useContext, type ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/cn';
@@ -46,7 +46,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   }, []);
 
   // Слушаем глобальные toast-события (для вызова из хуков мутаций вне провайдера).
-  useState(() => {
+  useEffect(() => {
     if (typeof window === 'undefined') return;
     const handler = (e: Event) => {
       const d = (e as CustomEvent).detail;
@@ -54,7 +54,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     };
     window.addEventListener('crudo-toast', handler);
     return () => window.removeEventListener('crudo-toast', handler);
-  });
+  }, [showToast]);
 
   return (
     <Ctx.Provider value={{ showToast }}>

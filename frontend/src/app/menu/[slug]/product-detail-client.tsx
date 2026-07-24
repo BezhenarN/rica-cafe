@@ -31,6 +31,7 @@ export function ProductDetailClient({ product }: { product: Product }) {
       subtitle: variant.name,
       unitPrice: Number(variant.price),
       imageType: product.imageType,
+      imagePath: product.imagePath,
       productId: product.id,
       variantName: variant.name,
       quantity: qty,
@@ -57,6 +58,7 @@ export function ProductDetailClient({ product }: { product: Product }) {
           <ProductImage
             imageType={product.imageType}
             name={product.name}
+            imagePath={product.imagePath}
             className="aspect-square w-full"
           />
           <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">

@@ -8,6 +8,7 @@ import { Decimal, OrderStatus, PaymentMethod, Prisma } from '@prisma/client';
 import { PrismaService } from '../common/prisma.service';
 import { CatalogOrderItemDto, CreateOrderDto, CustomPizzaItemDto } from './dto/order.dto';
 import { OrdersGateway } from './orders.gateway';
+import { MaxNotificationService } from '../notifications/max.service';
 
 /** Стоимость доставки. В реальном проекте — динамически или из настроек. */
 const DELIVERY_COST = new Decimal(149);
@@ -18,10 +19,13 @@ export class OrdersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly gateway: OrdersGateway,
+    private readonly maxNotify: MaxNotificationService,
   ) {}
 
   /** Создаёт заказ, пересчитывая ВСЕ цены серверно из БД (клиенту верить нельзя). */
   async create(userId: string | undefined, dto: CreateOrderDto) {
+    const deliveryType = dto.deliveryType ?? 'DELIVERY';
+
     if ((!dto.items?.length && !dto.pizzas?.length) || (dto.items?.length === 0 && dto.pizzas?.length === 0)) {
       throw new BadRequestException('Корзина пуста');
     }
@@ -29,6 +33,11 @@ export class OrdersService {
     // Гостевые заказы требуют контактов.
     if (!userId && (!dto.phone || !dto.name)) {
       throw new BadRequestException('Укажите имя и телефон для заказа без регистрации');
+    }
+
+    // При доставке адрес обязателен.
+    if (deliveryType === 'DELIVERY' && (!dto.street || !dto.building)) {
+      throw new BadRequestException('Укажите адрес доставки');
     }
 
     const orderItems: {
@@ -83,12 +92,13 @@ export class OrdersService {
         guestPhone: userId ? undefined : dto.phone,
         guestEmail: userId ? undefined : dto.email,
         paymentMethod: dto.paymentMethod,
-        street: dto.street,
-        building: dto.building,
-        apt: dto.apt,
-        floor: dto.floor,
-        entrance: dto.entrance,
-        addressComment: dto.addressComment,
+        deliveryType,
+        street: deliveryType === 'DELIVERY' ? dto.street : undefined,
+        building: deliveryType === 'DELIVERY' ? dto.building : undefined,
+        apt: deliveryType === 'DELIVERY' ? dto.apt : undefined,
+        floor: deliveryType === 'DELIVERY' ? dto.floor : undefined,
+        entrance: deliveryType === 'DELIVERY' ? dto.entrance : undefined,
+        addressComment: deliveryType === 'DELIVERY' ? dto.addressComment : undefined,
         comment: dto.comment,
         itemsTotal,
         deliveryCost,
@@ -105,6 +115,26 @@ export class OrdersService {
       },
       include: { items: true },
     });
+
+    // Отправляем уведомление в MAX
+    this.maxNotify.notifyNewOrder({
+      id: order.id,
+      publicNumber: order.publicNumber,
+      guestName: order.guestName ?? undefined,
+      guestPhone: order.guestPhone ?? undefined,
+      total: Number(order.total),
+      items: order.items.map((it) => ({
+        name: it.name,
+        quantity: it.quantity,
+        unitPrice: Number(it.unitPrice),
+      })),
+      street: deliveryType === 'DELIVERY' ? order.street : undefined,
+      building: deliveryType === 'DELIVERY' ? order.building : undefined,
+      apt: deliveryType === 'DELIVERY' ? order.apt : undefined,
+      deliveryType,
+      paymentMethod: order.paymentMethod,
+      comment: order.comment ?? undefined,
+    }).catch(() => {});
 
     return order;
   }

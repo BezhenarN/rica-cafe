@@ -29,6 +29,7 @@ export function ProductCard({ product }: ProductCardProps) {
       subtitle: defaultVariant.name,
       unitPrice: Number(defaultVariant.price),
       imageType: product.imageType,
+      imagePath: product.imagePath,
       productId: product.id,
       variantName: defaultVariant.name,
     });
@@ -47,6 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <ProductImage
           imageType={product.imageType}
           name={product.name}
+          imagePath={product.imagePath}
           className="aspect-[4/3] w-full rounded-b-none"
         />
         <div className="absolute left-2 top-2 flex flex-wrap gap-1">

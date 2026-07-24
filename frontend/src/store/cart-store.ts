@@ -15,6 +15,7 @@ export interface CartLine {
   subtitle?: string;
   unitPrice: number; // для отображения; реальные цены пересчитает бэкенд
   imageType?: string;
+  imagePath?: string | null;
   quantity: number;
   // Для catalog
   productId?: string;

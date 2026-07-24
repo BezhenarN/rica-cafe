@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
-import { CheckCircle2, ChevronLeft } from 'lucide-react';
+import { CheckCircle2, ChevronLeft, Truck, ShoppingBag } from 'lucide-react';
 import { useCartStore, cartToOrderPayload } from '@/store/cart-store';
 import { useAuthStore } from '@/store/auth-store';
 import { useCreateOrder } from '@/hooks/use-queries';
@@ -16,12 +16,15 @@ import { showToast } from '@/components/ui/toast';
 import { unwrapError } from '@/lib/api-client';
 import type { PaymentMethod } from '@/lib/types';
 
+type DeliveryType = 'DELIVERY' | 'PICKUP';
+
 const schema = z.object({
   name: z.string().min(2, 'Введите имя'),
   phone: z.string().min(6, 'Введите телефон'),
   email: z.string().email('Некорректный email').optional().or(z.literal('')),
-  street: z.string().min(3, 'Введите улицу'),
-  building: z.string().min(1, 'Введите дом'),
+  deliveryType: z.enum(['DELIVERY', 'PICKUP']).default('DELIVERY'),
+  street: z.string().min(3, 'Введите улицу').optional().refine((v) => v?.trim().length >= 3, { message: 'Введите улицу' }),
+  building: z.string().min(1, 'Введите дом').optional(),
   apt: z.string().optional(),
   entrance: z.string().optional(),
   floor: z.string().optional(),
@@ -45,6 +48,7 @@ export default function CheckoutPage() {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -52,12 +56,15 @@ export default function CheckoutPage() {
       phone: user?.phone ?? '',
       email: user?.email ?? '',
       paymentMethod: 'CASH',
+      deliveryType: 'DELIVERY',
     },
   });
 
+  const deliveryType = watch('deliveryType');
+
   const DELIVERY = 149;
   const FREE_FROM = 1500;
-  const deliveryCost = totalPrice >= FREE_FROM || totalPrice === 0 ? 0 : DELIVERY;
+  const deliveryCost = deliveryType === 'PICKUP' ? 0 : (totalPrice >= FREE_FROM || totalPrice === 0 ? 0 : DELIVERY);
   const total = totalPrice + deliveryCost;
 
   const onSubmit = async (data: FormData) => {
@@ -70,11 +77,12 @@ export default function CheckoutPage() {
       const order = await createOrder.mutateAsync({
         ...payload,
         paymentMethod: data.paymentMethod as PaymentMethod,
+        deliveryType: data.deliveryType as DeliveryType,
         name: data.name,
         phone: data.phone,
         email: data.email || undefined,
-        street: data.street,
-        building: data.building,
+        street: data.street || undefined,
+        building: data.building || undefined,
         apt: data.apt || undefined,
         entrance: data.entrance || undefined,
         floor: data.floor || undefined,
@@ -160,30 +168,79 @@ export default function CheckoutPage() {
             </Field>
           </section>
 
-          {/* Адрес */}
+          {/* Способ получения */}
           <section className="card space-y-4 p-5">
-            <h2 className="font-bold">Адрес доставки</h2>
-            <Field label="Улица" error={errors.street?.message}>
-              <input className="input" {...register('street')} />
-            </Field>
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              <Field label="Дом" error={errors.building?.message}>
-                <input className="input" {...register('building')} />
-              </Field>
-              <Field label="Квартира">
-                <input className="input" {...register('apt')} />
-              </Field>
-              <Field label="Подъезд">
-                <input className="input" {...register('entrance')} />
-              </Field>
-              <Field label="Этаж">
-                <input className="input" {...register('floor')} />
-              </Field>
+            <h2 className="font-bold">Как получите заказ?</h2>
+            <div className="grid grid-cols-2 gap-2">
+              <label
+                className={`flex cursor-pointer items-center gap-2 rounded-xl border p-3 text-sm has-[:checked]:border-primary has-[:checked]:bg-primary/5 ${
+                  deliveryType === 'DELIVERY' ? 'border-primary bg-primary/5' : 'border-line'
+                }`}
+              >
+                <input type="radio" value="DELIVERY" {...register('deliveryType')} />
+                <Truck className="h-4 w-4 text-primary" />
+                <div>
+                  <div className="font-medium">Доставка</div>
+                  <div className="text-xs text-muted">{deliveryCost === 0 ? 'Бесплатно от 1500 ₽' : '149 ₽'}</div>
+                </div>
+              </label>
+              <label
+                className={`flex cursor-pointer items-center gap-2 rounded-xl border p-3 text-sm has-[:checked]:border-primary has-[:checked]:bg-primary/5 ${
+                  deliveryType === 'PICKUP' ? 'border-primary bg-primary/5' : 'border-line'
+                }`}
+              >
+                <input type="radio" value="PICKUP" {...register('deliveryType')} />
+                <ShoppingBag className="h-4 w-4 text-primary" />
+                <div>
+                  <div className="font-medium">Самовывоз</div>
+                  <div className="text-xs text-muted">Бесплатно</div>
+                </div>
+              </label>
             </div>
-            <Field label="Комментарий курьеру (необязательно)">
-              <textarea className="input min-h-[80px]" {...register('comment')} />
-            </Field>
           </section>
+
+          {/* Адрес — показывается только при доставке */}
+          {deliveryType === 'DELIVERY' && (
+            <section className="card space-y-4 p-5">
+              <h2 className="font-bold">Адрес доставки</h2>
+              <Field label="Улица" error={errors.street?.message}>
+                <input className="input" {...register('street')} />
+              </Field>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                <Field label="Дом" error={errors.building?.message}>
+                  <input className="input" {...register('building')} />
+                </Field>
+                <Field label="Квартира">
+                  <input className="input" {...register('apt')} />
+                </Field>
+                <Field label="Подъезд">
+                  <input className="input" {...register('entrance')} />
+                </Field>
+                <Field label="Этаж">
+                  <input className="input" {...register('floor')} />
+                </Field>
+              </div>
+              <Field label="Комментарий курьеру (необязательно)">
+                <textarea className="input min-h-[80px]" {...register('comment')} />
+              </Field>
+            </section>
+          )}
+
+          {/* Самовывоз — показывается только при pickup */}
+          {deliveryType === 'PICKUP' && (
+            <section className="card space-y-4 p-5 border-2 border-primary/20">
+              <h2 className="font-bold">🏪 Самовывоз из кафе «Рица»</h2>
+              <p className="text-sm text-muted">
+                Закажите онлайн — заберите готовый заказ без очереди.<br />
+                Мы перезвоним, когда заказ будет готов.
+              </p>
+              <div className="rounded-lg bg-primary/5 p-4 text-sm">
+                <p><strong>Кафе «Рица»</strong></p>
+                <p className="text-muted">г. Сочи, ул. Примерная, 15</p>
+                <p className="text-muted">Ежедневно: 10:00 — 23:00</p>
+              </div>
+            </section>
+          )}
 
           {/* Оплата */}
           <section className="card space-y-3 p-5">
@@ -224,7 +281,7 @@ export default function CheckoutPage() {
             </div>
             <div className="space-y-1.5 border-t border-line pt-3 text-sm">
               <div className="flex justify-between"><span className="text-muted">Товары</span><span>{formatPrice(totalPrice)}</span></div>
-              <div className="flex justify-between"><span className="text-muted">Доставка</span><span>{deliveryCost === 0 ? 'Бесплатно' : formatPrice(deliveryCost)}</span></div>
+              <div className="flex justify-between"><span className="text-muted">{deliveryType === 'DELIVERY' ? 'Доставка' : 'Самовывоз'}</span><span>{deliveryCost === 0 ? 'Бесплатно' : formatPrice(deliveryCost)}</span></div>
             </div>
             <div className="flex items-center justify-between border-t border-line pt-3">
               <span className="font-bold">Итого</span>

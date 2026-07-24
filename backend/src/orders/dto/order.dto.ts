@@ -13,6 +13,8 @@ import {
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { PaymentMethod } from '@prisma/client';
 
+export type DeliveryType = 'DELIVERY' | 'PICKUP';
+
 /** Элемент с предустановленным товаром из каталога. */
 export class CatalogOrderItemDto {
   @ApiProperty({ example: 'ck...' })
@@ -89,14 +91,22 @@ export class CreateOrderDto {
   @IsString()
   email?: string;
 
-  // Адрес доставки (плоско, без привязки к Address).
-  @ApiProperty()
-  @IsString()
-  street!: string;
+  // DELIVERY или PICKUP
+  @ApiProperty({ enum: ['DELIVERY', 'PICKUP'], default: 'DELIVERY' })
+  @IsEnum(['DELIVERY', 'PICKUP'])
+  @IsOptional()
+  deliveryType?: DeliveryType = 'DELIVERY';
 
-  @ApiProperty()
+  // Адрес доставки (обязателен только при DELIVERY).
+  @ApiPropertyOptional()
+  @IsOptional()
   @IsString()
-  building!: string;
+  street?: string;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  building?: string;
 
   @ApiPropertyOptional()
   @IsOptional()

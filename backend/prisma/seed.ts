@@ -1,8 +1,21 @@
 /**
- * Seed-скрипт: наполняет БД демо-данными (категории, товары, опции пиццы, админ).
+ * Seed-скрипт: наполняет БД меню кафе «Рица» (Сочи).
+ *
+ * Категории:
+ *   - сувлаки-шаурма
+ *   - морепродукты и гриль
+ *   - грузинская кухня
+ *   - салаты
+ *   - супы
+ *   - детские блюда
+ *   - десерты
+ *   - напитки
+ *
+ * Также остаются: пицца (конструктор + готовые), бургеры, закуски.
+ *
  * Запуск:  pnpm prisma:seed   (или npm run prisma:seed)
  */
-import { PrismaClient, Role, ImageType, DoughType, PaymentMethod } from '@prisma/client';
+import { PrismaClient, Role, ImageType, DoughType } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
@@ -10,9 +23,9 @@ const prisma = new PrismaClient();
 const money = (v: number) => v.toFixed(2);
 
 async function main() {
-  // ── Администратор по умолчанию ────────────────────────────────────────────
-  const adminEmail = process.env.ADMIN_EMAIL ?? 'admin@crudo.local';
-  const adminPass = process.env.ADMIN_PASSWORD ?? 'admin12345';
+  // ── Администратор ────────────────────────────────────────────────────────
+  const adminEmail = process.env.ADMIN_EMAIL ?? 'admin@rica.local';
+  const adminPass = process.env.ADMIN_PASSWORD ?? 'rica123456';
   const passwordHash = await bcrypt.hash(adminPass, 10);
   await prisma.user.upsert({
     where: { email: adminEmail },
@@ -21,16 +34,22 @@ async function main() {
   });
   console.log(`✔ Админ создан: ${adminEmail} / ${adminPass}`);
 
-  // ── Категории ─────────────────────────────────────────────────────────────
+  // ── Категории кафе «Рица» ────────────────────────────────────────────────
   const categories = await Promise.all(
     [
-      { slug: 'pizza', name: 'Пицца', icon: 'pizza', sortOrder: 1 },
-      { slug: 'burgers', name: 'Бургеры', icon: 'burger', sortOrder: 2 },
-      { slug: 'snacks', name: 'Закуски', icon: 'snack', sortOrder: 3 },
+      // Новые категории для Рица
+      { slug: 'suvlaki', name: 'Сувлаки и шаурма', icon: null, sortOrder: 1 },
+      { slug: 'seafood', name: 'Морепродукты и гриль', icon: null, sortOrder: 2 },
+      { slug: 'georgian', name: 'Грузинская кухня', icon: null, sortOrder: 3 },
       { slug: 'salads', name: 'Салаты', icon: 'salad', sortOrder: 4 },
       { slug: 'soups', name: 'Супы', icon: 'soup', sortOrder: 5 },
-      { slug: 'desserts', name: 'Десерты', icon: 'dessert', sortOrder: 6 },
-      { slug: 'drinks', name: 'Напитки', icon: 'drink', sortOrder: 7 },
+      { slug: 'kids', name: 'Детские блюда', icon: null, sortOrder: 6 },
+      { slug: 'desserts', name: 'Десерты', icon: 'dessert', sortOrder: 7 },
+      { slug: 'drinks', name: 'Напитки', icon: 'drink', sortOrder: 8 },
+      // Остающиеся из Crudo
+      { slug: 'pizza', name: 'Пицца', icon: null, sortOrder: 9 },
+      { slug: 'burgers', name: 'Бургеры', icon: 'burger', sortOrder: 10 },
+      { slug: 'snacks', name: 'Закуски', icon: 'snack', sortOrder: 11 },
     ].map((c) =>
       prisma.category.upsert({
         where: { slug: c.slug },
@@ -58,6 +77,404 @@ async function main() {
   };
 
   const products: T[] = [
+    // ── Сувлаки и шаурма ───────────────────────────────────────────────────
+    {
+      slug: 'pork-suvlaki-wrap',
+      name: 'Сувлаки свинина',
+      desc: 'Свинина на гриле, лаваш, помидор, лук, соус цацики',
+      category: 'suvlaki',
+      image: ImageType.OTHER,
+      basePrice: 349,
+      weight: 280,
+      kcal: 520,
+      featured: true,
+    },
+    {
+      slug: 'chicken-suvlaki-wrap',
+      name: 'Сувлаки курица',
+      desc: 'Куриное филе, лаваш, салат, томат, чесночный соус',
+      category: 'suvlaki',
+      image: ImageType.OTHER,
+      basePrice: 329,
+      weight: 270,
+      kcal: 480,
+      featured: true,
+    },
+    {
+      slug: 'shrimp-kebab',
+      name: 'Кebab из креветок',
+      desc: 'Тигровые креветки, ананас, болгарский перец, соус ориентале',
+      category: 'suvlaki',
+      image: ImageType.OTHER,
+      basePrice: 499,
+      weight: 250,
+      kcal: 380,
+    },
+    {
+      slug: 'mixed-suvlaki-plate',
+      name: 'Сувлаки-плат микс',
+      desc: 'Свинина + курица на тарелке с картофелем фри и соусами',
+      category: 'suvlaki',
+      image: ImageType.OTHER,
+      basePrice: 549,
+      weight: 420,
+      kcal: 780,
+      featured: true,
+    },
+    {
+      slug: 'falafel-wrap',
+      name: 'Шаурма-фалафель',
+      desc: 'Хрустящий фалафель, хумус, салат табуле, маринованный лук',
+      category: 'suvlaki',
+      image: ImageType.OTHER,
+      basePrice: 299,
+      weight: 260,
+      kcal: 420,
+      vegan: true,
+    },
+
+    // ── Морепродукты и гриль ────────────────────────────────────────────────
+    {
+      slug: 'grilled-mix-plate',
+      name: 'Гриль-плат морепродуктов',
+      desc: 'Креветки, мидии, кальмары, лимон, зелень',
+      category: 'seafood',
+      image: ImageType.OTHER,
+      basePrice: 899,
+      weight: 380,
+      kcal: 320,
+      featured: true,
+    },
+    {
+      slug: 'shrimp-pasta',
+      name: 'Паста с креветками',
+      desc: 'Тальятелле, тигровые креветки, сливочный томатный соус',
+      category: 'seafood',
+      image: ImageType.OTHER,
+      basePrice: 649,
+      weight: 350,
+      kcal: 580,
+    },
+    {
+      slug: 'grilled-swordfish',
+      name: 'Стейк из рыбы-меч',
+      desc: 'Рыба-меч на углях, соус верде, овощи гриль',
+      category: 'seafood',
+      image: ImageType.OTHER,
+      basePrice: 799,
+      weight: 300,
+      kcal: 280,
+      spicy: true,
+    },
+    {
+      slug: 'seafood-pizza',
+      name: 'Пицца с морепродуктами',
+      desc: 'Креветки, мидии, кальмар, моцарелла, сливочный соус',
+      category: 'pizza',
+      image: ImageType.PIZZA,
+      basePrice: 649,
+      weight: 450,
+      kcal: 720,
+      featured: true,
+    },
+    {
+      slug: 'mussels-in-cream',
+      name: 'Мидии в сливочном соусе',
+      desc: 'Мидии, сливки, чеснок, петрушка, гренки',
+      category: 'seafood',
+      image: ImageType.OTHER,
+      basePrice: 549,
+      weight: 320,
+      kcal: 380,
+    },
+
+    // ── Грузинская кухня ────────────────────────────────────────────────────
+    {
+      slug: 'khachapuri-adjarian',
+      name: 'Хачапури по-аджарски',
+      desc: 'Лодочка с сыром сулугуни, маслом и желтком',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 399,
+      weight: 320,
+      kcal: 620,
+      featured: true,
+    },
+    {
+      slug: 'khinkali',
+      name: 'Хинкали (5 шт)',
+      desc: 'Сумочки с говядиной и свининой, кинза, чёрный перец',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 449,
+      weight: 500,
+      kcal: 720,
+      spicy: true,
+    },
+    {
+      slug: 'khinkali-cheese',
+      name: 'Хинкали сырные (5 шт)',
+      desc: 'Сумочки с сыром сулугуни и аджьарули',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 379,
+      weight: 480,
+      kcal: 650,
+    },
+    {
+      slug: 'khachapuri-mixed',
+      name: 'Хачапури «Мегрельский»',
+      desc: 'Открытый пирог с сыром, яйцом и маслом',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 429,
+      weight: 380,
+      kcal: 680,
+    },
+    {
+      slug: 'lobio',
+      name: 'Лобио',
+      desc: 'Фасоль с грецким орехом, кинзой и специями',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 299,
+      weight: 300,
+      kcal: 340,
+      vegan: true,
+    },
+    {
+      slug: 'pkhali',
+      name: 'Пхлаги микс (6 шт)',
+      desc: 'Шпинат, свёкла, фасоль — с грецким орехом',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 349,
+      weight: 270,
+      kcal: 310,
+      vegan: true,
+    },
+    {
+      slug: 'adjap-sandal',
+      name: 'Аджапсандал',
+      desc: 'Баклажан, картофель, перец, томат, ореховый соус',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 319,
+      weight: 320,
+      kcal: 290,
+      vegan: true,
+    },
+    {
+      slug: 'mchadi-with-cheese',
+      name: 'Мчади с сыром и зеленью',
+      desc: 'Кукурузная лепёшка, сулугуни, кинза, базилик',
+      category: 'georgian',
+      image: ImageType.OTHER,
+      basePrice: 349,
+      weight: 280,
+      kcal: 420,
+    },
+
+    // ── Салаты ──────────────────────────────────────────────────────────────
+    {
+      slug: 'mediteranean-salad',
+      name: 'Средиземноморский',
+      desc: 'Руккола, моцарелла, вяленые томаты, кедровый орех, бальзамик',
+      category: 'salads',
+      image: ImageType.SALAD,
+      basePrice: 389,
+      weight: 250,
+      kcal: 280,
+      featured: true,
+    },
+    {
+      slug: 'greek-salad',
+      name: 'Греческий',
+      desc: 'Овечий сыр, томаты, огурцы, оливки, каперсы',
+      category: 'salads',
+      image: ImageType.SALAD,
+      basePrice: 329,
+      weight: 280,
+      kcal: 260,
+      vegan: true,
+    },
+    {
+      slug: 'tuna-salad',
+      name: 'Салат с тунцом',
+      desc: 'Тунец, микс салатов, авокадо, тайский соус',
+      category: 'salads',
+      image: ImageType.SALAD,
+      basePrice: 429,
+      weight: 260,
+      kcal: 240,
+    },
+    {
+      slug: 'cobb-salad',
+      name: 'Кобб',
+      desc: 'Курица, бекон, яйцо, авокадо, голубой сыр',
+      category: 'salads',
+      image: ImageType.SALAD,
+      basePrice: 449,
+      weight: 300,
+      kcal: 480,
+    },
+
+    // ── Супы ────────────────────────────────────────────────────────────────
+    {
+      slug: 'churchkhela-soup',
+      name: 'Чирбуладжи',
+      desc: 'Грузинский суп с яйцом и айраном',
+      category: 'soups',
+      image: ImageType.SOUP,
+      basePrice: 289,
+      weight: 350,
+      kcal: 220,
+    },
+    {
+      slug: 'tomato-soup',
+      name: 'Томатный суп-крем',
+      desc: 'Печёные томаты, базилик, сливки, гренки',
+      category: 'soups',
+      image: ImageType.SOUP,
+      basePrice: 259,
+      weight: 300,
+      kcal: 210,
+      vegan: true,
+    },
+    {
+      slug: 'lobster-soup',
+      name: 'Суп из морепродуктов',
+      desc: 'Креветки, мидии, рыба, томатный бульон, шафран',
+      category: 'soups',
+      image: ImageType.SOUP,
+      basePrice: 499,
+      weight: 380,
+      kcal: 280,
+      featured: true,
+    },
+
+    // ── Детские блюда ───────────────────────────────────────────────────────
+    {
+      slug: 'kids-nuggets',
+      name: 'Наггетсы детские',
+      desc: '5 шт куриных наггетсов с картофелем фри и соусом',
+      category: 'kids',
+      image: ImageType.SNACK,
+      basePrice: 299,
+      weight: 220,
+      kcal: 420,
+    },
+    {
+      slug: 'kids-mac-cheese',
+      name: 'Макароны с сыром детские',
+      desc: 'Макароны, сливочный сыр, гренки',
+      category: 'kids',
+      image: ImageType.OTHER,
+      basePrice: 279,
+      weight: 200,
+      kcal: 380,
+    },
+    {
+      slug: 'kids-suvlaki',
+      name: 'Мини-сувлаки',
+      desc: 'Нежная курица в лаваше с детским соусом',
+      category: 'kids',
+      image: ImageType.OTHER,
+      basePrice: 319,
+      weight: 180,
+      kcal: 300,
+    },
+
+    // ── Десерты ─────────────────────────────────────────────────────────────
+    {
+      slug: 'churchkhela',
+      name: 'Чурчхела',
+      desc: 'Грузинская чурчхела с грецким орехом и виноградным соком',
+      category: 'desserts',
+      image: ImageType.DESSERT,
+      basePrice: 199,
+      weight: 80,
+      kcal: 340,
+      featured: true,
+    },
+    {
+      slug: 'basbousa',
+      name: 'Басбуса',
+      desc: 'Восточный десерт из манки с кокосом и сиропом',
+      category: 'desserts',
+      image: ImageType.DESSERT,
+      basePrice: 219,
+      weight: 120,
+      kcal: 380,
+    },
+    {
+      slug: 'baklava',
+      name: 'Баглава',
+      desc: 'Слоёное тесто с орехами и мёдом',
+      category: 'desserts',
+      image: ImageType.DESSERT,
+      basePrice: 249,
+      weight: 150,
+      kcal: 420,
+    },
+
+    // ── Напитки ─────────────────────────────────────────────────────────────
+    {
+      slug: 'compote-grape',
+      name: 'Компот виноградный',
+      desc: 'Домашний, 0.7 л',
+      category: 'drinks',
+      image: ImageType.DRINK,
+      basePrice: 199,
+      weight: 700,
+      kcal: 120,
+      vegan: true,
+    },
+    {
+      slug: 'tarhun',
+      name: 'Тархун домашний',
+      desc: 'Свежий тархун с мятой, 0.5 л',
+      category: 'drinks',
+      image: ImageType.DRINK,
+      basePrice: 179,
+      weight: 500,
+      kcal: 80,
+      vegan: true,
+    },
+    {
+      slug: 'fruit-juice',
+      name: 'Сок натуральный',
+      desc: 'Апельсин / яблоко / виноград',
+      category: 'drinks',
+      image: ImageType.DRINK,
+      basePrice: 149,
+      weight: 330,
+      kcal: 150,
+      vegan: true,
+    },
+    {
+      slug: 'cola',
+      name: 'Кола 0.5',
+      desc: 'Освежающий газированный напиток',
+      category: 'drinks',
+      image: ImageType.DRINK,
+      basePrice: 129,
+      weight: 500,
+      kcal: 210,
+    },
+    {
+      slug: 'lemonade',
+      name: 'Лимонад домашний',
+      desc: 'Лимон-мято-имбирь, 0.5 л',
+      category: 'drinks',
+      image: ImageType.DRINK,
+      basePrice: 169,
+      weight: 500,
+      kcal: 90,
+      vegan: true,
+    },
+
+    // ── Остальные (пицца, бургеры, закуски — из Crudo) ─────────────────────
     {
       slug: 'margherita',
       name: 'Маргарита',
@@ -107,22 +524,6 @@ async function main() {
       ],
     },
     {
-      slug: 'veggie-pizza',
-      name: 'Вегано',
-      desc: 'Томаты, перец, шампиньоны, оливки, базилик',
-      category: 'pizza',
-      image: ImageType.PIZZA,
-      basePrice: 599,
-      weight: 460,
-      kcal: 820,
-      vegan: true,
-      variants: [
-        { name: '25 см', price: 599 },
-        { name: '30 см', price: 799, isDefault: true },
-        { name: '35 см', price: 999 },
-      ],
-    },
-    {
       slug: 'classic-burger',
       name: 'Классический бургер',
       desc: 'Говяжья котлета, чеддер, салат, соус',
@@ -142,16 +543,6 @@ async function main() {
       basePrice: 459,
       weight: 300,
       kcal: 820,
-    },
-    {
-      slug: 'chicken-burger',
-      name: 'Чикен бургер',
-      desc: 'Куриное филе, салат айсберг, соус чипотле',
-      category: 'burgers',
-      image: ImageType.BURGER,
-      basePrice: 359,
-      weight: 230,
-      kcal: 540,
     },
     {
       slug: 'fries',
@@ -177,89 +568,12 @@ async function main() {
       weight: 180,
       kcal: 410,
     },
-    {
-      slug: 'caesar',
-      name: 'Цезарь с курицей',
-      desc: 'Куриное филе, салат романо, пармезан, гренки',
-      category: 'salads',
-      image: ImageType.SALAD,
-      basePrice: 329,
-      weight: 220,
-      kcal: 380,
-    },
-    {
-      slug: 'greek-salad',
-      name: 'Греческий',
-      desc: 'Овечий сыр, томаты, огурцы, оливки',
-      category: 'salads',
-      image: ImageType.SALAD,
-      basePrice: 299,
-      weight: 210,
-      kcal: 290,
-      vegan: true,
-    },
-    {
-      slug: 'tomato-soup',
-      name: 'Томатный суп-крем',
-      desc: 'Печёные томаты, базилик, сливки',
-      category: 'soups',
-      image: ImageType.SOUP,
-      basePrice: 259,
-      weight: 300,
-      kcal: 210,
-      vegan: true,
-    },
-    {
-      slug: 'cheesecake',
-      name: 'Чизкейк',
-      desc: 'Нью-йоркский чизкейк с ягодным соусом',
-      category: 'desserts',
-      image: ImageType.DESSERT,
-      basePrice: 249,
-      weight: 140,
-      kcal: 420,
-      featured: true,
-    },
-    {
-      slug: 'tiramisu',
-      name: 'Тирамису',
-      desc: 'Классический итальянский десерт',
-      category: 'desserts',
-      image: ImageType.DESSERT,
-      basePrice: 269,
-      weight: 150,
-      kcal: 390,
-    },
-    {
-      slug: 'cola',
-      name: 'Кола 0.5',
-      desc: 'Освежающий напиток',
-      category: 'drinks',
-      image: ImageType.DRINK,
-      basePrice: 129,
-      weight: 500,
-      kcal: 210,
-      variants: [
-        { name: '0.5 л', price: 129, isDefault: true },
-        { name: '1 л', price: 179 },
-      ],
-    },
-    {
-      slug: 'fresh-orange',
-      name: 'Апельсиновый фреш',
-      desc: 'Свежевыжатый, 0.3 л',
-      category: 'drinks',
-      image: ImageType.DRINK,
-      basePrice: 189,
-      weight: 300,
-      kcal: 140,
-      vegan: true,
-    },
   ];
 
   for (const p of products) {
     const existing = await prisma.product.findUnique({ where: { slug: p.slug } });
     if (existing) continue;
+
     const { variants, category, image, basePrice, ...rest } = p;
     const created = await prisma.product.create({
       data: {
@@ -338,6 +652,7 @@ async function main() {
     skipDuplicates: true,
   });
   console.log('✔ Опции конструктора пиццы готовы');
+  console.log('\n🍽  Меню кафе «Рица» — Сочи успешно загружено!');
 }
 
 main()

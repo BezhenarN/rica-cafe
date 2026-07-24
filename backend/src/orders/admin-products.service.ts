@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ImageType, Prisma } from '@prisma/client';
 import { PrismaService } from '../common/prisma.service';
 
@@ -6,6 +6,7 @@ export interface CreateProductInput {
   slug: string;
   name: string;
   description?: string;
+  imagePath?: string;
   imageType?: ImageType;
   categoryId: string;
   isVegan?: boolean;
@@ -84,6 +85,13 @@ export class AdminProductsService {
   async deleteProduct(id: string) {
     await this.getOrThrow(id);
     return this.prisma.product.delete({ where: { id } });
+  }
+
+  async setProductImage(id: string, filename: string) {
+    await this.getOrThrow(id);
+    const path = `/uploads/${filename}`;
+    await this.prisma.product.update({ where: { id }, data: { imagePath: path } });
+    return { imagePath: path };
   }
 
   private async getOrThrow(id: string) {

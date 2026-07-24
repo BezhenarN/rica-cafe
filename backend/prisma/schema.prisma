@@ -78,6 +78,7 @@ model Product {
   slug        String          @unique
   name        String
   description String?
+  imagePath   String?         // путь к фото относительно uploads/products/
   imageType   ImageType       @default(OTHER)
   categoryId  String
   isVegan     Boolean         @default(false)
@@ -168,6 +169,12 @@ enum PaymentMethod {
   CARD_ON_DELIVERY
 }
 
+enum DeliveryType {
+  DELIVERY
+  PICKUP
+}
+
+
 model Order {
   id            String        @id @default(cuid())
   publicNumber  Int           @unique @default(autoincrement()) // короткий № для клиента
@@ -178,10 +185,11 @@ model Order {
 
   status        OrderStatus   @default(CREATED)
   paymentMethod PaymentMethod @default(CASH)
+  deliveryType  DeliveryType  @default(DELIVERY)
 
   // Снимок адреса доставки на момент оформления.
-  street        String
-  building      String
+  street        String?
+  building      String?
   apt           String?
   floor         String?
   entrance      String?

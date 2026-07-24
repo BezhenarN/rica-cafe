@@ -49,6 +49,7 @@ export function CartContents({ onCheckout }: { onCheckout?: () => void }) {
             >
               <ProductImage
                 imageType={l.imageType as any}
+                imagePath={l.imagePath}
                 className="h-16 w-16 shrink-0"
               />
               <div className="flex flex-1 flex-col gap-1">

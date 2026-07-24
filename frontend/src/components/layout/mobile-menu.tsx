@@ -10,6 +10,7 @@ import { useAuthStore } from '@/store/auth-store';
 const LINKS = [
   { href: '/', label: 'Главная', icon: Home },
   { href: '/menu', label: 'Меню', icon: UtensilsCrossed },
+  { href: '/about', label: 'О кафе', icon: UtensilsCrossed },
   { href: '/pizza-builder', label: 'Конструктор пиццы', icon: Pizza },
   { href: '/cart', label: 'Корзина', icon: ShoppingBag },
   { href: '/orders', label: 'Мои заказы', icon: ShoppingBag },

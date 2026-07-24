@@ -1,13 +1,13 @@
 {
-  "name": "Crudo — доставка еды и пиццы",
-  "short_name": "Crudo",
-  "description": "Закажите пиццу и готовые блюда с доставкой. Конструктор пиццы, живой трекинг заказа.",
+  "name": "Рица — кафе и доставка, Сочи",
+  "short_name": "Рица",
+  "description": "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FAFAF7",
-  "theme_color": "#0D5C57",
+  "theme_color": "#0B6E6E",
   "categories": ["food", "shopping", "lifestyle"],
   "lang": "ru",
   "icons": [
@@ -27,6 +27,11 @@
     {
       "name": "Конструктор пиццы",
       "url": "/pizza-builder",
+      "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "О кафе",
+      "url": "/about",
       "icons": [{ "src": "/icons/icon.svg", "sizes": "any" }]
     }
   ]

@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -7,14 +8,18 @@ import {
   ParseCuidPipe,
   Patch,
   Post,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiOperation, ApiConsumes, ApiBody, ApiTags } from '@nestjs/swagger';
 import { Role } from '@prisma/client';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { RolesGuard } from '../auth/roles.guard';
 import { Roles } from '../auth/roles.decorator';
 import { AdminProductsService, CreateProductInput, UpdateProductInput } from './admin-products.service';
+import { productImageStorage } from '../upload/upload.module';
 
 @ApiTags('admin / products')
 @ApiBearerAuth()
@@ -58,5 +63,26 @@ export class AdminProductsController {
   @ApiOperation({ summary: 'Удалить товар' })
   remove(@Param('id', ParseCuidPipe) id: string) {
     return this.service.deleteProduct(id);
+  }
+
+  @Post('products/:id/image')
+  @ApiOperation({ summary: 'Загрузить фото товара' })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    schema: {
+      type: 'object',
+      required: ['file'],
+      properties: {
+        file: { type: 'string', format: 'binary' },
+      },
+    },
+  })
+  @UseInterceptors(FileInterceptor('file', { storage: productImageStorage() }))
+  uploadImage(
+    @Param('id', ParseCuidPipe) id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    if (!file) throw new BadRequestException('Файл не загружен');
+    return this.service.setProductImage(id, file.filename);
   }
 }

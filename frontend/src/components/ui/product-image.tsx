@@ -83,6 +83,7 @@ interface ProductImageProps {
   imageType?: ImageType;
   name?: string;
   className?: string;
+  imagePath?: string | null;
   /** Для совместимости с next/image, но мы рендерим SVG inline. */
   alt?: string;
   priority?: boolean;
@@ -90,10 +91,20 @@ interface ProductImageProps {
 
 /**
  * SVG-плейсхолдер для изображений блюд.
- * Замените на <Image src={...}> при подключении реальных фото.
+ * Если есть реальное фото (imagePath) — рендерим его, иначе — SVG.
  */
-export function ProductImage({ imageType = 'OTHER', name, className }: ProductImageProps) {
+export function ProductImage({ imageType = 'OTHER', name, className, imagePath }: ProductImageProps) {
   const { bg, fg } = PALETTE[imageType] ?? PALETTE.OTHER;
+
+  if (imagePath) {
+    return (
+      <img
+        src={imagePath}
+        alt={name ?? ''}
+        className={cn('h-full w-full object-cover rounded-2xl', className)}
+      />
+    );
+  }
 
   return (
     <div
