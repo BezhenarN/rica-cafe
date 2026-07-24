@@ -15,12 +15,30 @@ async function bootstrap() {
     { bufferLogs: true },
   );
 
-  const corsOrigin = process.env.CORS_ORIGIN?.split(',').map((s: string) => s.trim()) ?? '*';
-  app.enableCors({
-    origin: corsOrigin,
-    credentials: true,
-    methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
-  });
+  // Разрешаем CORS-запросы с фронтенда.
+  // Если CORS_ORIGIN не задан — разрешаем все origins (удобно для Vercel-домена).
+  const corsOrigin = process.env.CORS_ORIGIN;
+  if (corsOrigin === '*') {
+    app.enableCors({
+      origin: true,
+      credentials: true,
+      methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    });
+  } else if (corsOrigin) {
+    const origins: string[] = corsOrigin.split(',').map((s: string) => s.trim());
+    app.enableCors({
+      origin: origins,
+      credentials: true,
+      methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    });
+  } else {
+    // Dev-режим: разрешаем localhost
+    app.enableCors({
+      origin: 'http://localhost:3000',
+      credentials: true,
+      methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+    });
+  }
 
   // Глобальная валидация DTO: отбрасывает неизвестные поля и выбрасывает 400 при ошибках.
   app.useGlobalPipes(
