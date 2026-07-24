@@ -8,7 +8,7 @@ import type { Category, Product } from '@/lib/types';
 
 async function fetchCategories(): Promise<Category[]> {
   try {
-    const res = await fetch('http://localhost:3001/api/categories');
+    const res = await fetch('/api/categories');
     if (!res.ok) return [];
     return res.json();
   } catch {
@@ -18,7 +18,7 @@ async function fetchCategories(): Promise<Category[]> {
 
 async function fetchFeatured(): Promise<Product[]> {
   try {
-    const res = await fetch('http://localhost:3001/api/products/featured');
+    const res = await fetch('/api/products/featured');
     if (!res.ok) return [];
     return res.json();
   } catch {

@@ -12,7 +12,7 @@ import { formatPrice } from '@/lib/cn';
 import { getStatusMeta } from '@/lib/order-status';
 import { adminApi } from '@/lib/api';
 import { useCategories } from '@/hooks/use-queries';
-import { unwrapError } from '@/lib/api-client';
+import { unwrapError, getToken } from '@/lib/api-client';
 import { showToast } from '@/components/ui/toast';
 import type { OrderStatus, Category, Product as ProductType } from '@/lib/types';
 
@@ -249,7 +249,7 @@ function ProductsAdmin() {
                   fd.append('file', file);
                   fetch(`/api/admin/products/${p.id}/image`, {
                     method: 'POST',
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+                    headers: { Authorization: `Bearer ${getToken()}` },
                     body: fd,
                   })
                     .then((r) => r.json())
@@ -348,7 +348,7 @@ function ProductForm({
       .filter(Boolean)
       .map((v, i) => ({ name: v, price: parseFloat(variantPrices[i] ?? '0'), isDefault: i === 0 }));
 
-    const token = localStorage.getItem('token');
+    const token = getToken();
     if (!token) {
       showToast('Не авторизованы', 'error');
       return;

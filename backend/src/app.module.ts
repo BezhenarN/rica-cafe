@@ -7,6 +7,8 @@ import { ProductsModule } from './products/products.module';
 import { PizzaBuilderModule } from './pizza-builder/pizza-builder.module';
 import { OrdersModule } from './orders/orders.module';
 
+import { HealthController } from './app.health.controller';
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -17,5 +19,6 @@ import { OrdersModule } from './orders/orders.module';
     PizzaBuilderModule,
     OrdersModule,
   ],
+  controllers: [HealthController],
 })
 export class AppModule {}
