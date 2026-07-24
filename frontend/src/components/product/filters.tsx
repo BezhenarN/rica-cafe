@@ -3,7 +3,8 @@
 import { Search, SlidersHorizontal, Leaf, Flame } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/cn';
-import type { Category, ProductFilters } from '@/lib/types';
+import type { Category } from '@/lib/types';
+import type { ProductFilters } from '@/lib/api';
 
 interface FiltersProps {
   categories: Category[];

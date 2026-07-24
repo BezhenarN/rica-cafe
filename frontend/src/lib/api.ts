@@ -57,10 +57,10 @@ export const catalogApi = {
         acc[k] = String(v);
         return acc;
       }, {});
-    return api.get('products', { search }).json<Product[]>();
+    return api.get('products', { searchParams: search }).json<Product[]>();
   },
   featured: (limit = 8) =>
-    api.get('products/featured', { search: limit ? { limit: String(limit) } : {} }).json<Product[]>(),
+    api.get('products/featured', { searchParams: limit ? { limit: String(limit) } : {} }).json<Product[]>(),
   bySlug: (slug: string) => api.get(`products/${slug}`).json<Product>(),
 };
 
@@ -123,7 +123,7 @@ export const ordersApi = {
 // ── Admin ────────────────────────────────────────────────────────────────────
 export const adminApi = {
   orders: (status?: OrderStatus) =>
-    api.get('admin/orders', { search: status ? { status } : {} }).json<Order[]>(),
+    api.get('admin/orders', { searchParams: status ? { status } : {} }).json<Order[]>(),
   updateOrderStatus: (id: string, status: OrderStatus) =>
     api.patch(`admin/orders/${id}/status`, { json: { status } }).json<Order>(),
   products: () =>

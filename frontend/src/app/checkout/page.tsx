@@ -23,8 +23,8 @@ const schema = z.object({
   phone: z.string().min(6, 'Введите телефон'),
   email: z.string().email('Некорректный email').optional().or(z.literal('')),
   deliveryType: z.enum(['DELIVERY', 'PICKUP']).default('DELIVERY'),
-  street: z.string().min(3, 'Введите улицу').optional().refine((v) => v?.trim().length >= 3, { message: 'Введите улицу' }),
-  building: z.string().min(1, 'Введите дом').optional(),
+  street: z.string().min(3, 'Введите улицу').optional(),
+  building: z.string().optional(),
   apt: z.string().optional(),
   entrance: z.string().optional(),
   floor: z.string().optional(),
@@ -70,6 +70,10 @@ export default function CheckoutPage() {
   const onSubmit = async (data: FormData) => {
     if (lines.length === 0) {
       showToast('Корзина пуста', 'error');
+      return;
+    }
+    if (deliveryType === 'DELIVERY' && (!data.street || !data.building)) {
+      showToast('Укажите адрес доставки', 'error');
       return;
     }
     const payload = cartToOrderPayload(lines);

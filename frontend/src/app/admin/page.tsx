@@ -10,7 +10,8 @@ import { useAdminOrders, useAdminProducts, useAdminToggleProduct } from '@/hooks
 import { Badge } from '@/components/ui/badge';
 import { formatPrice } from '@/lib/cn';
 import { getStatusMeta } from '@/lib/order-status';
-import { adminApi, catalogApi } from '@/lib/api';
+import { adminApi } from '@/lib/api';
+import { useCategories } from '@/hooks/use-queries';
 import { unwrapError } from '@/lib/api-client';
 import { showToast } from '@/components/ui/toast';
 import type { OrderStatus, Category, Product as ProductType } from '@/lib/types';
@@ -169,7 +170,7 @@ function OrdersAdmin({
 
 function ProductsAdmin() {
   const { data: products, isLoading } = useAdminProducts();
-  const { data: categories } = catalogApi.categories();
+  const { data: categories } = useCategories();
   const toggle = useAdminToggleProduct();
 
   const [editing, setEditing] = useState<ProductType | null>(null);

@@ -169,13 +169,14 @@ function AddressesTab() {
 }
 
 function AddressForm({ onSubmit, onCancel }: {
-  onSubmit: (d: { label?: string; street: string; building: string; apt?: string; entrance?: string; floor?: string }) => Promise<void>;
+  onSubmit: (d: { label: string | null; street: string; building: string; apt: string | null; entrance: string | null; floor: string | null; comment: string | null }) => Promise<void>;
   onCancel: () => void;
 }) {
   const [street, setStreet] = useState('');
   const [building, setBuilding] = useState('');
   const [apt, setApt] = useState('');
   const [label, setLabel] = useState('');
+  const [comment, setComment] = useState('');
   return (
     <div className="card space-y-3 p-4">
       <input className="input" placeholder="Метка (Дом, Работа)" value={label} onChange={(e) => setLabel(e.target.value)} />
@@ -186,7 +187,14 @@ function AddressForm({ onSubmit, onCancel }: {
       </div>
       <div className="flex gap-2">
         <button
-          onClick={() => street && building && onSubmit({ label, street, building, apt })}
+          onClick={() => street && building && onSubmit({
+            label: label || null,
+            street, building,
+            apt: apt || null,
+            entrance: null,
+            floor: null,
+            comment: comment || null,
+          })}
           className="btn-primary flex-1"
         >
           Сохранить

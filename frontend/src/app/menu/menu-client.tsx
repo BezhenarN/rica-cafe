@@ -7,7 +7,8 @@ import { useProducts } from '@/hooks/use-queries';
 import { Filters, EmptyCatalog } from '@/components/product/filters';
 import { ProductCard } from '@/components/product/product-card';
 import { ProductCardSkeleton } from '@/components/ui/skeleton';
-import type { Category, ProductFilters } from '@/lib/types';
+import type { Category } from '@/lib/types';
+import type { ProductFilters } from '@/lib/api';
 
 export function MenuClient({
   categories,
