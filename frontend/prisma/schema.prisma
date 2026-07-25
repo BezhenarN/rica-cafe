@@ -1,0 +1,235 @@
+// Prisma schema for Crudo café (food delivery + pizza builder).
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Seed ────────────────────────────────────────────────────────────────────────
+
+prisma {
+  seed = "tsx prisma/seed.ts"
+}
+
+// ── Пользователи и авторизация ───────────────────────────────────────────────
+
+enum Role {
+  CUSTOMER
+  ADMIN
+}
+
+model User {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String?
+  phone        String?
+  role         Role      @default(CUSTOMER)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  addresses Address[]
+  orders    Order[]
+}
+
+model Address {
+  id        String   @id @default(cuid())
+  userId    String
+  label     String? // "Дом", "Работа"
+  street    String
+  building  String
+  apt       String?
+  floor     String?
+  entrance  String?
+  comment   String?
+  isDefault Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// ── Каталог ────────────────────────────────────────────────────────────────
+
+model Category {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  name      String
+  icon      String?
+  sortOrder Int       @default(0)
+  products  Product[]
+}
+
+// Тип блюда для подбора SVG-плейсхолдера на фронте.
+enum ImageType {
+  PIZZA
+  BURGER
+  SALAD
+  SOUP
+  DRINK
+  DESSERT
+  SNACK
+  OTHER
+}
+
+model Product {
+  id          String          @id @default(cuid())
+  slug        String          @unique
+  name        String
+  description String?
+  imagePath   String?         // путь к фото относительно uploads/products/
+  imageType   ImageType       @default(OTHER)
+  categoryId  String
+  isVegan     Boolean         @default(false)
+  isSpicy     Boolean         @default(false)
+  isAvailable Boolean         @default(true)
+  isFeatured  Boolean         @default(false)
+  // Базовая (минимальная) цена — используется в карточках каталога.
+  basePrice   Decimal         @db.Decimal(10, 2)
+  weight      Int?            // граммы
+  kcal        Int?
+  sortOrder   Int             @default(0)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  category Category           @relation(fields: [categoryId], references: [id])
+  variants ProductVariant[]
+
+  @@index([categoryId])
+  @@index([isFeatured])
+}
+
+// Варианты размера/цены для продукта (мини/стандарт/макси, порции и т. п.).
+model ProductVariant {
+  id        String  @id @default(cuid())
+  productId String
+  name      String  // "25 см", "0.5 л", "Стандарт"
+  price     Decimal @db.Decimal(10, 2)
+  isDefault Boolean @default(false)
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+}
+
+// ── Конструктор пиццы ───────────────────────────────────────────────────────
+
+model PizzaSize {
+  id        String  @id @default(cuid())
+  name      String  // "25 см", "30 см", "35 см"
+  basePrice Decimal @db.Decimal(10, 2)
+  maxIngredients Int @default(8)
+  sortOrder Int     @default(0)
+}
+
+enum DoughType {
+  TRADITIONAL
+  THIN
+}
+
+model DoughOption {
+  id     String    @id @default(cuid())
+  type   DoughType @unique
+  name   String
+  price  Decimal   @db.Decimal(10, 2) @default(0)
+}
+
+model Sauce {
+  id       String  @id @default(cuid())
+  name     String
+  price    Decimal @db.Decimal(10, 2) @default(0)
+  sortOrder Int    @default(0)
+}
+
+model Ingredient {
+  id        String  @id @default(cuid())
+  name      String
+  price    Decimal @db.Decimal(10, 2)
+  imageType ImageType @default(OTHER)
+  isVegan   Boolean @default(false)
+  isSpicy   Boolean @default(false)
+  isAvailable Boolean @default(true)
+  sortOrder Int     @default(0)
+}
+
+// ── Заказы ─────────────────────────────────────────────────────────────────
+
+enum OrderStatus {
+  CREATED
+  CONFIRMED
+  COOKING
+  ON_THE_WAY
+  DELIVERED
+  CANCELED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD_ON_DELIVERY
+}
+
+enum DeliveryType {
+  DELIVERY
+  PICKUP
+}
+
+
+model Order {
+  id            String        @id @default(cuid())
+  publicNumber  Int           @unique @default(autoincrement()) // короткий № для клиента
+  userId        String?
+  guestName     String?
+  guestPhone    String?
+  guestEmail    String?
+
+  status        OrderStatus   @default(CREATED)
+  paymentMethod PaymentMethod @default(CASH)
+  deliveryType  DeliveryType  @default(DELIVERY)
+
+  // Снимок адреса доставки на момент оформления.
+  street        String?
+  building      String?
+  apt           String?
+  floor         String?
+  entrance      String?
+  addressComment String?
+
+  comment       String?
+  deliveryCost  Decimal       @db.Decimal(10, 2) @default(0)
+  itemsTotal    Decimal       @db.Decimal(10, 2)
+  total         Decimal       @db.Decimal(10, 2)
+
+  // Метки времени по этапам — для трекинга.
+  statusUpdatedAt DateTime    @default(now())
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  user   User?       @relation(fields: [userId], references: [id])
+  items   OrderItem[]
+
+  @@index([userId])
+  @@index([status])
+}
+
+model OrderItem {
+  id          String   @id @default(cuid())
+  orderId     String
+  productId   String?
+  // Снимок названия/цены на момент заказа — заказ не «ломается» при изменении каталога.
+  name        String
+  unitPrice   Decimal  @db.Decimal(10, 2)
+  quantity    Int      @default(1)
+  // Свободное текстовое описание конфигурации (размер/тесто/ингредиенты пиццы).
+  configSummary String?
+
+  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  @@index([orderId])
+}

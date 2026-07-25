@@ -24,14 +24,15 @@ export function setToken(token: string | null) {
   }
 }
 
-/** Базовый клиент. В браузере ходит через NEXT_PUBLIC_API_URL; на сервере — напрямую. */
+/** Базовый клиент. В браузере ходит через относительный путь к Next.js API Routes. */
 function createClient(): KyInstance {
+  // When Next.js API routes are co-located (unified deploy), use relative /api path.
   const isServer = typeof window === 'undefined';
   const apiBase = process.env.NEXT_PUBLIC_API_URL
     ? `${process.env.NEXT_PUBLIC_API_URL}/api`
     : isServer
-      ? 'http://localhost:3001/api'
-      : 'http://localhost:3001/api';
+      ? '/api'
+      : '';
   return ky.create({
     prefixUrl: apiBase,
     timeout: 15000,

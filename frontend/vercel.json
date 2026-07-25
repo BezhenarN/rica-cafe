@@ -1,0 +1,43 @@
+{
+  "buildCommand": "cd frontend && pnpm install && pnpm prisma:generate && pnpm build",
+  "devCommand": "cd frontend && pnpm dev",
+  "installCommand": "pnpm install --prefix frontend",
+  "regions": ["dme"],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "",
+    "DATABASE_URL": "",
+    "JWT_SECRET": "",
+    "ADMIN_EMAIL": "",
+    "ADMIN_PASSWORD": ""
+  },
+  "functions": {
+    "frontend/src/app/api/health/route.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "frontend/src/app/api/auth/*/route.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "frontend/src/app/api/categories/route.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "frontend/src/app/api/products/route.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "frontend/src/app/api/pizza/options/route.ts": {
+      "memory": 1024,
+      "maxDuration": 10
+    },
+    "frontend/src/app/api/orders/route.ts": {
+      "memory": 1024,
+      "maxDuration": 30
+    },
+    "frontend/src/app/api/admin/**/*.ts": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  }
+}
