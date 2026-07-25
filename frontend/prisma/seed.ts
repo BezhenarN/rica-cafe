@@ -70,8 +70,8 @@ async function main() {
     basePrice: number;
     weight?: number;
     kcal?: number;
-    vegan?: boolean;
-    spicy?: boolean;
+    isVegan?: boolean;
+    isSpicy?: boolean;
     isFeatured?: boolean;
     variants?: { name: string; price: number; isDefault?: boolean }[];
   };
@@ -130,7 +130,7 @@ async function main() {
       basePrice: 299,
       weight: 260,
       kcal: 420,
-      vegan: true,
+      isVegan: true,
     },
 
     // ── Морепродукты и гриль ────────────────────────────────────────────────
@@ -164,7 +164,7 @@ async function main() {
       basePrice: 799,
       weight: 300,
       kcal: 280,
-      spicy: true,
+      isSpicy: true,
     },
     {
       slug: 'seafood-pizza',
@@ -209,7 +209,7 @@ async function main() {
       basePrice: 449,
       weight: 500,
       kcal: 720,
-      spicy: true,
+      isSpicy: true,
     },
     {
       slug: 'khinkali-cheese',
@@ -240,7 +240,7 @@ async function main() {
       basePrice: 299,
       weight: 300,
       kcal: 340,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'pkhali',
@@ -251,7 +251,7 @@ async function main() {
       basePrice: 349,
       weight: 270,
       kcal: 310,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'adjap-sandal',
@@ -262,7 +262,7 @@ async function main() {
       basePrice: 319,
       weight: 320,
       kcal: 290,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'mchadi-with-cheese',
@@ -296,7 +296,7 @@ async function main() {
       basePrice: 329,
       weight: 280,
       kcal: 260,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'tuna-salad',
@@ -339,7 +339,7 @@ async function main() {
       basePrice: 259,
       weight: 300,
       kcal: 210,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'lobster-soup',
@@ -428,7 +428,7 @@ async function main() {
       basePrice: 199,
       weight: 700,
       kcal: 120,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'tarhun',
@@ -439,7 +439,7 @@ async function main() {
       basePrice: 179,
       weight: 500,
       kcal: 80,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'fruit-juice',
@@ -450,7 +450,7 @@ async function main() {
       basePrice: 149,
       weight: 330,
       kcal: 150,
-      vegan: true,
+      isVegan: true,
     },
     {
       slug: 'cola',
@@ -471,7 +471,7 @@ async function main() {
       basePrice: 169,
       weight: 500,
       kcal: 90,
-      vegan: true,
+      isVegan: true,
     },
 
     // ── Остальные (пицца, бургеры, закуски — из Crudo) ─────────────────────
@@ -500,7 +500,7 @@ async function main() {
       basePrice: 649,
       weight: 510,
       kcal: 1100,
-      spicy: true,
+      isSpicy: true,
       isFeatured: true,
       variants: [
         { name: '25 см', price: 649 },
