@@ -22,6 +22,9 @@ const prisma = new PrismaClient();
 
 const money = (v: number) => v.toFixed(2);
 
+const MAX_RETRIES = 5;
+const RETRY_DELAY = 15_000; // бесплатный Neon спит, нужно подождать
+
 async function main() {
   // ── Администратор ────────────────────────────────────────────────────────
   const adminEmail = process.env.ADMIN_EMAIL ?? 'admin@rica.local';
@@ -655,10 +658,28 @@ async function main() {
   console.log('\n🍽  Меню кафе «Рица» — Сочи успешно загружено!');
 }
 
-main()
-  .then(() => prisma.$disconnect())
-  .catch(async (e) => {
-    console.error(e);
-    await prisma.$disconnect();
-    process.exit(1);
-  });
+async function run() {
+  let lastError: Error | undefined;
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      await main();
+      return;
+    } catch (e: any) {
+      lastError = e instanceof Error ? e : new Error(String(e));
+      const msg = lastError.message || '';
+      const isRetryable = msg.includes('closed the connection')
+        || msg.includes('ECONNREFUSED')
+        || msg.includes('ETIMEDOUT')
+        || msg.includes('was denied access')
+        || lastError.code === 'P1017';
+      if (!isRetryable || attempt === MAX_RETRIES) break;
+      console.warn(`[seed] attempt ${attempt}/${MAX_RETRIES} failed: ${msg.slice(0, 80)}. Retrying in ${RETRY_DELAY/1000}s...`);
+      await new Promise(r => setTimeout(r, RETRY_DELAY));
+    }
+  }
+  console.error('[seed] Failed after all retries:', lastError?.message);
+  await prisma.$disconnect();
+  process.exit(1);
+}
+
+run();
