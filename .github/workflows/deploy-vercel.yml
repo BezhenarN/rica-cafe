@@ -24,7 +24,31 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Build and deploy to Vercel
+      - name: Generate Prisma Client
+        working-directory: frontend
+        run: npx prisma generate
+
+      - name: Push schema to database
+        working-directory: frontend
+        run: npx prisma db push
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Seed database
+        working-directory: frontend
+        run: npx tsx prisma/seed.ts
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+
+      - name: Build
+        working-directory: frontend
+        run: npm run build
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+      - name: Deploy to Vercel
         working-directory: frontend
         run: npx vercel deploy --prod --token=$VERCEL_TOKEN
         env:

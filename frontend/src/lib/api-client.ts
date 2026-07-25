@@ -26,12 +26,13 @@ export function setToken(token: string | null) {
 
 /** Базовый клиент. В браузере ходит через относительный путь к Next.js API Routes. */
 function createClient(): KyInstance {
-  // When Next.js API routes are co-located (unified deploy), use relative /api path.
+  // In SSR (server components) ky cannot use a bare relative URL — it needs an absolute base.
+  // In the browser ky handles relative paths fine.
   const isServer = typeof window === 'undefined';
   const apiBase = process.env.NEXT_PUBLIC_API_URL
     ? `${process.env.NEXT_PUBLIC_API_URL}/api`
     : isServer
-      ? '/api'
+      ? 'http://localhost:3000/api'
       : '';
   return ky.create({
     prefixUrl: apiBase,
