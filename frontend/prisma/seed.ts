@@ -671,7 +671,7 @@ async function run() {
         || msg.includes('ECONNREFUSED')
         || msg.includes('ETIMEDOUT')
         || msg.includes('was denied access')
-        || lastError.code === 'P1017';
+        || (lastError as any).code === 'P1017';
       if (!isRetryable || attempt === MAX_RETRIES) break;
       console.warn(`[seed] attempt ${attempt}/${MAX_RETRIES} failed: ${msg.slice(0, 80)}. Retrying in ${RETRY_DELAY/1000}s...`);
       await new Promise(r => setTimeout(r, RETRY_DELAY));
