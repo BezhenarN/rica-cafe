@@ -1,7 +1,7 @@
 {
-  "buildCommand": "npm install && npm run prisma:generate && npm run build",
+  "buildCommand": "npm ci && npm run prisma:generate && npm run build",
   "devCommand": "npm run dev",
-  "installCommand": "npm install",
+  "installCommand": "npm ci",
   "regions": ["iad1"],
   "env": {
     "NEXT_PUBLIC_API_URL": "",
