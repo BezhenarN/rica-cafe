@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, Clock, Truck, Pizza as PizzaIcon, MapPin, ShoppingBag } from 'lucide-react';
 import type { Metadata } from 'next';
-import { prisma } from '@/lib/prisma';
 import { CategoryStrip } from '@/components/product/category-strip';
 import { ProductCard } from '@/components/product/product-card';
 import type { Category, Product } from '@/lib/types';
@@ -19,34 +18,26 @@ const PERKS = [
   { icon: ShoppingBag, title: 'Честные цены', text: 'Пересчёт стоимости на сервере' },
 ];
 
-export const revalidate = 60;
+/** Force dynamic: SSR on every request, no ISR cache with stale JSON. */
+export const dynamic = 'force-dynamic';
+
+async function safeFetch<T>(url: string, fallback: T): Promise<T> {
+  try {
+    const res = await fetch(`https://rica-cafe-clean2.vercel.app${url}`, {
+      next: { revalidate: 300 },
+      cache: 'force-cache',
+    });
+    if (!res.ok) return fallback;
+    const data = (await res.json()) as unknown as T;
+    return Array.isArray(data) ? data : fallback;
+  } catch {
+    return fallback;
+  }
+}
 
 export default async function HomePage() {
-  // Server-side: load categories and featured products
-  let categories: Category[] = [];
-  let featured: Product[] = [];
-  try {
-    categories = await prisma.category.findMany({ orderBy: { sortOrder: 'asc' } });
-    const raw = await prisma.product.findMany({
-      where: { isAvailable: true, isFeatured: true },
-      orderBy: { sortOrder: 'asc' },
-      take: 8,
-      include: {
-        category: { select: { slug: true, name: true } },
-        variants: { orderBy: { price: 'asc' } },
-      },
-    });
-    // Prisma returns Decimal — cast to string to match Product type
-    featured = raw.map((p) => ({
-      ...p,
-      basePrice: String(p.basePrice),
-      weight: p.weight,
-      kcal: p.kcal,
-      variants: p.variants.map((v) => ({ ...v, price: String(v.price) })),
-    })) as unknown as Product[];
-  } catch {
-    // Fallback to empty
-  }
+  const categories: Category[] = await safeFetch<Category[]>('/api/categories', []);
+  const featured: Product[] = await safeFetch<Product[]>('/api/products/featured', []);
 
   return (
     <div className="container-page space-y-16 py-6 sm:py-10">
