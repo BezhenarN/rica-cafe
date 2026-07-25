@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import { ArrowRight, Clock, Truck, Pizza as PizzaIcon, MapPin, ShoppingBag } from 'lucide-react';
 import type { Metadata } from 'next';
-import { HomeHero } from './home-page-client';
+import { prisma } from '@/lib/prisma';
+import { CategoryStrip } from '@/components/product/category-strip';
+import { ProductCard } from '@/components/product/product-card';
+import type { Category, Product } from '@/lib/types';
 
 export const metadata: Metadata = {
   title: 'Рица — кафе и доставка, Сочи',
@@ -16,7 +19,35 @@ const PERKS = [
   { icon: ShoppingBag, title: 'Честные цены', text: 'Пересчёт стоимости на сервере' },
 ];
 
-export default function HomePage() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  // Server-side: load categories and featured products
+  let categories: Category[] = [];
+  let featured: Product[] = [];
+  try {
+    categories = await prisma.category.findMany({ orderBy: { sortOrder: 'asc' } });
+    const raw = await prisma.product.findMany({
+      where: { isAvailable: true, isFeatured: true },
+      orderBy: { sortOrder: 'asc' },
+      take: 8,
+      include: {
+        category: { select: { slug: true, name: true } },
+        variants: { orderBy: { price: 'asc' } },
+      },
+    });
+    // Prisma returns Decimal — cast to string to match Product type
+    featured = raw.map((p) => ({
+      ...p,
+      basePrice: String(p.basePrice),
+      weight: p.weight,
+      kcal: p.kcal,
+      variants: p.variants.map((v) => ({ ...v, price: String(v.price) })),
+    })) as unknown as Product[];
+  } catch {
+    // Fallback to empty
+  }
+
   return (
     <div className="container-page space-y-16 py-6 sm:py-10">
       {/* HERO */}
@@ -60,8 +91,37 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* ХИТЫ + КАТЕГОРИИ — динамические */}
-      <HomeHero />
+      {/* КАТЕГОРИИ */}
+      {categories.length > 0 && (
+        <section>
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-xl font-bold sm:text-2xl">Категории</h2>
+            <Link href="/menu" className="text-sm font-medium text-primary hover:underline">
+              Весь каталог →
+            </Link>
+          </div>
+          <CategoryStrip categories={categories} />
+        </section>
+      )}
+
+      {/* ХИТЫ */}
+      <section>
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold sm:text-2xl">Популярное</h2>
+          <Link href="/menu" className="text-sm font-medium text-primary hover:underline">
+            Смотреть все →
+          </Link>
+        </div>
+        {featured.length > 0 ? (
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+            {featured.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-muted">Загружаем популярное…</p>
+        )}
+      </section>
     </div>
   );
 }

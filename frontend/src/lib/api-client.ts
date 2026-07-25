@@ -24,16 +24,16 @@ export function setToken(token: string | null) {
   }
 }
 
-/** Базовый клиент. В браузере ходит через относительный путь к Next.js API Routes. */
+/** Базовый клиент. В браузере ходит через относительный путь к Next.js API Routes.
+ * На SSR (serverless) используем VERCEL_URL, который Vercel подставляет автоматически.
+ */
 function createClient(): KyInstance {
-  // In SSR (server components) ky cannot use a bare relative URL — it needs an absolute base.
-  // In the browser ky handles relative paths fine.
   const isServer = typeof window === 'undefined';
   const apiBase = process.env.NEXT_PUBLIC_API_URL
     ? `${process.env.NEXT_PUBLIC_API_URL}/api`
     : isServer
-      ? 'http://localhost:3000/api'
-      : '';
+      ? `https://${process.env.VERCEL_URL || 'localhost:3000'}/api`
+      : '/api';
   return ky.create({
     prefixUrl: apiBase,
     timeout: 15000,

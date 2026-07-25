@@ -13,7 +13,7 @@ import { AuthHydrator } from '@/components/layout/auth-hydrator';
 const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter', display: 'swap' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://rica-cafe.local'),
+  metadataBase: new URL('https://rica-cafe-clean2.vercel.app'),
   title: {
     default: 'Рица — кафе и доставка, Сочи',
     template: '%s · Рица',

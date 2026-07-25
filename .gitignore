@@ -48,3 +48,5 @@ backend/prisma/migrations/dev.db*
 # Misc
 .cache/
 .turbo/
+.vercel
+.env*

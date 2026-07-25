@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { catalogApi } from '@/lib/api';
 
-const BASE = 'https://crudo.example.com';
+const BASE = 'https://rica-cafe-clean2.vercel.app';
 
 /** Генерирует sitemap.xml динамически на основе товаров из БД. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

@@ -3,41 +3,10 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install --include=dev",
   "regions": ["iad1"],
-  "env": {
-    "NEXT_PUBLIC_API_URL": "",
-    "DATABASE_URL": "",
-    "JWT_SECRET": "",
-    "ADMIN_EMAIL": "",
-    "ADMIN_PASSWORD": ""
-  },
   "functions": {
-    "src/app/api/health/route.ts": {
+    "src/app/api/[...path]/route.ts": {
       "memory": 1024,
       "maxDuration": 10
-    },
-    "src/app/api/auth/*/route.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    },
-    "src/app/api/categories/route.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    },
-    "src/app/api/products/route.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    },
-    "src/app/api/pizza/options/route.ts": {
-      "memory": 1024,
-      "maxDuration": 10
-    },
-    "src/app/api/orders/route.ts": {
-      "memory": 1024,
-      "maxDuration": 30
-    },
-    "src/app/api/admin/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 30
     }
   }
 }
