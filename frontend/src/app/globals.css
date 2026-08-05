@@ -76,6 +76,13 @@
   .input {
     @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink outline-none transition placeholder:text-muted focus:border-primary focus:ring-2 focus:ring-primary/15;
   }
+  /* Сбрасываем нативную браузерную валидацию — используется noValidate на формах. */
+  input:required:invalid,
+  select:required:invalid,
+  textarea:required:invalid {
+    border-color: var(--line, #e5e7eb);
+    box-shadow: none;
+  }
   .label {
     @apply mb-1.5 block text-sm font-medium text-ink;
   }
@@ -87,6 +94,21 @@
   .chip-active {
     @apply border-primary bg-primary text-white hover:bg-primary hover:text-white;
   }
+}
+
+/* Fade-in-up animation (lightweight replacement for framer-motion). */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.3s ease forwards;
 }
 
 /* Для нижней мобильной навигации: отступ, чтобы контент не перекрывался. */

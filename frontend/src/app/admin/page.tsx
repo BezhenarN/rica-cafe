@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Power, PowerOff, Pencil, Trash2, Plus, X, Upload } from 'lucide-react';
+import { ChevronLeft, Power, PowerOff, Pencil, Trash2, Plus, X, Upload, Heart } from 'lucide-react';
 import { AdminGuard } from '@/components/admin/admin-guard';
 import { OrderStatusManager } from '@/components/admin/order-status-manager';
 import { useAdminOrders, useAdminProducts, useAdminToggleProduct } from '@/hooks/use-queries';
@@ -173,16 +174,30 @@ function ProductsAdmin() {
   const { data: categories } = useCategories();
   const toggle = useAdminToggleProduct();
 
-  const [editing, setEditing] = useState<ProductType | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const qc = useQueryClient();
+
+  const toggleFeatured = async (id: string, isFeatured: boolean) => {
+    const token = getToken();
+    if (!token) {
+      showToast('Не авторизованы', 'error');
+      return;
+    }
+    await adminApi.updateProduct(id, { isFeatured });
+    showToast(isFeatured ? 'Отмечен как хит' : 'Убран из хитов', 'success');
+    qc.invalidateQueries({ queryKey: ['admin', 'products'] });
+    qc.invalidateQueries({ queryKey: ['products', 'featured'] });
+  };
 
   return (
     <div className="space-y-4">
       {/* Кнопка «Добавить товар» */}
       <button
         onClick={() => {
-          setEditing(null);
+          setEditingId(null);
           setShowForm(true);
         }}
         className="btn-primary inline-flex items-center gap-2"
@@ -190,98 +205,111 @@ function ProductsAdmin() {
         <Plus className="h-4 w-4" /> Добавить товар
       </button>
 
-      {/* Форма создания / редактирования */}
-      {showForm && (
-        <ProductForm
-          product={editing}
-          categories={categories}
-          onClose={() => {
-            setShowForm(false);
-            setEditing(null);
-          }}
-        />
-      )}
-
       {/* Список товаров */}
       {isLoading ? (
         <p className="py-8 text-center text-muted">Загрузка...</p>
+      ) : products?.length === 0 ? (
+        <p className="py-8 text-center text-muted">Товаров нет</p>
       ) : (
-        products?.map((p) => (
-          <div key={p.id} className="card flex items-center gap-3 p-4">
-            {/* Превью фото */}
-            {p.imagePath ? (
-              <img src={p.imagePath} alt={p.name} className="h-16 w-16 rounded-lg object-cover" />
-            ) : (
-              <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-line text-muted">
-                <Plus className="h-5 w-5" />
-              </div>
-            )}
+        products!.map((p) => (
+          <div key={p.id} className="space-y-3">
+            {/* Карточка товара */}
+            <div className="card flex items-center gap-3 p-4">
+              {/* Превью фото */}
+              {p.imagePath ? (
+                <img src={p.imagePath} alt={p.name} className="h-16 w-16 rounded-lg object-cover" />
+              ) : (
+                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-line text-muted">
+                  <Plus className="h-5 w-5" />
+                </div>
+              )}
 
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <p className="font-semibold truncate">{p.name}</p>
-                {!p.isAvailable && <Badge variant="danger">Скрыт</Badge>}
-                {p.isFeatured && <Badge variant="success">Хит</Badge>}
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2">
+                  <p className="font-semibold truncate">{p.name}</p>
+                  {!p.isAvailable && <Badge variant="danger">Скрыт</Badge>}
+                  {p.isFeatured && <Badge variant="success">Хит</Badge>}
+                </div>
+                <p className="text-xs text-muted truncate">
+                  {p.category.name} · {formatPrice(p.basePrice)} · slug: {p.slug}
+                </p>
               </div>
-              <p className="text-xs text-muted truncate">
-                {p.category.name} · {formatPrice(p.basePrice)} · slug: {p.slug}
-              </p>
+
+              <div className="flex items-center gap-1">
+                {/* Кнопка загрузки фото */}
+                <button
+                  onClick={() => fileInputRef.current?.click()}
+                  className="btn-outline h-9 w-9 rounded-full p-0"
+                  title="Загрузить фото"
+                >
+                  <Upload className="h-4 w-4" />
+                </button>
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (!file) return;
+                    const fd = new FormData();
+                    fd.append('file', file);
+                    fetch(`/api/admin/products/${p.id}/image`, {
+                      method: 'POST',
+                      headers: { Authorization: `Bearer ${getToken()}` },
+                      body: fd,
+                    })
+                      .then((r) => r.json())
+                      .then(() => {
+                        showToast('Фото загружено', 'success');
+                        qc.invalidateQueries({ queryKey: ['admin', 'products'] });
+                      })
+                      .catch(() => showToast('Ошибка загрузки фото', 'error'));
+                  }}
+                />
+
+                <button
+                  onClick={() => {
+                    setEditingId(p.id);
+                    setShowForm(true);
+                  }}
+                  className="btn-outline h-9 w-9 rounded-full p-0"
+                  title="Редактировать"
+                >
+                  <Pencil className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={() => toggleFeatured(p.id, !p.isFeatured)}
+                  className={p.isFeatured ? 'btn-primary h-9 w-9 rounded-full p-0' : 'btn-outline h-9 w-9 rounded-full p-0'}
+                  title={p.isFeatured ? 'Убрать из хитов' : 'Отметить как хит'}
+                >
+                  <Heart className={p.isFeatured ? 'h-4 w-4 fill-current' : 'h-4 w-4'} />
+                </button>
+                <button
+                  onClick={() => toggle.mutate({ id: p.id, isAvailable: !p.isAvailable })}
+                  className={p.isAvailable ? 'btn-outline' : 'btn-primary'}
+                >
+                  {p.isAvailable ? (
+                    <><PowerOff className="h-4 w-4" /> Скрыть</>
+                  ) : (
+                    <><Power className="h-4 w-4" /> Показать</>
+                  )}
+                </button>
+              </div>
             </div>
 
-            <div className="flex items-center gap-1">
-              {/* Кнопка загрузки фото */}
-              <button
-                onClick={() => fileInputRef.current?.click()}
-                className="btn-outline h-9 w-9 rounded-full p-0"
-                title="Загрузить фото"
-              >
-                <Upload className="h-4 w-4" />
-              </button>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-                className="hidden"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (!file) return;
-                  const fd = new FormData();
-                  fd.append('file', file);
-                  fetch(`/api/admin/products/${p.id}/image`, {
-                    method: 'POST',
-                    headers: { Authorization: `Bearer ${getToken()}` },
-                    body: fd,
-                  })
-                    .then((r) => r.json())
-                    .then(() => {
-                      showToast('Фото загружено', 'success');
-                      window.location.reload();
-                    })
-                    .catch(() => showToast('Ошибка загрузки фото', 'error'));
+            {/* Форма редактирования — раскрывается под товаром */}
+            {showForm && editingId === p.id && (
+              <ProductForm
+                product={p}
+                categories={categories}
+                queryClient={qc}
+                onClose={() => {
+                  setShowForm(false);
+                  setEditingId(null);
                 }}
               />
-
-              <button
-                onClick={() => {
-                  setEditing(p);
-                  setShowForm(true);
-                }}
-                className="btn-outline h-9 w-9 rounded-full p-0"
-                title="Редактировать"
-              >
-                <Pencil className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => toggle.mutate({ id: p.id, isAvailable: !p.isAvailable })}
-                className={p.isAvailable ? 'btn-outline' : 'btn-primary'}
-              >
-                {p.isAvailable ? (
-                  <><PowerOff className="h-4 w-4" /> Скрыть</>
-                ) : (
-                  <><Power className="h-4 w-4" /> Показать</>
-                )}
-              </button>
-            </div>
+            )}
           </div>
         ))
       )}
@@ -294,10 +322,12 @@ function ProductsAdmin() {
 function ProductForm({
   product,
   categories,
+  queryClient,
   onClose,
 }: {
   product: ProductType | null;
   categories: Category[] | undefined;
+  queryClient: ReturnType<typeof useQueryClient>;
   onClose: () => void;
 }) {
   const isEdit = !!product;
@@ -306,9 +336,15 @@ function ProductForm({
   const [name, setName] = useState(product?.name ?? '');
   const [description, setDescription] = useState(product?.description ?? '');
   const [categoryId, setCategoryId] = useState(product?.categoryId ?? (categories?.[0]?.id ?? ''));
-  const [basePrice, setBasePrice] = useState(product?.basePrice ?? '');
-  const [weight, setWeight] = useState(product?.weight?.toString() ?? '');
-  const [kcal, setKcal] = useState(product?.kcal?.toString() ?? '');
+  const [basePrice, setBasePrice] = useState(
+    product?.basePrice != null ? String(product.basePrice) : ''
+  );
+  const [weight, setWeight] = useState(
+    product?.weight != null ? String(product.weight) : ''
+  );
+  const [kcal, setKcal] = useState(
+    product?.kcal != null ? String(product.kcal) : ''
+  );
   const [isVegan, setIsVegan] = useState(product?.isVegan ?? false);
   const [isSpicy, setIsSpicy] = useState(product?.isSpicy ?? false);
   const [isFeatured, setIsFeatured] = useState(product?.isFeatured ?? false);
@@ -377,8 +413,8 @@ function ProductForm({
       }
 
       showToast(isEdit ? 'Товар обновлён' : 'Товар создан', 'success');
+      queryClient.invalidateQueries({ queryKey: ['admin', 'products'] });
       onClose();
-      window.location.reload();
     } catch (err) {
       let msg = 'Что-то пошло не так';
       if (err instanceof Error) msg = err.message;
@@ -395,7 +431,7 @@ function ProductForm({
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} noValidate className="space-y-4">
         <div className="grid gap-3 sm:grid-cols-2">
           <Field label="Slug" error="">
             <input className="input" value={slug} onChange={(e) => setSlug(e.target.value)} required />
@@ -418,7 +454,7 @@ function ProductForm({
             </select>
           </Field>
           <Field label="Цена (₽)">
-            <input className="input" type="number" value={basePrice} onChange={(e) => setBasePrice(e.target.value)} required />
+            <input className="input" type="number" step="0.01" value={basePrice} onChange={(e) => setBasePrice(e.target.value)} required />
           </Field>
           <Field label="Вес (г)">
             <input className="input" type="number" value={weight} onChange={(e) => setWeight(e.target.value)} />

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { ShoppingBag, Menu, User, Pizza as PizzaIcon } from 'lucide-react';
+import { ShoppingBag, Menu, User, Pizza as PizzaIcon, Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useUIStore } from '@/store/ui-store';
 import { useCartStore } from '@/store/cart-store';
@@ -96,11 +96,18 @@ export function Header() {
           >
             <User className="h-5 w-5" />
           </Link>
-          {user?.role === 'ADMIN' && (
-            <Link href="/admin" className="btn-outline ml-1 hidden text-xs sm:inline-flex">
-              Админка
-            </Link>
-          )}
+          {/* Скрыто до доработки */}
+          {/* <Link
+            href="/webadmin"
+            className={cn(
+              'btn-ghost rounded-full p-2.5 hidden sm:inline-flex',
+              pathname === '/webadmin' && 'text-primary',
+            )}
+            aria-label="Админ-панель"
+            title="Админ-панель"
+          >
+            <Shield className="h-5 w-5" />
+          </Link> */}
         </div>
       </div>
     </header>

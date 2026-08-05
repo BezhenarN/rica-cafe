@@ -338,13 +338,71 @@ export async function POST(request: NextRequest) {
         { expiresIn: '7d' },
       );
       return NextResponse.json({ accessToken, user });
-    } catch {
-      return errorResponse('Неверный формат данных');
+    } catch (err: unknown) {
+      // Prisma P2002 = unique constraint violation
+      if (err && typeof err === 'object' && 'code' in err && err.code === 'P2002') {
+        return errorResponse('Пользователь с такими данными уже существует', 409);
+      }
+      return errorResponse('Ошибка при регистрации пользователя', 500);
     }
   }
 
   // ── auth/login ──
   if (path[0] === 'auth' && path[1] === 'login' && path.length === 2) {
+    try {
+      const body = await request.json();
+      const { phone, password } = body;
+      if (!phone || !password) return errorResponse('Телефон и пароль обязательны', 400);
+
+      const user = await prisma.user.findUnique({ where: { phone } });
+      if (!user) return errorResponse('Неверный телефон или пароль', 401);
+
+      const ok = await bcrypt.compare(password, user.passwordHash);
+      if (!ok) return errorResponse('Неверный телефон или пароль', 401);
+
+      const userRecord = { id: user.id, email: user.email, name: user.name, phone: user.phone, role: user.role };
+      const accessToken = jwt.sign(
+        { sub: user.id, email: user.email, role: user.role },
+        JWT_SECRET,
+        { expiresIn: '7d' },
+      );
+      return NextResponse.json({ accessToken, user: userRecord });
+    } catch {
+      return errorResponse('Неверный формат данных');
+    }
+  }
+
+  // ── auth/forgot-password ──
+  if (path[0] === 'auth' && path[1] === 'forgot-password' && path.length === 2) {
+    try {
+      const body = await request.json();
+      const { email } = body;
+      if (!email) return errorResponse('Email обязателен', 400);
+
+      const user = await prisma.user.findUnique({ where: { email } });
+      if (!user) {
+        // Не публикуем факт отсутствия email
+        return NextResponse.json({ message: 'Если email найден, ссылка для сброса отправлена' });
+      }
+
+      // Генерируем одноразовый токен сброса (900 сек = 15 мин)
+      const resetToken = jwt.sign(
+        { sub: user.id, type: 'password-reset', email: user.email },
+        JWT_SECRET,
+        { expiresIn: '15m' },
+      );
+
+      // TODO: отправить email со ссылкой /account/reset-password?token=xxx
+      console.log(`[forgot-password] user=${user.email} token=${resetToken}`);
+
+      return NextResponse.json({ message: 'Ссылка для сброса отправлена на ваш email' });
+    } catch {
+      return errorResponse('Неверный формат данных');
+    }
+  }
+
+  // ── auth/admin-login (для админов по email) ──
+  if (path[0] === 'auth' && path[1] === 'admin-login' && path.length === 2) {
     try {
       const body = await request.json();
       const { email, password } = body;
@@ -355,6 +413,9 @@ export async function POST(request: NextRequest) {
 
       const ok = await bcrypt.compare(password, user.passwordHash);
       if (!ok) return errorResponse('Неверный email или пароль', 401);
+
+      // Админ-доступ только для ADMIN role
+      if (user.role !== 'ADMIN') return errorResponse('Доступ запрещён. Только для администраторов.', 403);
 
       const userRecord = { id: user.id, email: user.email, name: user.name, phone: user.phone, role: user.role };
       const accessToken = jwt.sign(

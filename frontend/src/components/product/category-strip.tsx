@@ -1,24 +1,26 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import type { Category } from '@/lib/types';
 
 const ICONS: Record<string, string> = {
-  suvlaki: '🌯',
-  seafood: '🦐',
-  georgian: '🫓',
-  pizza: '🍕',
-  burgers: '🍔',
-  snacks: '🍟',
+  breakfast: '🍳',
+  snacks: '🥘',
   salads: '🥗',
   soups: '🍲',
+  pasta: '🍝',
+  meat: '🥩',
+  fish: '🐟',
+  pizza: '🍕',
+  burgers: '🍔',
+  'caucasian-pastry': '🫓',
+  sauces: '🫙',
   desserts: '🍰',
+  bar: '🍺',
   drinks: '🥤',
-  kids: '🧒',
 };
 
-const HIGHLIGHT_SLUGS = ['suvlaki', 'seafood', 'georgian'];
+const HIGHLIGHT_SLUGS = ['breakfast', 'snacks', 'meat'];
 
 /** Горизонтальная лента категорий — обновлённый дизайн для «Рица». */
 export function CategoryStrip({ categories }: { categories: Category[] }) {
@@ -27,11 +29,10 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
       {categories.map((c, i) => {
         const isHighlight = HIGHLIGHT_SLUGS.includes(c.slug);
         return (
-          <motion.div
+          <div
             key={c.id}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.04 }}
+            className="animate-fade-in-up"
+            style={{ animationDelay: `${i * 40}ms` }}
           >
             <Link
               href={`/menu?category=${c.slug}`}
@@ -50,7 +51,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
               </span>
               <span className="font-semibold">{c.name}</span>
             </Link>
-          </motion.div>
+          </div>
         );
       })}
     </div>

@@ -8,7 +8,7 @@ import type { Category, Product } from '@/lib/types';
 export const metadata: Metadata = {
   title: 'Рица — кафе и доставка, Сочи',
   description:
-    'Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз.',
+    'Кафе «Рица» в Сочи: завтраки, закуски, салаты, супы, мясо, рыба, паста, бургеры, кавказская выпечка, соусы, десерты и напитки. Доставка и самовывоз.',
 };
 
 const PERKS = [
@@ -23,9 +23,8 @@ export const dynamic = 'force-dynamic';
 
 async function safeFetch<T>(url: string, fallback: T): Promise<T> {
   try {
-    const res = await fetch(`https://rica-cafe-clean2.vercel.app${url}`, {
-      next: { revalidate: 300 },
-      cache: 'force-cache',
+    const res = await fetch(`http://127.0.0.1:3000${url}`, {
+      cache: 'no-store',
     });
     if (!res.ok) return fallback;
     const data = (await res.json()) as unknown as T;
@@ -48,10 +47,10 @@ export default async function HomePage() {
             <Truck className="h-3.5 w-3.5" /> Доставка по Сочи · 30–45 минут
           </span>
           <h1 className="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">
-            Кафе «Рица» — сувлаки, морепродукты, грузинская кухня
+            Кафе «Рица» — доставка, завтраки и всё меню
           </h1>
           <p className="mt-3 max-w-lg text-white/80 sm:text-lg">
-            Попробуйте лучшие сувлаки, хинкали и морепродукты с доставкой или заберите самовывозом из нашего кафе в Сочи.
+            Завтраки, закуски, салаты, супы, мясо, рыба, паста, бургеры, кавказская выпечка и напитки. Доставка и самовывоз по Сочи.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link href="/menu" className="btn bg-white text-primary hover:bg-white/90">

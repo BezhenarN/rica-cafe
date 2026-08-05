@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { useEffect, useRef, useState } from 'react';
 import { Plus, Flame, Leaf } from 'lucide-react';
 import { ProductImage } from '@/components/ui/product-image';
 import { Badge } from '@/components/ui/badge';
@@ -16,6 +16,25 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const addCatalogItem = useCartStore((s) => s.addCatalogItem);
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  // Lightweight IntersectionObserver — no framer-motion, no hydration mismatch
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: '-40px' },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   // Дефолтный вариант — для быстрого добавления из карточки.
   const defaultVariant =
@@ -37,11 +56,13 @@ export function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 8 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.3 }}
+    <article
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(8px)',
+        transition: 'opacity 0.3s ease, transform 0.3s ease',
+      }}
       className="card group flex flex-col overflow-hidden"
     >
       <Link href={`/menu/${product.slug}`} className="relative block">
@@ -95,6 +116,6 @@ export function ProductCard({ product }: ProductCardProps) {
           </button>
         </div>
       </div>
-    </motion.article>
+    </article>
   );
 }

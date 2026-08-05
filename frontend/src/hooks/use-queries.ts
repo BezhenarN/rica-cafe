@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient, useInfiniteQuery } from '@tanstack/react-query';
 import { 
-  catalogApi, ordersApi, pizzaApi, usersApi, adminApi,
+  catalogApi, ordersApi, pizzaApi, usersApi, adminApi, authApi,
   signIn as apiSignIn, signUp as apiSignUp, type ProductFilters,
   type CreateOrderPayload,
 } from '@/lib/api';
@@ -115,8 +115,16 @@ export function useSetDefaultAddress() {
 export function useSignIn() {
   const setUser = useAuthStore((s) => s.setUser);
   return useMutation({
-    mutationFn: (data: { email: string; password: string }) => apiSignIn(data),
+    mutationFn: (data: { phone: string; password: string }) => apiSignIn(data),
     onSuccess: (res) => setUser(res.user),
+    onError: async (err) => showToast(await unwrapError(err), 'error'),
+  });
+}
+
+export function useForgotPassword() {
+  return useMutation({
+    mutationFn: (data: { email: string }) =>
+      authApi.forgotPassword(data),
     onError: async (err) => showToast(await unwrapError(err), 'error'),
   });
 }

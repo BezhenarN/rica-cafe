@@ -1,29 +1,13 @@
 /**
  * Seed-скрипт: наполняет БД меню кафе «Рица» (Сочи).
- *
- * Категории:
- *   - сувлаки-шаурма
- *   - морепродукты и гриль
- *   - грузинская кухня
- *   - салаты
- *   - супы
- *   - детские блюда
- *   - десерты
- *   - напитки
- *
- * Также остаются: пицца (конструктор + готовые), бургеры, закуски.
- *
- * Запуск:  pnpm prisma:seed   (или npm run prisma:seed)
+ * Запуск:  npx prisma db push && npx prisma db seed (из frontend/)
  */
-import { PrismaClient, Role, ImageType, DoughType } from '@prisma/client';
+import { PrismaClient, Role, ImageType } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
 
 const money = (v: number) => v.toFixed(2);
-
-const MAX_RETRIES = 5;
-const RETRY_DELAY = 15_000; // бесплатный Neon спит, нужно подождать
 
 async function main() {
   // ── Администратор ────────────────────────────────────────────────────────
@@ -37,22 +21,23 @@ async function main() {
   });
   console.log(`✔ Админ создан: ${adminEmail} / ${adminPass}`);
 
-  // ── Категории кафе «Рица» ────────────────────────────────────────────────
+  // ── Категории ─────────────────────────────────────────────────────────────
   const categories = await Promise.all(
     [
-      // Новые категории для Рица
-      { slug: 'suvlaki', name: 'Сувлаки и шаурма', icon: null, sortOrder: 1 },
-      { slug: 'seafood', name: 'Морепродукты и гриль', icon: null, sortOrder: 2 },
-      { slug: 'georgian', name: 'Грузинская кухня', icon: null, sortOrder: 3 },
-      { slug: 'salads', name: 'Салаты', icon: 'salad', sortOrder: 4 },
-      { slug: 'soups', name: 'Супы', icon: 'soup', sortOrder: 5 },
-      { slug: 'kids', name: 'Детские блюда', icon: null, sortOrder: 6 },
-      { slug: 'desserts', name: 'Десерты', icon: 'dessert', sortOrder: 7 },
-      { slug: 'drinks', name: 'Напитки', icon: 'drink', sortOrder: 8 },
-      // Остающиеся из Crudo
-      { slug: 'pizza', name: 'Пицца', icon: null, sortOrder: 9 },
-      { slug: 'burgers', name: 'Бургеры', icon: 'burger', sortOrder: 10 },
-      { slug: 'snacks', name: 'Закуски', icon: 'snack', sortOrder: 11 },
+      { slug: 'breakfast', name: 'Завтрак', icon: 'breakfast', sortOrder: 1 },
+      { slug: 'snacks', name: 'Закуски', icon: 'snack', sortOrder: 2 },
+      { slug: 'salads', name: 'Салаты', icon: 'salad', sortOrder: 3 },
+      { slug: 'soups', name: 'Супы', icon: 'soup', sortOrder: 4 },
+      { slug: 'pasta', name: 'Паста', icon: null, sortOrder: 5 },
+      { slug: 'meat', name: 'Мясные блюда', icon: null, sortOrder: 6 },
+      { slug: 'fish', name: 'Блюда из рыбы и морепродуктов', icon: 'fish', sortOrder: 7 },
+      { slug: 'pizza', name: 'Пицца 35см', icon: null, sortOrder: 8 },
+      { slug: 'burgers', name: 'Бургеры и хот-доги', icon: 'burger', sortOrder: 9 },
+      { slug: 'caucasian-pastry', name: 'Выпечка из кавказской кухни', icon: null, sortOrder: 10 },
+      { slug: 'sauces', name: 'Соусы', icon: null, sortOrder: 11 },
+      { slug: 'desserts', name: 'Десерты', icon: 'dessert', sortOrder: 12 },
+      { slug: 'bar', name: 'Бар Меню', icon: 'drink', sortOrder: 13 },
+      { slug: 'drinks', name: 'Напитки', icon: 'drink', sortOrder: 14 },
     ].map((c) =>
       prisma.category.upsert({
         where: { slug: c.slug },
@@ -62,546 +47,129 @@ async function main() {
     ),
   );
   const cat = (slug: string) => categories.find((c) => c.slug === slug)!;
+  console.log(`✔ Создано категорий: ${categories.length}`);
 
-  // ── Товары ────────────────────────────────────────────────────────────────
-  type T = {
-    slug: string;
-    name: string;
-    description?: string;
-    category: string;
-    image: ImageType;
-    basePrice: number;
-    weight?: number;
-    kcal?: number;
-    isVegan?: boolean;
-    isSpicy?: boolean;
-    isFeatured?: boolean;
-    variants?: { name: string; price: number; isDefault?: boolean }[];
-  };
-
-  const products: T[] = [
-    // ── Сувлаки и шаурма ───────────────────────────────────────────────────
-    {
-      slug: 'pork-suvlaki-wrap',
-      name: 'Сувлаки свинина',
-      description: 'Свинина на гриле, лаваш, помидор, лук, соус цацики',
-      category: 'suvlaki',
-      image: ImageType.OTHER,
-      basePrice: 349,
-      weight: 280,
-      kcal: 520,
-      isFeatured: true,
-    },
-    {
-      slug: 'chicken-suvlaki-wrap',
-      name: 'Сувлаки курица',
-      description: 'Куриное филе, лаваш, салат, томат, чесночный соус',
-      category: 'suvlaki',
-      image: ImageType.OTHER,
-      basePrice: 329,
-      weight: 270,
-      kcal: 480,
-      isFeatured: true,
-    },
-    {
-      slug: 'shrimp-kebab',
-      name: 'Кebab из креветок',
-      description: 'Тигровые креветки, ананас, болгарский перец, соус ориентале',
-      category: 'suvlaki',
-      image: ImageType.OTHER,
-      basePrice: 499,
-      weight: 250,
-      kcal: 380,
-    },
-    {
-      slug: 'mixed-suvlaki-plate',
-      name: 'Сувлаки-плат микс',
-      description: 'Свинина + курица на тарелке с картофелем фри и соусами',
-      category: 'suvlaki',
-      image: ImageType.OTHER,
-      basePrice: 549,
-      weight: 420,
-      kcal: 780,
-      isFeatured: true,
-    },
-    {
-      slug: 'falafel-wrap',
-      name: 'Шаурма-фалафель',
-      description: 'Хрустящий фалафель, хумус, салат табуле, маринованный лук',
-      category: 'suvlaki',
-      image: ImageType.OTHER,
-      basePrice: 299,
-      weight: 260,
-      kcal: 420,
-      isVegan: true,
-    },
-
-    // ── Морепродукты и гриль ────────────────────────────────────────────────
-    {
-      slug: 'grilled-mix-plate',
-      name: 'Гриль-плат морепродуктов',
-      description: 'Креветки, мидии, кальмары, лимон, зелень',
-      category: 'seafood',
-      image: ImageType.OTHER,
-      basePrice: 899,
-      weight: 380,
-      kcal: 320,
-      isFeatured: true,
-    },
-    {
-      slug: 'shrimp-pasta',
-      name: 'Паста с креветками',
-      description: 'Тальятелле, тигровые креветки, сливочный томатный соус',
-      category: 'seafood',
-      image: ImageType.OTHER,
-      basePrice: 649,
-      weight: 350,
-      kcal: 580,
-    },
-    {
-      slug: 'grilled-swordfish',
-      name: 'Стейк из рыбы-меч',
-      description: 'Рыба-меч на углях, соус верде, овощи гриль',
-      category: 'seafood',
-      image: ImageType.OTHER,
-      basePrice: 799,
-      weight: 300,
-      kcal: 280,
-      isSpicy: true,
-    },
-    {
-      slug: 'seafood-pizza',
-      name: 'Пицца с морепродуктами',
-      description: 'Креветки, мидии, кальмар, моцарелла, сливочный соус',
-      category: 'pizza',
-      image: ImageType.PIZZA,
-      basePrice: 649,
-      weight: 450,
-      kcal: 720,
-      isFeatured: true,
-    },
-    {
-      slug: 'mussels-in-cream',
-      name: 'Мидии в сливочном соусе',
-      description: 'Мидии, сливки, чеснок, петрушка, гренки',
-      category: 'seafood',
-      image: ImageType.OTHER,
-      basePrice: 549,
-      weight: 320,
-      kcal: 380,
-    },
-
-    // ── Грузинская кухня ────────────────────────────────────────────────────
-    {
-      slug: 'khachapuri-adjarian',
-      name: 'Хачапури по-аджарски',
-      description: 'Лодочка с сыром сулугуни, маслом и желтком',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 399,
-      weight: 320,
-      kcal: 620,
-      isFeatured: true,
-    },
-    {
-      slug: 'khinkali',
-      name: 'Хинкали (5 шт)',
-      description: 'Сумочки с говядиной и свининой, кинза, чёрный перец',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 449,
-      weight: 500,
-      kcal: 720,
-      isSpicy: true,
-    },
-    {
-      slug: 'khinkali-cheese',
-      name: 'Хинкали сырные (5 шт)',
-      description: 'Сумочки с сыром сулугуни и аджьарули',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 379,
-      weight: 480,
-      kcal: 650,
-    },
-    {
-      slug: 'khachapuri-mixed',
-      name: 'Хачапури «Мегрельский»',
-      description: 'Открытый пирог с сыром, яйцом и маслом',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 429,
-      weight: 380,
-      kcal: 680,
-    },
-    {
-      slug: 'lobio',
-      name: 'Лобио',
-      description: 'Фасоль с грецким орехом, кинзой и специями',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 299,
-      weight: 300,
-      kcal: 340,
-      isVegan: true,
-    },
-    {
-      slug: 'pkhali',
-      name: 'Пхлаги микс (6 шт)',
-      description: 'Шпинат, свёкла, фасоль — с грецким орехом',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 349,
-      weight: 270,
-      kcal: 310,
-      isVegan: true,
-    },
-    {
-      slug: 'adjap-sandal',
-      name: 'Аджапсандал',
-      description: 'Баклажан, картофель, перец, томат, ореховый соус',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 319,
-      weight: 320,
-      kcal: 290,
-      isVegan: true,
-    },
-    {
-      slug: 'mchadi-with-cheese',
-      name: 'Мчади с сыром и зеленью',
-      description: 'Кукурузная лепёшка, сулугуни, кинза, базилик',
-      category: 'georgian',
-      image: ImageType.OTHER,
-      basePrice: 349,
-      weight: 280,
-      kcal: 420,
-    },
-
-    // ── Салаты ──────────────────────────────────────────────────────────────
-    {
-      slug: 'mediteranean-salad',
-      name: 'Средиземноморский',
-      description: 'Руккола, моцарелла, вяленые томаты, кедровый орех, бальзамик',
-      category: 'salads',
-      image: ImageType.SALAD,
-      basePrice: 389,
-      weight: 250,
-      kcal: 280,
-      isFeatured: true,
-    },
-    {
-      slug: 'greek-salad',
-      name: 'Греческий',
-      description: 'Овечий сыр, томаты, огурцы, оливки, каперсы',
-      category: 'salads',
-      image: ImageType.SALAD,
-      basePrice: 329,
-      weight: 280,
-      kcal: 260,
-      isVegan: true,
-    },
-    {
-      slug: 'tuna-salad',
-      name: 'Салат с тунцом',
-      description: 'Тунец, микс салатов, авокадо, тайский соус',
-      category: 'salads',
-      image: ImageType.SALAD,
-      basePrice: 429,
-      weight: 260,
-      kcal: 240,
-    },
-    {
-      slug: 'cobb-salad',
-      name: 'Кобб',
-      description: 'Курица, бекон, яйцо, авокадо, голубой сыр',
-      category: 'salads',
-      image: ImageType.SALAD,
-      basePrice: 449,
-      weight: 300,
-      kcal: 480,
-    },
-
-    // ── Супы ────────────────────────────────────────────────────────────────
-    {
-      slug: 'churchkhela-soup',
-      name: 'Чирбуладжи',
-      description: 'Грузинский суп с яйцом и айраном',
-      category: 'soups',
-      image: ImageType.SOUP,
-      basePrice: 289,
-      weight: 350,
-      kcal: 220,
-    },
-    {
-      slug: 'tomato-soup',
-      name: 'Томатный суп-крем',
-      description: 'Печёные томаты, базилик, сливки, гренки',
-      category: 'soups',
-      image: ImageType.SOUP,
-      basePrice: 259,
-      weight: 300,
-      kcal: 210,
-      isVegan: true,
-    },
-    {
-      slug: 'lobster-soup',
-      name: 'Суп из морепродуктов',
-      description: 'Креветки, мидии, рыба, томатный бульон, шафран',
-      category: 'soups',
-      image: ImageType.SOUP,
-      basePrice: 499,
-      weight: 380,
-      kcal: 280,
-      isFeatured: true,
-    },
-
-    // ── Детские блюда ───────────────────────────────────────────────────────
-    {
-      slug: 'kids-nuggets',
-      name: 'Наггетсы детские',
-      description: '5 шт куриных наггетсов с картофелем фри и соусом',
-      category: 'kids',
-      image: ImageType.SNACK,
-      basePrice: 299,
-      weight: 220,
-      kcal: 420,
-    },
-    {
-      slug: 'kids-mac-cheese',
-      name: 'Макароны с сыром детские',
-      description: 'Макароны, сливочный сыр, гренки',
-      category: 'kids',
-      image: ImageType.OTHER,
-      basePrice: 279,
-      weight: 200,
-      kcal: 380,
-    },
-    {
-      slug: 'kids-suvlaki',
-      name: 'Мини-сувлаки',
-      description: 'Нежная курица в лаваше с детским соусом',
-      category: 'kids',
-      image: ImageType.OTHER,
-      basePrice: 319,
-      weight: 180,
-      kcal: 300,
-    },
-
-    // ── Десерты ─────────────────────────────────────────────────────────────
-    {
-      slug: 'churchkhela',
-      name: 'Чурчхела',
-      description: 'Грузинская чурчхела с грецким орехом и виноградным соком',
-      category: 'desserts',
-      image: ImageType.DESSERT,
-      basePrice: 199,
-      weight: 80,
-      kcal: 340,
-      isFeatured: true,
-    },
-    {
-      slug: 'basbousa',
-      name: 'Басбуса',
-      description: 'Восточный десерт из манки с кокосом и сиропом',
-      category: 'desserts',
-      image: ImageType.DESSERT,
-      basePrice: 219,
-      weight: 120,
-      kcal: 380,
-    },
-    {
-      slug: 'baklava',
-      name: 'Баглава',
-      description: 'Слоёное тесто с орехами и мёдом',
-      category: 'desserts',
-      image: ImageType.DESSERT,
-      basePrice: 249,
-      weight: 150,
-      kcal: 420,
-    },
-
-    // ── Напитки ─────────────────────────────────────────────────────────────
-    {
-      slug: 'compote-grape',
-      name: 'Компот виноградный',
-      description: 'Домашний, 0.7 л',
-      category: 'drinks',
-      image: ImageType.DRINK,
-      basePrice: 199,
-      weight: 700,
-      kcal: 120,
-      isVegan: true,
-    },
-    {
-      slug: 'tarhun',
-      name: 'Тархун домашний',
-      description: 'Свежий тархун с мятой, 0.5 л',
-      category: 'drinks',
-      image: ImageType.DRINK,
-      basePrice: 179,
-      weight: 500,
-      kcal: 80,
-      isVegan: true,
-    },
-    {
-      slug: 'fruit-juice',
-      name: 'Сок натуральный',
-      description: 'Апельсин / яблоко / виноград',
-      category: 'drinks',
-      image: ImageType.DRINK,
-      basePrice: 149,
-      weight: 330,
-      kcal: 150,
-      isVegan: true,
-    },
-    {
-      slug: 'cola',
-      name: 'Кола 0.5',
-      description: 'Освежающий газированный напиток',
-      category: 'drinks',
-      image: ImageType.DRINK,
-      basePrice: 129,
-      weight: 500,
-      kcal: 210,
-    },
-    {
-      slug: 'lemonade',
-      name: 'Лимонад домашний',
-      description: 'Лимон-мято-имбирь, 0.5 л',
-      category: 'drinks',
-      image: ImageType.DRINK,
-      basePrice: 169,
-      weight: 500,
-      kcal: 90,
-      isVegan: true,
-    },
-
-    // ── Остальные (пицца, бургеры, закуски — из Crudo) ─────────────────────
-    {
-      slug: 'margherita',
-      name: 'Маргарита',
-      description: 'Томатный соус, моцарелла, базилик',
-      category: 'pizza',
-      image: ImageType.PIZZA,
-      basePrice: 549,
-      weight: 480,
-      kcal: 980,
-      isFeatured: true,
-      variants: [
-        { name: '25 см', price: 549 },
-        { name: '30 см', price: 749, isDefault: true },
-        { name: '35 см', price: 949 },
-      ],
-    },
-    {
-      slug: 'pepperoni',
-      name: 'Пепперони',
-      description: 'Острая пепперони, моцарелла, томатный соус',
-      category: 'pizza',
-      image: ImageType.PIZZA,
-      basePrice: 649,
-      weight: 510,
-      kcal: 1100,
-      isSpicy: true,
-      isFeatured: true,
-      variants: [
-        { name: '25 см', price: 649 },
-        { name: '30 см', price: 849, isDefault: true },
-        { name: '35 см', price: 1049 },
-      ],
-    },
-    {
-      slug: 'quattro-formaggi',
-      name: 'Четыре сыра',
-      description: 'Моцарелла, дорблю, пармезан, чеддер',
-      category: 'pizza',
-      image: ImageType.PIZZA,
-      basePrice: 699,
-      weight: 500,
-      kcal: 1150,
-      variants: [
-        { name: '25 см', price: 699 },
-        { name: '30 см', price: 899, isDefault: true },
-        { name: '35 см', price: 1099 },
-      ],
-    },
-    {
-      slug: 'classic-burger',
-      name: 'Классический бургер',
-      description: 'Говяжья котлета, чеддер, салат, соус',
-      category: 'burgers',
-      image: ImageType.BURGER,
-      basePrice: 389,
-      weight: 240,
-      kcal: 620,
-      isFeatured: true,
-    },
-    {
-      slug: 'double-cheese',
-      name: 'Двойной чизбургер',
-      description: 'Две котлеты, двойной чеддер, бекон',
-      category: 'burgers',
-      image: ImageType.BURGER,
-      basePrice: 459,
-      weight: 300,
-      kcal: 820,
-    },
-    {
-      slug: 'fries',
-      name: 'Картофель фри',
-      description: 'Хрустящий картофель с солью',
-      category: 'snacks',
-      image: ImageType.SNACK,
-      basePrice: 149,
-      weight: 150,
-      kcal: 320,
-      variants: [
-        { name: 'Стандарт', price: 149, isDefault: true },
-        { name: 'Большой', price: 199 },
-      ],
-    },
-    {
-      slug: 'nuggets',
-      name: 'Куриные наггетсы',
-      description: '6 шт. с соусом на выбор',
-      category: 'snacks',
-      image: ImageType.SNACK,
-      basePrice: 219,
-      weight: 180,
-      kcal: 410,
-    },
+  // ── Завтраки ──────────────────────────────────────────────────────────────
+  const breakfast = [
+    { slug: 'kruassan-s-maslom', name: 'Круассан с маслом', description: 'Свежий круассан, подаётся только из духовки', price: 250 },
+    { slug: 'kruassan-s-semgoy-ss', name: 'Круассан с семгой с.с', description: 'Круассан с слабосолёной семгой', price: 550 },
+    { slug: 'kruassan-s-vetchinoi', name: 'Круассан с ветчиной', description: 'Сытный круассан с начинкой из ветчины', price: 515 },
+    { slug: 'kruassan-na-desert', name: 'Круассан на десерт', description: 'Сладкий десертный вариант круассана', price: 450 },
+    { slug: 'belgiiskie-vafli-s-semgoy-i-yaytsom-pashot', name: 'Бельгийские вафли с семгой и яйцом пашот', description: 'Вафли с слабосолёной семгой и яйцом пашот', price: 650 },
+    { slug: 'belgiiskie-vafli-s-yagodoy-i-morozhenym', name: 'Бельгийские вафли с ягодой и мороженым', description: 'Вафли с ягодами и шариком мороженого', price: 510 },
+    { slug: 'sirniki', name: 'Сырники', description: 'Творожные сырники с джемом и сметаной', price: 370 },
+    { slug: 'blinchiki', name: 'Блинчики', description: 'Тонкие блинчики со сметаной и джемом', price: 340 },
+    { slug: 'blinchiki-s-lososem', name: 'Блинчики с лососем и сливочным сыром', description: 'Блинчики с лососем и нежным сливочным сыром', price: 640 },
+    { slug: 'draniki-so-smetanoy', name: 'Драники со сметаной', description: 'Картофельные драники со сметаной', price: 350 },
+    { slug: 'draniki-s-semgoy-i-yaytsom-pashot', name: 'Драники с семгой и яйцом пашот', description: 'Драники с слабосолёной семгой и яйцом пашот', price: 680 },
+    { slug: 'grenki-s-parmezanom', name: 'Гренки с пармезаном', description: 'Хрустящие гренки с тёртым пармезаном', price: 390 },
+    { slug: 'kasha-na-vibor', name: 'Каша на выбор', description: 'Овсяная, манная, рисовая или злаковая каша на выбор', price: 300 },
+    { slug: 'kukuruznaya-s-parmezanom', name: 'Кукурузная с пармезаном', description: 'Кукурузная каша с добавлением пармезана', price: 360 },
+    { slug: 'shakshuka', name: 'Шакшука', description: 'Яйца, запечённые в пряном томатном соусе с овощами', price: 430 },
+    { slug: 'glazunya', name: 'Глазунья', description: 'Классическая яичница-глазунья', price: 290 },
+    { slug: 'skrembl-s-tomatami', name: 'Скрембл с томатами', description: 'Мягкий яичный скрэмбл с помидорами, из 3 яиц', price: 350 },
+    { slug: 'fritatta', name: 'Фритатта', description: 'Итальянский омлет с фасолью', price: 410 },
   ];
 
-  for (const p of products) {
-    const existing = await prisma.product.findUnique({ where: { slug: p.slug } });
-    if (existing) continue;
+  // ── Закуски ───────────────────────────────────────────────────────────────
+  const snacks = [
+    { slug: 'zharenniy-suluguni', name: 'Жареный сулугуни', description: 'Обжаренный кавказский сыр сулугуни', price: 520 },
+    { slug: 'krevetka-tigrovaya', name: 'Креветка тигровая', description: 'Порция тигровых креветок (горячая закуска)', price: 680 },
+    { slug: 'kurinie-stripsy', name: 'Куриные стрипсы', description: 'Обжаренные полоски куриного филе в панировке', price: 480 },
+    { slug: 'solenie-', name: 'Соленье', description: 'Ассорти домашних солений', price: 380 },
+    { slug: 'semga-ss', name: 'Семга с.с', description: 'Слабосолёная сёмга', price: 720 },
+    { slug: 'seledochka-s-kartofelem', name: 'Селёдочка с картофелем', description: 'Сельдь с отварным картофелем', price: 390 },
+    { slug: 'myasnoe-assorti', name: 'Мясное ассорти', description: 'Буженина, сырокопчёная колбаса, бастурма, суджук, хрен', price: 750 },
+    { slug: 'syrnoe-plato-kavkaz', name: 'Сырное плато «Кавказ»', description: 'Чанах, мёд, адыгейский, молочный, сулугуни, пармезан', price: 750 },
+    { slug: 'maslini-olivki', name: 'Маслины-оливки', description: 'Порция маслин и оливок, 100 г', price: 250 },
+  ];
 
-    const { variants, category, image, basePrice, ...rest } = p;
-    const created = await prisma.product.create({
+  // ── Салаты ────────────────────────────────────────────────────────────────
+  const salads = [
+    { slug: 'salat-letniy', name: 'Салат «Летний»', description: 'Лёгкий овощной салат с авокадо', price: 380 },
+    { slug: 'tsezar-s-kurinoy-grudkoy', name: 'Цезарь с куриной грудкой', description: 'Классический салат Цезарь с куриной грудкой', price: 460 },
+    { slug: 'tsezar-s-semgoy-ss', name: 'Цезарь с семгой с.с', description: 'Цезарь с слабосолёной сёмгой', price: 590 },
+    { slug: 'tsezar-s-krevetkoy', name: 'Цезарь с креветкой', description: 'Цезарь с добавлением креветок', price: 610 },
+    { slug: 'lazzat-s-hrustyaschim-baklazhanom', name: 'Лаззат с хрустящим баклажаном', description: 'Салат с хрустящим баклажаном в восточном стиле', price: 580 },
+    { slug: 'tepliy-s-mramornoy-govyadinoy', name: 'Тёплый с мраморной говядиной', description: 'Тёплый салат с кусочками мраморной говядины', price: 680 },
+    { slug: 'rukola-s-krevetkoy', name: 'Руккола с креветкой', description: 'Салат на основе рукколы с креветками', price: 690 },
+    { slug: 's-semgoy-kinoa-i-apelsinom', name: 'С сёмгой, киноа и апельсином', description: 'Салат с сёмгой, киноа и цитрусовыми нотами апельсина', price: 720 },
+  ];
+
+  // ── Супы ──────────────────────────────────────────────────────────────────
+  const soups = [
+    { slug: 'borsch-s-govyadinoy', name: 'Борщ с говядиной', description: 'Классический борщ с говядиной', price: 520 },
+  ];
+
+  // ── Соусы ─────────────────────────────────────────────────────────────────
+  const sauces = [
+    { slug: 'barbekyu-heinz', name: 'Барбикю Heinz', description: 'Фирменный соус барбекю от Heinz', price: 99 },
+    { slug: 'ketchup', name: 'Кетчуп', description: 'Классический томатный кетчуп', price: 99 },
+    { slug: 'slivochno-gorchichniy', name: 'Сливочно-горчичный', description: 'Нежный соус на основе сливок и горчицы', price: 99 },
+    { slug: 'syrniy-heinz', name: 'Сырный Heinz', description: 'Сливочно-сырный соус от Heinz', price: 99 },
+    { slug: 'tzakhton', name: 'Цахтон', description: 'Кавказский соус на основе кисломолочных продуктов с зеленью и специями', price: 99 },
+  ];
+
+  // ── Десерты ───────────────────────────────────────────────────────────────
+  const desserts = [
+    { slug: 'napoleon', name: 'Наполеон', description: 'Классический слоёный торт «Наполеон» с заварным кремом', price: 350 },
+  ];
+
+  // ── Напитки ───────────────────────────────────────────────────────────────
+  const drinks = [
+    { slug: 'borzhomi', name: 'Боржоми', description: 'Минеральная газированная вода «Боржоми»', price: 250 },
+  ];
+
+  // ── Объединяем все блюда ──────────────────────────────────────────────────
+  const allProducts: Array<{
+    slug: string; name: string; description: string; category: string; price: number;
+  }> = [
+    ...breakfast.map((p) => ({ ...p, category: 'breakfast' })),
+    ...snacks.map((p) => ({ ...p, category: 'snacks' })),
+    ...salads.map((p) => ({ ...p, category: 'salads' })),
+    ...soups.map((p) => ({ ...p, category: 'soups' })),
+    ...sauces.map((p) => ({ ...p, category: 'sauces' })),
+    ...desserts.map((p) => ({ ...p, category: 'desserts' })),
+    ...drinks.map((p) => ({ ...p, category: 'drinks' })),
+  ];
+
+  console.log(`\n📋 Всего блюд для загрузки: ${allProducts.length}`);
+
+  // ── Загружаем блюда ───────────────────────────────────────────────────────
+  let created = 0;
+  for (const p of allProducts) {
+    const existing = await prisma.product.findUnique({ where: { slug: p.slug } });
+    if (existing) {
+      console.log(`  ⏭ Пропущен (уже есть): ${p.name}`);
+      continue;
+    }
+
+    const createdProduct = await prisma.product.create({
       data: {
-        ...rest,
-        basePrice: money(basePrice),
-        imageType: image,
-        category: { connect: { slug: category } },
+        slug: p.slug,
+        name: p.name,
+        description: p.description,
+        basePrice: money(p.price),
+        imageType: ImageType.OTHER,
+        category: { connect: { slug: p.category } },
       },
     });
-    if (variants?.length) {
-      await prisma.productVariant.createMany({
-        data: variants.map((v) => ({
-          productId: created.id,
-          name: v.name,
-          price: money(v.price),
-          isDefault: v.isDefault ?? false,
-        })),
-      });
-    } else {
-      await prisma.productVariant.create({
-        data: { productId: created.id, name: 'Стандарт', price: money(basePrice), isDefault: true },
-      });
-    }
+
+    // Создаём стандартную вариацию
+    await prisma.productVariant.create({
+      data: {
+        productId: createdProduct.id,
+        name: 'Стандарт',
+        price: money(p.price),
+        isDefault: true,
+      },
+    });
+
+    created++;
+    console.log(`  ✔ Создан: ${p.name} — ${p.price}р`);
   }
-  console.log(`✔ Создано товаров: ${products.length}`);
+
+  console.log(`\n✔ Создано товаров: ${created} из ${allProducts.length}`);
 
   // ── Опции конструктора пиццы ───────────────────────────────────────────────
   await prisma.pizzaSize.createMany({
@@ -615,8 +183,8 @@ async function main() {
 
   await prisma.doughOption.createMany({
     data: [
-      { type: DoughType.TRADITIONAL, name: 'Традиционное', price: money(0) },
-      { type: DoughType.THIN, name: 'Тонкое', price: money(49) },
+      { type: 'TRADITIONAL' as any, name: 'Традиционное', price: money(0) },
+      { type: 'THIN' as any, name: 'Тонкое', price: money(49) },
     ],
     skipDuplicates: true,
   });
@@ -632,15 +200,15 @@ async function main() {
 
   const ingredients = [
     { name: 'Моцарелла', price: 99 },
-    { name: 'Пепперони', price: 119, spicy: true },
+    { name: 'Пепперони', price: 119 },
     { name: 'Шампиньоны', price: 79 },
     { name: 'Бекон', price: 129 },
     { name: 'Ветчина', price: 109 },
     { name: 'Лук', price: 49 },
-    { name: 'Перец халапеньо', price: 69, spicy: true },
-    { name: 'Оливки', price: 79, vegan: true },
-    { name: 'Томаты', price: 69, vegan: true },
-    { name: 'Болгарский перец', price: 69, vegan: true },
+    { name: 'Перец халапеньо', price: 69 },
+    { name: 'Оливки', price: 79 },
+    { name: 'Томаты', price: 69 },
+    { name: 'Болгарский перец', price: 69 },
     { name: 'Ананас', price: 89 },
     { name: 'Пармезан', price: 139 },
   ];
@@ -648,38 +216,17 @@ async function main() {
     data: ingredients.map((i, idx) => ({
       name: i.name,
       price: money(i.price),
-      isVegan: i.vegan ?? false,
-      isSpicy: i.spicy ?? false,
+      isVegan: false,
+      isSpicy: false,
       sortOrder: idx,
     })),
     skipDuplicates: true,
   });
   console.log('✔ Опции конструктора пиццы готовы');
-  console.log('\n🍽  Меню кафе «Рица» — Сочи успешно загружено!');
+
+  console.log('\n🍽  Меню кафе «Рица» успешно загружено!');
 }
 
-async function run() {
-  let lastError: Error | undefined;
-  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
-    try {
-      await main();
-      return;
-    } catch (e: any) {
-      lastError = e instanceof Error ? e : new Error(String(e));
-      const msg = lastError.message || '';
-      const isRetryable = msg.includes('closed the connection')
-        || msg.includes('ECONNREFUSED')
-        || msg.includes('ETIMEDOUT')
-        || msg.includes('was denied access')
-        || (lastError as any).code === 'P1017';
-      if (!isRetryable || attempt === MAX_RETRIES) break;
-      console.warn(`[seed] attempt ${attempt}/${MAX_RETRIES} failed: ${msg.slice(0, 80)}. Retrying in ${RETRY_DELAY/1000}s...`);
-      await new Promise(r => setTimeout(r, RETRY_DELAY));
-    }
-  }
-  console.error('[seed] Failed after all retries:', lastError?.message);
-  await prisma.$disconnect();
-  process.exit(1);
-}
-
-run();
+main()
+  .catch((e) => { console.error(e); process.exit(1); })
+  .finally(() => prisma.$disconnect());

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, UtensilsCrossed, Pizza, ShoppingBag, User, X } from 'lucide-react';
+import { Home, UtensilsCrossed, Pizza, ShoppingBag, User, X, Shield } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useUIStore } from '@/store/ui-store';
 import { useAuthStore } from '@/store/auth-store';
@@ -63,15 +63,6 @@ export function MobileMenu() {
                   </Link>
                 );
               })}
-              {user?.role === 'ADMIN' && (
-                <Link
-                  href="/admin"
-                  onClick={closeMobileMenu}
-                  className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-white"
-                >
-                  Админ-панель
-                </Link>
-              )}
             </nav>
           </motion.div>
         </>

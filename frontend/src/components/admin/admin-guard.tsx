@@ -21,7 +21,7 @@ export function AdminGuard({ children }: { children: React.ReactNode }) {
     return (
       <div className="container-page flex min-h-[50vh] flex-col items-center justify-center gap-3 py-10 text-center">
         <h1 className="text-xl font-bold">Требуется авторизация</h1>
-        <Link href="/account" className="btn-primary">Войти</Link>
+        <Link href="/webadmin" className="btn-primary">Войти как админ</Link>
       </div>
     );
   }

@@ -32,7 +32,7 @@ function createClient(): KyInstance {
   const apiBase = process.env.NEXT_PUBLIC_API_URL
     ? `${process.env.NEXT_PUBLIC_API_URL}/api`
     : isServer
-      ? `https://${process.env.VERCEL_URL || 'localhost:3000'}/api`
+      ? `http://${process.env.VERCEL_URL || '127.0.0.1:3000'}/api`
       : '/api';
   return ky.create({
     prefixUrl: apiBase,

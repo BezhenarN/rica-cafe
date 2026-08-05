@@ -14,13 +14,15 @@ import type {
 export const authApi = {
   register: (data: { email: string; password: string; name?: string; phone?: string }) =>
     api.post('auth/register', { json: data }).json<AuthResponse>(),
-  login: (data: { email: string; password: string }) =>
+  login: (data: { phone: string; password: string }) =>
     api.post('auth/login', { json: data }).json<AuthResponse>(),
+  forgotPassword: (data: { email: string }) =>
+    api.post('auth/forgot-password', { json: data }).json<{ message: string }>(),
   me: () => api.get('auth/me').json(),
 };
 
 // Сохраняем токен после login/register.
-export async function signIn(data: { email: string; password: string }) {
+export async function signIn(data: { phone: string; password: string }) {
   const res = await authApi.login(data);
   setToken(res.accessToken);
   return res;
@@ -136,5 +138,7 @@ export const adminApi = {
     api.patch(`admin/products/${id}`, { json: data }).json(),
   toggleProduct: (id: string, isAvailable: boolean) =>
     api.patch(`admin/products/${id}/availability`, { json: { isAvailable } }).json(),
+  toggleFeatured: (id: string, isFeatured: boolean) =>
+    api.patch(`admin/products/${id}`, { json: { isFeatured } }).json(),
   deleteProduct: (id: string) => api.delete(`admin/products/${id}`).json(),
 };
