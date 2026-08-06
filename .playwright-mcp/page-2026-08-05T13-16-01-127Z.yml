@@ -1,0 +1,1111 @@
+- generic [ref=f12e1]:
+  - banner [ref=f12e2]:
+    - generic [ref=f12e3]:
+      - link "Рица" [ref=f12e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f12e14]:
+        - link "Меню" [ref=f12e15] [cursor=pointer]:
+          - /url: /menu
+        - link "Конструктор пиццы" [ref=f12e16] [cursor=pointer]:
+          - /url: /pizza-builder
+        - link "О кафе" [ref=f12e17] [cursor=pointer]:
+          - /url: /about
+        - link "Заказы" [ref=f12e18] [cursor=pointer]:
+          - /url: /orders
+      - generic [ref=f12e19]:
+        - button "Корзина" [ref=f12e20] [cursor=pointer]
+        - link "Личный кабинет" [ref=f12e24] [cursor=pointer]:
+          - /url: /account
+  - main [ref=f12e28]:
+    - generic [ref=f12e29]:
+      - link "На сайт" [ref=f12e30] [cursor=pointer]:
+        - /url: /
+      - heading "Админ-панель" [level=1] [ref=f12e33]
+      - generic [ref=f12e34]:
+        - button "Заказы" [ref=f12e35] [cursor=pointer]
+        - button "Товары" [ref=f12e36] [cursor=pointer]
+      - generic [ref=f12e37]:
+        - button "Добавить товар" [active] [ref=f12e38] [cursor=pointer]
+        - generic [ref=f12e41]:
+          - generic [ref=f12e43]:
+            - generic [ref=f12e46]:
+              - paragraph [ref=f12e48]: Драники со сметаной
+              - paragraph [ref=f12e49]: "Завтрак · 350 ₽ · slug: draniki-so-smetanoy"
+            - generic [ref=f12e50]:
+              - button "Загрузить фото" [ref=f12e51] [cursor=pointer]
+              - button "Редактировать" [ref=f12e55] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e59] [cursor=pointer]
+              - button "Скрыть" [ref=f12e62] [cursor=pointer]
+          - generic [ref=f12e68]:
+            - generic [ref=f12e71]:
+              - paragraph [ref=f12e73]: Драники с семгой и яйцом пашот
+              - paragraph [ref=f12e74]: "Завтрак · 680 ₽ · slug: draniki-s-semgoy"
+            - generic [ref=f12e75]:
+              - button "Загрузить фото" [ref=f12e76] [cursor=pointer]
+              - button "Редактировать" [ref=f12e80] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e84] [cursor=pointer]
+              - button "Скрыть" [ref=f12e87] [cursor=pointer]
+          - generic [ref=f12e93]:
+            - generic [ref=f12e96]:
+              - paragraph [ref=f12e98]: Гренки с пармезаном
+              - paragraph [ref=f12e99]: "Завтрак · 390 ₽ · slug: grenki-s-parmezanom"
+            - generic [ref=f12e100]:
+              - button "Загрузить фото" [ref=f12e101] [cursor=pointer]
+              - button "Редактировать" [ref=f12e105] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e109] [cursor=pointer]
+              - button "Скрыть" [ref=f12e112] [cursor=pointer]
+          - generic [ref=f12e118]:
+            - generic [ref=f12e121]:
+              - paragraph [ref=f12e123]: Глазунья
+              - paragraph [ref=f12e124]: "Завтрак · 290 ₽ · slug: glazunya"
+            - generic [ref=f12e125]:
+              - button "Загрузить фото" [ref=f12e126] [cursor=pointer]
+              - button "Редактировать" [ref=f12e130] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e134] [cursor=pointer]
+              - button "Скрыть" [ref=f12e137] [cursor=pointer]
+          - generic [ref=f12e143]:
+            - generic [ref=f12e146]:
+              - paragraph [ref=f12e148]: Скрембл с томатами
+              - paragraph [ref=f12e149]: "Завтрак · 350 ₽ · slug: skrembl-s-tomatami"
+            - generic [ref=f12e150]:
+              - button "Загрузить фото" [ref=f12e151] [cursor=pointer]
+              - button "Редактировать" [ref=f12e155] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e159] [cursor=pointer]
+              - button "Скрыть" [ref=f12e162] [cursor=pointer]
+          - generic [ref=f12e168]:
+            - generic [ref=f12e171]:
+              - paragraph [ref=f12e173]: Фритатта
+              - paragraph [ref=f12e174]: "Завтрак · 410 ₽ · slug: fritatta"
+            - generic [ref=f12e175]:
+              - button "Загрузить фото" [ref=f12e176] [cursor=pointer]
+              - button "Редактировать" [ref=f12e180] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e184] [cursor=pointer]
+              - button "Скрыть" [ref=f12e187] [cursor=pointer]
+          - generic [ref=f12e193]:
+            - generic [ref=f12e196]:
+              - paragraph [ref=f12e198]: Куриные стрипсы
+              - paragraph [ref=f12e199]: "Закуски · 480 ₽ · slug: kurinie-stripsy"
+            - generic [ref=f12e200]:
+              - button "Загрузить фото" [ref=f12e201] [cursor=pointer]
+              - button "Редактировать" [ref=f12e205] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e209] [cursor=pointer]
+              - button "Скрыть" [ref=f12e212] [cursor=pointer]
+          - generic [ref=f12e218]:
+            - generic [ref=f12e221]:
+              - paragraph [ref=f12e223]: Соленье «Наш посол»
+              - paragraph [ref=f12e224]: "Закуски · 380 ₽ · slug: solenie-nash-posol"
+            - generic [ref=f12e225]:
+              - button "Загрузить фото" [ref=f12e226] [cursor=pointer]
+              - button "Редактировать" [ref=f12e230] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e234] [cursor=pointer]
+              - button "Скрыть" [ref=f12e237] [cursor=pointer]
+          - generic [ref=f12e243]:
+            - generic [ref=f12e246]:
+              - paragraph [ref=f12e248]: Селёдочка с картофелем
+              - paragraph [ref=f12e249]: "Закуски · 390 ₽ · slug: seledochka"
+            - generic [ref=f12e250]:
+              - button "Загрузить фото" [ref=f12e251] [cursor=pointer]
+              - button "Редактировать" [ref=f12e255] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e259] [cursor=pointer]
+              - button "Скрыть" [ref=f12e262] [cursor=pointer]
+          - generic [ref=f12e268]:
+            - generic [ref=f12e271]:
+              - paragraph [ref=f12e273]: Сырное плато «Кавказ»
+              - paragraph [ref=f12e274]: "Закуски · 750 ₽ · slug: syrnoe-plato-kavkaz"
+            - generic [ref=f12e275]:
+              - button "Загрузить фото" [ref=f12e276] [cursor=pointer]
+              - button "Редактировать" [ref=f12e280] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e284] [cursor=pointer]
+              - button "Скрыть" [ref=f12e287] [cursor=pointer]
+          - generic [ref=f12e293]:
+            - generic [ref=f12e296]:
+              - paragraph [ref=f12e298]: Маслины-оливки
+              - paragraph [ref=f12e299]: "Закуски · 250 ₽ · slug: maslini-olivki"
+            - generic [ref=f12e300]:
+              - button "Загрузить фото" [ref=f12e301] [cursor=pointer]
+              - button "Редактировать" [ref=f12e305] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e309] [cursor=pointer]
+              - button "Скрыть" [ref=f12e312] [cursor=pointer]
+          - generic [ref=f12e318]:
+            - generic [ref=f12e321]:
+              - paragraph [ref=f12e323]: Салат «Летний»
+              - paragraph [ref=f12e324]: "Салаты · 380 ₽ · slug: salat-letniy"
+            - generic [ref=f12e325]:
+              - button "Загрузить фото" [ref=f12e326] [cursor=pointer]
+              - button "Редактировать" [ref=f12e330] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e334] [cursor=pointer]
+              - button "Скрыть" [ref=f12e337] [cursor=pointer]
+          - generic [ref=f12e343]:
+            - generic [ref=f12e346]:
+              - paragraph [ref=f12e348]: Цезарь с куриной грудкой
+              - paragraph [ref=f12e349]: "Салаты · 460 ₽ · slug: tsezar-kuritsa"
+            - generic [ref=f12e350]:
+              - button "Загрузить фото" [ref=f12e351] [cursor=pointer]
+              - button "Редактировать" [ref=f12e355] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e359] [cursor=pointer]
+              - button "Скрыть" [ref=f12e362] [cursor=pointer]
+          - generic [ref=f12e368]:
+            - generic [ref=f12e371]:
+              - paragraph [ref=f12e373]: Цезарь с креветкой
+              - paragraph [ref=f12e374]: "Салаты · 610 ₽ · slug: tsezar-krevetka"
+            - generic [ref=f12e375]:
+              - button "Загрузить фото" [ref=f12e376] [cursor=pointer]
+              - button "Редактировать" [ref=f12e380] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e384] [cursor=pointer]
+              - button "Скрыть" [ref=f12e387] [cursor=pointer]
+          - generic [ref=f12e393]:
+            - generic [ref=f12e396]:
+              - paragraph [ref=f12e398]: Лаззат с хрустящим баклажаном
+              - paragraph [ref=f12e399]: "Салаты · 580 ₽ · slug: lazzat"
+            - generic [ref=f12e400]:
+              - button "Загрузить фото" [ref=f12e401] [cursor=pointer]
+              - button "Редактировать" [ref=f12e405] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e409] [cursor=pointer]
+              - button "Скрыть" [ref=f12e412] [cursor=pointer]
+          - generic [ref=f12e418]:
+            - generic [ref=f12e421]:
+              - paragraph [ref=f12e423]: Жареный сулугуни
+              - paragraph [ref=f12e424]: "Закуски · 520 ₽ · slug: zharenniy-suluguni"
+            - generic [ref=f12e425]:
+              - button "Загрузить фото" [ref=f12e426] [cursor=pointer]
+              - button "Редактировать" [ref=f12e430] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e434] [cursor=pointer]
+              - button "Скрыть" [ref=f12e437] [cursor=pointer]
+          - generic [ref=f12e443]:
+            - generic [ref=f12e446]:
+              - paragraph [ref=f12e448]: Бельгийские вафли с ягодой и мороженым
+              - paragraph [ref=f12e449]: "Завтрак · 510 ₽ · slug: belgiiskie-vafli-s-yagodoy"
+            - generic [ref=f12e450]:
+              - button "Загрузить фото" [ref=f12e451] [cursor=pointer]
+              - button "Редактировать" [ref=f12e455] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e459] [cursor=pointer]
+              - button "Скрыть" [ref=f12e462] [cursor=pointer]
+          - generic [ref=f12e468]:
+            - generic [ref=f12e471]:
+              - paragraph [ref=f12e473]: Креветка тигровая
+              - paragraph [ref=f12e474]: "Закуски · 680 ₽ · slug: krevetka-tigrovaya"
+            - generic [ref=f12e475]:
+              - button "Загрузить фото" [ref=f12e476] [cursor=pointer]
+              - button "Редактировать" [ref=f12e480] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e484] [cursor=pointer]
+              - button "Скрыть" [ref=f12e487] [cursor=pointer]
+          - generic [ref=f12e493]:
+            - generic [ref=f12e496]:
+              - paragraph [ref=f12e498]: Семга с.с
+              - paragraph [ref=f12e499]: "Закуски · 720 ₽ · slug: semga-ss"
+            - generic [ref=f12e500]:
+              - button "Загрузить фото" [ref=f12e501] [cursor=pointer]
+              - button "Редактировать" [ref=f12e505] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e509] [cursor=pointer]
+              - button "Скрыть" [ref=f12e512] [cursor=pointer]
+          - generic [ref=f12e518]:
+            - generic [ref=f12e521]:
+              - paragraph [ref=f12e523]: Мясное ассорти
+              - paragraph [ref=f12e524]: "Закуски · 750 ₽ · slug: myasnoe-assorti"
+            - generic [ref=f12e525]:
+              - button "Загрузить фото" [ref=f12e526] [cursor=pointer]
+              - button "Редактировать" [ref=f12e530] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e534] [cursor=pointer]
+              - button "Скрыть" [ref=f12e537] [cursor=pointer]
+          - generic [ref=f12e543]:
+            - generic [ref=f12e546]:
+              - paragraph [ref=f12e548]: Круассан с маслом
+              - paragraph [ref=f12e549]: "Завтрак · 250 ₽ · slug: kruassan-s-maslom"
+            - generic [ref=f12e550]:
+              - button "Загрузить фото" [ref=f12e551] [cursor=pointer]
+              - button "Редактировать" [ref=f12e555] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e559] [cursor=pointer]
+              - button "Скрыть" [ref=f12e562] [cursor=pointer]
+          - generic [ref=f12e568]:
+            - generic [ref=f12e571]:
+              - paragraph [ref=f12e573]: Круассан с ветчиной
+              - paragraph [ref=f12e574]: "Завтрак · 515 ₽ · slug: kruassan-s-vetchinoi"
+            - generic [ref=f12e575]:
+              - button "Загрузить фото" [ref=f12e576] [cursor=pointer]
+              - button "Редактировать" [ref=f12e580] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e584] [cursor=pointer]
+              - button "Скрыть" [ref=f12e587] [cursor=pointer]
+          - generic [ref=f12e593]:
+            - generic [ref=f12e596]:
+              - paragraph [ref=f12e598]: Кукурузная с пармезаном
+              - paragraph [ref=f12e599]: "Завтрак · 360 ₽ · slug: kukuruznaya"
+            - generic [ref=f12e600]:
+              - button "Загрузить фото" [ref=f12e601] [cursor=pointer]
+              - button "Редактировать" [ref=f12e605] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e609] [cursor=pointer]
+              - button "Скрыть" [ref=f12e612] [cursor=pointer]
+          - generic [ref=f12e618]:
+            - generic [ref=f12e621]:
+              - generic [ref=f12e622]:
+                - paragraph [ref=f12e623]: Блинчики
+                - generic [ref=f12e624]: Хит
+              - paragraph [ref=f12e625]: "Завтрак · 340 ₽ · slug: blinchiki"
+            - generic [ref=f12e626]:
+              - button "Загрузить фото" [ref=f12e627] [cursor=pointer]
+              - button "Редактировать" [ref=f12e631] [cursor=pointer]
+              - button "Убрать из хитов" [ref=f12e635] [cursor=pointer]
+              - button "Скрыть" [ref=f12e638] [cursor=pointer]
+          - generic [ref=f12e644]:
+            - generic [ref=f12e647]:
+              - paragraph [ref=f12e649]: Круассан на десерт
+              - paragraph [ref=f12e650]: "Завтрак · 450 ₽ · slug: kruassan-na-desert"
+            - generic [ref=f12e651]:
+              - button "Загрузить фото" [ref=f12e652] [cursor=pointer]
+              - button "Редактировать" [ref=f12e656] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e660] [cursor=pointer]
+              - button "Скрыть" [ref=f12e663] [cursor=pointer]
+          - generic [ref=f12e669]:
+            - generic [ref=f12e672]:
+              - paragraph [ref=f12e674]: Каша на выбор
+              - paragraph [ref=f12e675]: "Завтрак · 300 ₽ · slug: kasha-na-vibor"
+            - generic [ref=f12e676]:
+              - button "Загрузить фото" [ref=f12e677] [cursor=pointer]
+              - button "Редактировать" [ref=f12e681] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e685] [cursor=pointer]
+              - button "Скрыть" [ref=f12e688] [cursor=pointer]
+          - generic [ref=f12e694]:
+            - generic [ref=f12e697]:
+              - paragraph [ref=f12e699]: Блинчики с лососем и сливочным сыром
+              - paragraph [ref=f12e700]: "Завтрак · 640 ₽ · slug: blinchiki-s-lososem"
+            - generic [ref=f12e701]:
+              - button "Загрузить фото" [ref=f12e702] [cursor=pointer]
+              - button "Редактировать" [ref=f12e706] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e710] [cursor=pointer]
+              - button "Скрыть" [ref=f12e713] [cursor=pointer]
+          - generic [ref=f12e719]:
+            - generic [ref=f12e722]:
+              - paragraph [ref=f12e724]: Тёплый с мраморной говядиной
+              - paragraph [ref=f12e725]: "Салаты · 680 ₽ · slug: tepliy-govyadina"
+            - generic [ref=f12e726]:
+              - button "Загрузить фото" [ref=f12e727] [cursor=pointer]
+              - button "Редактировать" [ref=f12e731] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e735] [cursor=pointer]
+              - button "Скрыть" [ref=f12e738] [cursor=pointer]
+          - generic [ref=f12e744]:
+            - generic [ref=f12e747]:
+              - paragraph [ref=f12e749]: С сёмгой, киноа и апельсином
+              - paragraph [ref=f12e750]: "Салаты · 720 ₽ · slug: semga-kinoa"
+            - generic [ref=f12e751]:
+              - button "Загрузить фото" [ref=f12e752] [cursor=pointer]
+              - button "Редактировать" [ref=f12e756] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e760] [cursor=pointer]
+              - button "Скрыть" [ref=f12e763] [cursor=pointer]
+          - generic [ref=f12e769]:
+            - generic [ref=f12e772]:
+              - paragraph [ref=f12e774]: Борщ с говядиной
+              - paragraph [ref=f12e775]: "Супы · 520 ₽ · slug: borsch"
+            - generic [ref=f12e776]:
+              - button "Загрузить фото" [ref=f12e777] [cursor=pointer]
+              - button "Редактировать" [ref=f12e781] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e785] [cursor=pointer]
+              - button "Скрыть" [ref=f12e788] [cursor=pointer]
+          - generic [ref=f12e794]:
+            - generic [ref=f12e797]:
+              - paragraph [ref=f12e799]: Грибной крем-суп
+              - paragraph [ref=f12e800]: "Супы · 550 ₽ · slug: mushroom-cream-soup"
+            - generic [ref=f12e801]:
+              - button "Загрузить фото" [ref=f12e802] [cursor=pointer]
+              - button "Редактировать" [ref=f12e806] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e810] [cursor=pointer]
+              - button "Скрыть" [ref=f12e813] [cursor=pointer]
+          - generic [ref=f12e819]:
+            - generic [ref=f12e822]:
+              - paragraph [ref=f12e824]: Куриный бульон с лапшой
+              - paragraph [ref=f12e825]: "Супы · 330 ₽ · slug: chicken-broth"
+            - generic [ref=f12e826]:
+              - button "Загрузить фото" [ref=f12e827] [cursor=pointer]
+              - button "Редактировать" [ref=f12e831] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e835] [cursor=pointer]
+              - button "Скрыть" [ref=f12e838] [cursor=pointer]
+          - generic [ref=f12e844]:
+            - generic [ref=f12e847]:
+              - paragraph [ref=f12e849]: Солянка мясная
+              - paragraph [ref=f12e850]: "Супы · 480 ₽ · slug: solianka-meat"
+            - generic [ref=f12e851]:
+              - button "Загрузить фото" [ref=f12e852] [cursor=pointer]
+              - button "Редактировать" [ref=f12e856] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e860] [cursor=pointer]
+              - button "Скрыть" [ref=f12e863] [cursor=pointer]
+          - generic [ref=f12e869]:
+            - generic [ref=f12e872]:
+              - paragraph [ref=f12e874]: Солянка мясная по-грузински
+              - paragraph [ref=f12e875]: "Супы · 660 ₽ · slug: solianka-georgian"
+            - generic [ref=f12e876]:
+              - button "Загрузить фото" [ref=f12e877] [cursor=pointer]
+              - button "Редактировать" [ref=f12e881] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e885] [cursor=pointer]
+              - button "Скрыть" [ref=f12e888] [cursor=pointer]
+          - generic [ref=f12e894]:
+            - generic [ref=f12e897]:
+              - paragraph [ref=f12e899]: Том Ям
+              - paragraph [ref=f12e900]: "Супы · 750 ₽ · slug: tom-yum"
+            - generic [ref=f12e901]:
+              - button "Загрузить фото" [ref=f12e902] [cursor=pointer]
+              - button "Редактировать" [ref=f12e906] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e910] [cursor=pointer]
+              - button "Скрыть" [ref=f12e913] [cursor=pointer]
+          - generic [ref=f12e919]:
+            - generic [ref=f12e922]:
+              - paragraph [ref=f12e924]: Уха из форели
+              - paragraph [ref=f12e925]: "Супы · 560 ₽ · slug: ukha"
+            - generic [ref=f12e926]:
+              - button "Загрузить фото" [ref=f12e927] [cursor=pointer]
+              - button "Редактировать" [ref=f12e931] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e935] [cursor=pointer]
+              - button "Скрыть" [ref=f12e938] [cursor=pointer]
+          - generic [ref=f12e944]:
+            - generic [ref=f12e947]:
+              - paragraph [ref=f12e949]: Хашлома из говядины
+              - paragraph [ref=f12e950]: "Супы · 560 ₽ · slug: hashlama"
+            - generic [ref=f12e951]:
+              - button "Загрузить фото" [ref=f12e952] [cursor=pointer]
+              - button "Редактировать" [ref=f12e956] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e960] [cursor=pointer]
+              - button "Скрыть" [ref=f12e963] [cursor=pointer]
+          - generic [ref=f12e969]:
+            - generic [ref=f12e972]:
+              - paragraph [ref=f12e974]: Тальятелле с грибами и куриным филе
+              - paragraph [ref=f12e975]: "Паста · 510 ₽ · slug: tagliatelle-mushroom-chicken"
+            - generic [ref=f12e976]:
+              - button "Загрузить фото" [ref=f12e977] [cursor=pointer]
+              - button "Редактировать" [ref=f12e981] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e985] [cursor=pointer]
+              - button "Скрыть" [ref=f12e988] [cursor=pointer]
+          - generic [ref=f12e994]:
+            - generic [ref=f12e997]:
+              - paragraph [ref=f12e999]: Тальятелле с семгой
+              - paragraph [ref=f12e1000]: "Паста · 670 ₽ · slug: tagliatelle-semga"
+            - generic [ref=f12e1001]:
+              - button "Загрузить фото" [ref=f12e1002] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1006] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1010] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1013] [cursor=pointer]
+          - generic [ref=f12e1019]:
+            - generic [ref=f12e1022]:
+              - paragraph [ref=f12e1024]: Спагетти Карбонара
+              - paragraph [ref=f12e1025]: "Паста · 500 ₽ · slug: spaghetti-carbonara"
+            - generic [ref=f12e1026]:
+              - button "Загрузить фото" [ref=f12e1027] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1031] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1035] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1038] [cursor=pointer]
+          - generic [ref=f12e1044]:
+            - generic [ref=f12e1047]:
+              - paragraph [ref=f12e1049]: Нерри с морепродуктами
+              - paragraph [ref=f12e1050]: "Паста · 850 ₽ · slug: neri-seafood"
+            - generic [ref=f12e1051]:
+              - button "Загрузить фото" [ref=f12e1052] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1056] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1060] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1063] [cursor=pointer]
+          - generic [ref=f12e1069]:
+            - generic [ref=f12e1072]:
+              - paragraph [ref=f12e1074]: Тальятелле Арабьята
+              - paragraph [ref=f12e1075]: "Паста · 450 ₽ · slug: tagliatelle-arabbiata"
+            - generic [ref=f12e1076]:
+              - button "Загрузить фото" [ref=f12e1077] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1081] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1085] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1088] [cursor=pointer]
+          - generic [ref=f12e1094]:
+            - generic [ref=f12e1097]:
+              - paragraph [ref=f12e1099]: Говяжьи щёчки
+              - paragraph [ref=f12e1100]: "Мясные блюда · 950 ₽ · slug: guinea-cheeks"
+            - generic [ref=f12e1101]:
+              - button "Загрузить фото" [ref=f12e1102] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1106] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1110] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1113] [cursor=pointer]
+          - generic [ref=f12e1119]:
+            - generic [ref=f12e1122]:
+              - paragraph [ref=f12e1124]: Мраморный стейк Нью-Йорк
+              - paragraph [ref=f12e1125]: "Мясные блюда · 750 ₽ · slug: nyu-york-steak"
+            - generic [ref=f12e1126]:
+              - button "Загрузить фото" [ref=f12e1127] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1131] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1135] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1138] [cursor=pointer]
+          - generic [ref=f12e1144]:
+            - generic [ref=f12e1147]:
+              - paragraph [ref=f12e1149]: Перепела
+              - paragraph [ref=f12e1150]: "Мясные блюда · 310 ₽ · slug: perpela"
+            - generic [ref=f12e1151]:
+              - button "Загрузить фото" [ref=f12e1152] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1156] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1160] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1163] [cursor=pointer]
+          - generic [ref=f12e1169]:
+            - generic [ref=f12e1172]:
+              - paragraph [ref=f12e1174]: Ребра свиные
+              - paragraph [ref=f12e1175]: "Мясные блюда · 900 ₽ · slug: rebra-svinye"
+            - generic [ref=f12e1176]:
+              - button "Загрузить фото" [ref=f12e1177] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1181] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1185] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1188] [cursor=pointer]
+          - generic [ref=f12e1194]:
+            - generic [ref=f12e1197]:
+              - paragraph [ref=f12e1199]: Ребро ягнёнка
+              - paragraph [ref=f12e1200]: "Мясные блюда · 1 450 ₽ · slug: rebero-yagnenka"
+            - generic [ref=f12e1201]:
+              - button "Загрузить фото" [ref=f12e1202] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1206] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1210] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1213] [cursor=pointer]
+          - generic [ref=f12e1219]:
+            - generic [ref=f12e1222]:
+              - paragraph [ref=f12e1224]: Стейк Оссобуко по-милански
+              - paragraph [ref=f12e1225]: "Мясные блюда · 1 380 ₽ · slug: ossobuco"
+            - generic [ref=f12e1226]:
+              - button "Загрузить фото" [ref=f12e1227] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1231] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1235] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1238] [cursor=pointer]
+          - generic [ref=f12e1244]:
+            - generic [ref=f12e1247]:
+              - paragraph [ref=f12e1249]: Стейк из филе цыплёнка
+              - paragraph [ref=f12e1250]: "Мясные блюда · 850 ₽ · slug: steak-chicken"
+            - generic [ref=f12e1251]:
+              - button "Загрузить фото" [ref=f12e1252] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1256] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1260] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1263] [cursor=pointer]
+          - generic [ref=f12e1269]:
+            - generic [ref=f12e1272]:
+              - paragraph [ref=f12e1274]: Шницель Венский (мраморный)
+              - paragraph [ref=f12e1275]: "Мясные блюда · 1 260 ₽ · slug: schnitzel"
+            - generic [ref=f12e1276]:
+              - button "Загрузить фото" [ref=f12e1277] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1281] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1285] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1288] [cursor=pointer]
+          - generic [ref=f12e1294]:
+            - generic [ref=f12e1297]:
+              - paragraph [ref=f12e1299]: Строганов из говяжьей вырезки
+              - paragraph [ref=f12e1300]: "Мясные блюда · 800 ₽ · slug: stroganov"
+            - generic [ref=f12e1301]:
+              - button "Загрузить фото" [ref=f12e1302] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1306] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1310] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1313] [cursor=pointer]
+          - generic [ref=f12e1319]:
+            - generic [ref=f12e1322]:
+              - paragraph [ref=f12e1324]: Утиная ножка Конфи
+              - paragraph [ref=f12e1325]: "Мясные блюда · 990 ₽ · slug: duck-confit"
+            - generic [ref=f12e1326]:
+              - button "Загрузить фото" [ref=f12e1327] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1331] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1335] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1338] [cursor=pointer]
+          - generic [ref=f12e1344]:
+            - generic [ref=f12e1347]:
+              - paragraph [ref=f12e1349]: Цыплёнок Тапака
+              - paragraph [ref=f12e1350]: "Мясные блюда · 999 ₽ · slug: tyapok"
+            - generic [ref=f12e1351]:
+              - button "Загрузить фото" [ref=f12e1352] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1356] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1360] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1363] [cursor=pointer]
+          - generic [ref=f12e1369]:
+            - generic [ref=f12e1372]:
+              - paragraph [ref=f12e1374]: Мидии в соусе
+              - paragraph [ref=f12e1375]: "Блюда из рыбы и морепродуктов · 800 ₽ · slug: mussels-sauce"
+            - generic [ref=f12e1376]:
+              - button "Загрузить фото" [ref=f12e1377] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1381] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1385] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1388] [cursor=pointer]
+          - generic [ref=f12e1394]:
+            - generic [ref=f12e1397]:
+              - paragraph [ref=f12e1399]: Филе морского окуня под икорным соусом
+              - paragraph [ref=f12e1400]: "Блюда из рыбы и морепродуктов · 850 ₽ · slug: sea-bass-caviar-sauce"
+            - generic [ref=f12e1401]:
+              - button "Загрузить фото" [ref=f12e1402] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1406] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1410] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1413] [cursor=pointer]
+          - generic [ref=f12e1419]:
+            - generic [ref=f12e1422]:
+              - paragraph [ref=f12e1424]: Семга на гриле
+              - paragraph [ref=f12e1425]: "Блюда из рыбы и морепродуктов · 1 480 ₽ · slug: semga-grill"
+            - generic [ref=f12e1426]:
+              - button "Загрузить фото" [ref=f12e1427] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1431] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1435] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1438] [cursor=pointer]
+          - generic [ref=f12e1444]:
+            - generic [ref=f12e1447]:
+              - paragraph [ref=f12e1449]: Форель радужная
+              - paragraph [ref=f12e1450]: "Блюда из рыбы и морепродуктов · 1 100 ₽ · slug: forel"
+            - generic [ref=f12e1451]:
+              - button "Загрузить фото" [ref=f12e1452] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1456] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1460] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1463] [cursor=pointer]
+          - generic [ref=f12e1469]:
+            - generic [ref=f12e1472]:
+              - paragraph [ref=f12e1474]: Барабуля черноморская
+              - paragraph [ref=f12e1475]: "Блюда из рыбы и морепродуктов · 950 ₽ · slug: barabulya"
+            - generic [ref=f12e1476]:
+              - button "Загрузить фото" [ref=f12e1477] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1481] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1485] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1488] [cursor=pointer]
+          - generic [ref=f12e1494]:
+            - generic [ref=f12e1497]:
+              - paragraph [ref=f12e1499]: Пеленгас черноморский
+              - paragraph [ref=f12e1500]: "Блюда из рыбы и морепродуктов · 700 ₽ · slug: pelengas"
+            - generic [ref=f12e1501]:
+              - button "Загрузить фото" [ref=f12e1502] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1506] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1510] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1513] [cursor=pointer]
+          - generic [ref=f12e1519]:
+            - generic [ref=f12e1522]:
+              - paragraph [ref=f12e1524]: Камбала «Черноморский калкан»
+              - paragraph [ref=f12e1525]: "Блюда из рыбы и морепродуктов · 650 ₽ · slug: kampala"
+            - generic [ref=f12e1526]:
+              - button "Загрузить фото" [ref=f12e1527] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1531] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1535] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1538] [cursor=pointer]
+          - generic [ref=f12e1544]:
+            - generic [ref=f12e1547]:
+              - paragraph [ref=f12e1549]: Бургер фирменный
+              - paragraph [ref=f12e1550]: "Бургеры и хот-доги · 710 ₽ · slug: burger-signature"
+            - generic [ref=f12e1551]:
+              - button "Загрузить фото" [ref=f12e1552] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1556] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1560] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1563] [cursor=pointer]
+          - generic [ref=f12e1569]:
+            - generic [ref=f12e1572]:
+              - paragraph [ref=f12e1574]: Бургер Мраморный
+              - paragraph [ref=f12e1575]: "Бургеры и хот-доги · 650 ₽ · slug: burger-marbled"
+            - generic [ref=f12e1576]:
+              - button "Загрузить фото" [ref=f12e1577] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1581] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1585] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1588] [cursor=pointer]
+          - generic [ref=f12e1594]:
+            - generic [ref=f12e1597]:
+              - paragraph [ref=f12e1599]: Хот-дог «как надо»
+              - paragraph [ref=f12e1600]: "Бургеры и хот-доги · 380 ₽ · slug: hotdog-classic"
+            - generic [ref=f12e1601]:
+              - button "Загрузить фото" [ref=f12e1602] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1606] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1610] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1613] [cursor=pointer]
+          - generic [ref=f12e1619]:
+            - generic [ref=f12e1622]:
+              - paragraph [ref=f12e1624]: Хот-дог с лососем
+              - paragraph [ref=f12e1625]: "Бургеры и хот-доги · 490 ₽ · slug: hotdog-salmon"
+            - generic [ref=f12e1626]:
+              - button "Загрузить фото" [ref=f12e1627] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1631] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1635] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1638] [cursor=pointer]
+          - generic [ref=f12e1644]:
+            - generic [ref=f12e1647]:
+              - paragraph [ref=f12e1649]: Наш хлеб
+              - paragraph [ref=f12e1650]: "Выпечка из кавказской кухни · 190 ₽ · slug: our-bread"
+            - generic [ref=f12e1651]:
+              - button "Загрузить фото" [ref=f12e1652] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1656] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1660] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1663] [cursor=pointer]
+          - generic [ref=f12e1669]:
+            - generic [ref=f12e1672]:
+              - paragraph [ref=f12e1674]: Фокачча с пармезаном и вялеными томатами
+              - paragraph [ref=f12e1675]: "Выпечка из кавказской кухни · 360 ₽ · slug: foccacia-parmesan-tomato"
+            - generic [ref=f12e1676]:
+              - button "Загрузить фото" [ref=f12e1677] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1681] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1685] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1688] [cursor=pointer]
+          - generic [ref=f12e1694]:
+            - generic [ref=f12e1697]:
+              - paragraph [ref=f12e1699]: Хачапури «Нарта»
+              - paragraph [ref=f12e1700]: "Выпечка из кавказской кухни · 650 ₽ · slug: khachapuri-narta"
+            - generic [ref=f12e1701]:
+              - button "Загрузить фото" [ref=f12e1702] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1706] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1710] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1713] [cursor=pointer]
+          - generic [ref=f12e1719]:
+            - generic [ref=f12e1722]:
+              - paragraph [ref=f12e1724]: Хачапури по-аджарски
+              - paragraph [ref=f12e1725]: "Выпечка из кавказской кухни · 600 ₽ · slug: khachapuri-adjarian"
+            - generic [ref=f12e1726]:
+              - button "Загрузить фото" [ref=f12e1727] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1731] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1735] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1738] [cursor=pointer]
+          - generic [ref=f12e1744]:
+            - generic [ref=f12e1747]:
+              - paragraph [ref=f12e1749]: Хачапури по-аджарски с беконом
+              - paragraph [ref=f12e1750]: "Выпечка из кавказской кухни · 600 ₽ · slug: khachapuri-adjarian-bacon"
+            - generic [ref=f12e1751]:
+              - button "Загрузить фото" [ref=f12e1752] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1756] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1760] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1763] [cursor=pointer]
+          - generic [ref=f12e1769]:
+            - generic [ref=f12e1772]:
+              - paragraph [ref=f12e1774]: Хачапури по-аджарски с барабулей
+              - paragraph [ref=f12e1775]: "Выпечка из кавказской кухни · 600 ₽ · slug: khachapuri-adjarian-barabulya"
+            - generic [ref=f12e1776]:
+              - button "Загрузить фото" [ref=f12e1777] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1781] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1785] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1788] [cursor=pointer]
+          - generic [ref=f12e1794]:
+            - generic [ref=f12e1797]:
+              - paragraph [ref=f12e1799]: Хачапури по-аджарски с курицей и грибами
+              - paragraph [ref=f12e1800]: "Выпечка из кавказской кухни · 600 ₽ · slug: khachapuri-adjarian-chicken"
+            - generic [ref=f12e1801]:
+              - button "Загрузить фото" [ref=f12e1802] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1806] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1810] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1813] [cursor=pointer]
+          - generic [ref=f12e1819]:
+            - generic [ref=f12e1822]:
+              - paragraph [ref=f12e1824]: Осетинский пирог
+              - paragraph [ref=f12e1825]: "Выпечка из кавказской кухни · 650 ₽ · slug: osetin-pie"
+            - generic [ref=f12e1826]:
+              - button "Загрузить фото" [ref=f12e1827] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1831] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1835] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1838] [cursor=pointer]
+          - generic [ref=f12e1844]:
+            - generic [ref=f12e1847]:
+              - paragraph [ref=f12e1849]: Пирог с мясом
+              - paragraph [ref=f12e1850]: "Выпечка из кавказской кухни · 800 ₽ · slug: pie-meat"
+            - generic [ref=f12e1851]:
+              - button "Загрузить фото" [ref=f12e1852] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1856] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1860] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1863] [cursor=pointer]
+          - generic [ref=f12e1869]:
+            - generic [ref=f12e1872]:
+              - paragraph [ref=f12e1874]: Барбикю Heinz
+              - paragraph [ref=f12e1875]: "Соусы · 99 ₽ · slug: sauce-bbq"
+            - generic [ref=f12e1876]:
+              - button "Загрузить фото" [ref=f12e1877] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1881] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1885] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1888] [cursor=pointer]
+          - generic [ref=f12e1894]:
+            - generic [ref=f12e1897]:
+              - paragraph [ref=f12e1899]: Кетчуп
+              - paragraph [ref=f12e1900]: "Соусы · 99 ₽ · slug: sauce-ketchup"
+            - generic [ref=f12e1901]:
+              - button "Загрузить фото" [ref=f12e1902] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1906] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1910] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1913] [cursor=pointer]
+          - generic [ref=f12e1919]:
+            - generic [ref=f12e1922]:
+              - paragraph [ref=f12e1924]: Сливочно-горчичный
+              - paragraph [ref=f12e1925]: "Соусы · 99 ₽ · slug: sauce-sour-mustard"
+            - generic [ref=f12e1926]:
+              - button "Загрузить фото" [ref=f12e1927] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1931] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1935] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1938] [cursor=pointer]
+          - generic [ref=f12e1944]:
+            - generic [ref=f12e1947]:
+              - paragraph [ref=f12e1949]: Сырный Heinz
+              - paragraph [ref=f12e1950]: "Соусы · 99 ₽ · slug: sauce-cheese"
+            - generic [ref=f12e1951]:
+              - button "Загрузить фото" [ref=f12e1952] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1956] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1960] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1963] [cursor=pointer]
+          - generic [ref=f12e1969]:
+            - generic [ref=f12e1972]:
+              - paragraph [ref=f12e1974]: Цахтон
+              - paragraph [ref=f12e1975]: "Соусы · 99 ₽ · slug: sauce-tzakhton"
+            - generic [ref=f12e1976]:
+              - button "Загрузить фото" [ref=f12e1977] [cursor=pointer]
+              - button "Редактировать" [ref=f12e1981] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e1985] [cursor=pointer]
+              - button "Скрыть" [ref=f12e1988] [cursor=pointer]
+          - generic [ref=f12e1994]:
+            - generic [ref=f12e1997]:
+              - paragraph [ref=f12e1999]: Наполеон
+              - paragraph [ref=f12e2000]: "Десерты · 350 ₽ · slug: napoleon"
+            - generic [ref=f12e2001]:
+              - button "Загрузить фото" [ref=f12e2002] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2006] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2010] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2013] [cursor=pointer]
+          - generic [ref=f12e2019]:
+            - generic [ref=f12e2022]:
+              - paragraph [ref=f12e2024]: Боржоми
+              - paragraph [ref=f12e2025]: "Напитки · 250 ₽ · slug: borzhomi"
+            - generic [ref=f12e2026]:
+              - button "Загрузить фото" [ref=f12e2027] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2031] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2035] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2038] [cursor=pointer]
+          - generic [ref=f12e2044]:
+            - generic [ref=f12e2047]:
+              - paragraph [ref=f12e2049]: Бельгийские вафли с семгой и яйцом пашот
+              - paragraph [ref=f12e2050]: "Завтрак · 650 ₽ · slug: belgiiskie-vafli-s-semgoy"
+            - generic [ref=f12e2051]:
+              - button "Загрузить фото" [ref=f12e2052] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2056] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2060] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2063] [cursor=pointer]
+          - generic [ref=f12e2069]:
+            - generic [ref=f12e2072]:
+              - generic [ref=f12e2073]:
+                - paragraph [ref=f12e2074]: Круассан с семгой с.с
+                - generic [ref=f12e2075]: Скрыт
+                - generic [ref=f12e2076]: Хит
+              - paragraph [ref=f12e2077]: "Завтрак · 550 ₽ · slug: kruassan-s-semgoy-ss"
+            - generic [ref=f12e2078]:
+              - button "Загрузить фото" [ref=f12e2079] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2083] [cursor=pointer]
+              - button "Убрать из хитов" [ref=f12e2087] [cursor=pointer]
+              - button "Показать" [ref=f12e2090] [cursor=pointer]
+          - generic [ref=f12e2094]:
+            - generic [ref=f12e2097]:
+              - paragraph [ref=f12e2099]: Чизбургер
+              - paragraph [ref=f12e2100]: "Бургеры и хот-доги · 530 ₽ · slug: cheeseburger"
+            - generic [ref=f12e2101]:
+              - button "Загрузить фото" [ref=f12e2102] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2106] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2110] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2113] [cursor=pointer]
+          - generic [ref=f12e2119]:
+            - generic [ref=f12e2122]:
+              - paragraph [ref=f12e2124]: Шакшука
+              - paragraph [ref=f12e2125]: "Завтрак · 430 ₽ · slug: shakshuka"
+            - generic [ref=f12e2126]:
+              - button "Загрузить фото" [ref=f12e2127] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2131] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2135] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2138] [cursor=pointer]
+          - generic [ref=f12e2144]:
+            - generic [ref=f12e2147]:
+              - paragraph [ref=f12e2149]: Руккола с креветкой
+              - paragraph [ref=f12e2150]: "Салаты · 690 ₽ · slug: rukola-krevetka"
+            - generic [ref=f12e2151]:
+              - button "Загрузить фото" [ref=f12e2152] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2156] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2160] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2163] [cursor=pointer]
+          - generic [ref=f12e2169]:
+            - generic [ref=f12e2172]:
+              - paragraph [ref=f12e2174]: Сырники
+              - paragraph [ref=f12e2175]: "Завтрак · 370 ₽ · slug: sirniki"
+            - generic [ref=f12e2176]:
+              - button "Загрузить фото" [ref=f12e2177] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2181] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2185] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2188] [cursor=pointer]
+          - generic [ref=f12e2194]:
+            - generic [ref=f12e2197]:
+              - generic [ref=f12e2198]:
+                - paragraph [ref=f12e2199]: Цезарь с семгой с.с
+                - generic [ref=f12e2200]: Хит
+              - paragraph [ref=f12e2201]: "Салаты · 590 ₽ · slug: tsezar-semga"
+            - generic [ref=f12e2202]:
+              - button "Загрузить фото" [ref=f12e2203] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2207] [cursor=pointer]
+              - button "Убрать из хитов" [ref=f12e2211] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2214] [cursor=pointer]
+          - generic [ref=f12e2220]:
+            - generic [ref=f12e2223]:
+              - paragraph [ref=f12e2225]: Четыре сыра
+              - paragraph [ref=f12e2226]: "Пицца · 750 ₽ · slug: chetyre-syra"
+            - generic [ref=f12e2227]:
+              - button "Загрузить фото" [ref=f12e2228] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2232] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2236] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2239] [cursor=pointer]
+          - generic [ref=f12e2245]:
+            - generic [ref=f12e2248]:
+              - paragraph [ref=f12e2250]: Фрутти Де Море
+              - paragraph [ref=f12e2251]: "Пицца · 790 ₽ · slug: frutti-de-mare"
+            - generic [ref=f12e2252]:
+              - button "Загрузить фото" [ref=f12e2253] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2257] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2261] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2264] [cursor=pointer]
+          - generic [ref=f12e2270]:
+            - generic [ref=f12e2273]:
+              - paragraph [ref=f12e2275]: Джипа
+              - paragraph [ref=f12e2276]: "Пицца · 730 ₽ · slug: djivo"
+            - generic [ref=f12e2277]:
+              - button "Загрузить фото" [ref=f12e2278] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2282] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2286] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2289] [cursor=pointer]
+          - generic [ref=f12e2295]:
+            - generic [ref=f12e2298]:
+              - paragraph [ref=f12e2300]: Гавричешка
+              - paragraph [ref=f12e2301]: "Пицца · 750 ₽ · slug: gavricheska"
+            - generic [ref=f12e2302]:
+              - button "Загрузить фото" [ref=f12e2303] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2307] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2311] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2314] [cursor=pointer]
+          - generic [ref=f12e2320]:
+            - generic [ref=f12e2323]:
+              - paragraph [ref=f12e2325]: Хебуоли
+              - paragraph [ref=f12e2326]: "Пицца · 770 ₽ · slug: khebuoli"
+            - generic [ref=f12e2327]:
+              - button "Загрузить фото" [ref=f12e2328] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2332] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2336] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2339] [cursor=pointer]
+          - generic [ref=f12e2345]:
+            - generic [ref=f12e2348]:
+              - paragraph [ref=f12e2350]: Карачаевская
+              - paragraph [ref=f12e2351]: "Пицца · 710 ₽ · slug: karachaiska"
+            - generic [ref=f12e2352]:
+              - button "Загрузить фото" [ref=f12e2353] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2357] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2361] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2364] [cursor=pointer]
+          - generic [ref=f12e2370]:
+            - generic [ref=f12e2373]:
+              - paragraph [ref=f12e2375]: Сырно-картофельная
+              - paragraph [ref=f12e2376]: "Пицца · 740 ₽ · slug: syrno-kartofelnaya"
+            - generic [ref=f12e2377]:
+              - button "Загрузить фото" [ref=f12e2378] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2382] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2386] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2389] [cursor=pointer]
+          - generic [ref=f12e2395]:
+            - generic [ref=f12e2398]:
+              - paragraph [ref=f12e2400]: Пепперони
+              - paragraph [ref=f12e2401]: "Пицца · 710 ₽ · slug: pepperoni"
+            - generic [ref=f12e2402]:
+              - button "Загрузить фото" [ref=f12e2403] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2407] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2411] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2414] [cursor=pointer]
+          - generic [ref=f12e2420]:
+            - generic [ref=f12e2423]:
+              - paragraph [ref=f12e2425]: Баварская
+              - paragraph [ref=f12e2426]: "Пицца · 750 ₽ · slug: bavarska"
+            - generic [ref=f12e2427]:
+              - button "Загрузить фото" [ref=f12e2428] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2432] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2436] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2439] [cursor=pointer]
+          - generic [ref=f12e2445]:
+            - generic [ref=f12e2448]:
+              - paragraph [ref=f12e2450]: Прошутто
+              - paragraph [ref=f12e2451]: "Пицца · 750 ₽ · slug: prochutto"
+            - generic [ref=f12e2452]:
+              - button "Загрузить фото" [ref=f12e2453] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2457] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2461] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2464] [cursor=pointer]
+          - generic [ref=f12e2470]:
+            - generic [ref=f12e2473]:
+              - paragraph [ref=f12e2475]: Капсио
+              - paragraph [ref=f12e2476]: "Пицца · 750 ₽ · slug: kapsiyo"
+            - generic [ref=f12e2477]:
+              - button "Загрузить фото" [ref=f12e2478] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2482] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2486] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2489] [cursor=pointer]
+          - generic [ref=f12e2495]:
+            - generic [ref=f12e2498]:
+              - paragraph [ref=f12e2500]: Барбекю
+              - paragraph [ref=f12e2501]: "Пицца · 740 ₽ · slug: barbekyu"
+            - generic [ref=f12e2502]:
+              - button "Загрузить фото" [ref=f12e2503] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2507] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2511] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2514] [cursor=pointer]
+          - generic [ref=f12e2520]:
+            - generic [ref=f12e2523]:
+              - paragraph [ref=f12e2525]: Гармония вкусов
+              - paragraph [ref=f12e2526]: "Пицца · 740 ₽ · slug: garmoniya-vkusov"
+            - generic [ref=f12e2527]:
+              - button "Загрузить фото" [ref=f12e2528] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2532] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2536] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2539] [cursor=pointer]
+          - generic [ref=f12e2545]:
+            - generic [ref=f12e2548]:
+              - paragraph [ref=f12e2550]: Рджеттос
+              - paragraph [ref=f12e2551]: "Пицца · 770 ₽ · slug: rjettos"
+            - generic [ref=f12e2552]:
+              - button "Загрузить фото" [ref=f12e2553] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2557] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2561] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2564] [cursor=pointer]
+          - generic [ref=f12e2570]:
+            - generic [ref=f12e2573]:
+              - paragraph [ref=f12e2575]: Трюфельная с креветкой
+              - paragraph [ref=f12e2576]: "Пицца · 770 ₽ · slug: trufelnaya-s-krevetkoy"
+            - generic [ref=f12e2577]:
+              - button "Загрузить фото" [ref=f12e2578] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2582] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2586] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2589] [cursor=pointer]
+          - generic [ref=f12e2595]:
+            - generic [ref=f12e2598]:
+              - paragraph [ref=f12e2600]: Бурата
+              - paragraph [ref=f12e2601]: "Пицца · 850 ₽ · slug: burata"
+            - generic [ref=f12e2602]:
+              - button "Загрузить фото" [ref=f12e2603] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2607] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2611] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2614] [cursor=pointer]
+          - generic [ref=f12e2620]:
+            - generic [ref=f12e2623]:
+              - paragraph [ref=f12e2625]: Раскол
+              - paragraph [ref=f12e2626]: "Пицца · 790 ₽ · slug: raskol"
+            - generic [ref=f12e2627]:
+              - button "Загрузить фото" [ref=f12e2628] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2632] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2636] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2639] [cursor=pointer]
+          - generic [ref=f12e2645]:
+            - generic [ref=f12e2648]:
+              - paragraph [ref=f12e2650]: Место для ТП
+              - paragraph [ref=f12e2651]: "Пицца · 790 ₽ · slug: mesto-tp-kpt"
+            - generic [ref=f12e2652]:
+              - button "Загрузить фото" [ref=f12e2653] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2657] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2661] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2664] [cursor=pointer]
+          - generic [ref=f12e2670]:
+            - generic [ref=f12e2673]:
+              - paragraph [ref=f12e2675]: Анти Рджеттос
+              - paragraph [ref=f12e2676]: "Пицца · 770 ₽ · slug: anti-rjettos"
+            - generic [ref=f12e2677]:
+              - button "Загрузить фото" [ref=f12e2678] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2682] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2686] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2689] [cursor=pointer]
+          - generic [ref=f12e2695]:
+            - generic [ref=f12e2698]:
+              - paragraph [ref=f12e2700]: Мастер (Хват Лопаты)
+              - paragraph [ref=f12e2701]: "Пицца · 790 ₽ · slug: master"
+            - generic [ref=f12e2702]:
+              - button "Загрузить фото" [ref=f12e2703] [cursor=pointer]
+              - button "Редактировать" [ref=f12e2707] [cursor=pointer]
+              - button "Отметить как хит" [ref=f12e2711] [cursor=pointer]
+              - button "Скрыть" [ref=f12e2714] [cursor=pointer]
+        - generic [ref=f12e2719]:
+          - generic [ref=f12e2720]:
+            - heading "Добавить товар" [level=2] [ref=f12e2721]
+            - button [ref=f12e2722] [cursor=pointer]
+          - generic [ref=f12e2726]:
+            - generic [ref=f12e2727]:
+              - generic [ref=f12e2728]:
+                - generic [ref=f12e2729]: Slug
+                - textbox "Slug" [ref=f12e2730]
+              - generic [ref=f12e2731]:
+                - generic [ref=f12e2732]: Название
+                - textbox "Название" [ref=f12e2733]
+            - generic [ref=f12e2734]:
+              - generic [ref=f12e2735]: Описание
+              - textbox "Описание" [ref=f12e2736]
+            - generic [ref=f12e2737]:
+              - generic [ref=f12e2738]:
+                - generic [ref=f12e2739]: Категория
+                - combobox "Категория" [ref=f12e2740]:
+                  - option "Завтрак" [selected]
+                  - option "Закуски"
+                  - option "Салаты"
+                  - option "Супы"
+                  - option "Паста"
+                  - option "Мясные блюда"
+                  - option "Блюда из рыбы и морепродуктов"
+                  - option "Пицца"
+                  - option "Бургеры и хот-доги"
+                  - option "Выпечка из кавказской кухни"
+                  - option "Соусы"
+                  - option "Десерты"
+                  - option "Бар Меню"
+                  - option "Напитки"
+              - generic [ref=f12e2741]:
+                - generic [ref=f12e2742]: Цена (₽)
+                - spinbutton "Цена (₽)" [ref=f12e2743]
+              - generic [ref=f12e2744]:
+                - generic [ref=f12e2745]: Вес (г)
+                - spinbutton "Вес (г)" [ref=f12e2746]
+            - generic [ref=f12e2747]:
+              - generic [ref=f12e2748]:
+                - generic [ref=f12e2749]: Ккал
+                - spinbutton "Ккал" [ref=f12e2750]
+              - generic [ref=f12e2751]:
+                - generic [ref=f12e2752]:
+                  - checkbox "Веган" [ref=f12e2753]
+                  - generic [ref=f12e2754]: Веган
+                - generic [ref=f12e2755]:
+                  - checkbox "Острое" [ref=f12e2756]
+                  - generic [ref=f12e2757]: Острое
+                - generic [ref=f12e2758]:
+                  - checkbox "Хит" [ref=f12e2759]
+                  - generic [ref=f12e2760]: Хит
+            - generic [ref=f12e2761]:
+              - generic [ref=f12e2762]:
+                - generic [ref=f12e2763]: Варианты
+                - button "+ Вариант" [ref=f12e2764] [cursor=pointer]
+              - generic [ref=f12e2765]:
+                - textbox "Название (напр. 30 см)" [ref=f12e2766]: Стандарт
+                - spinbutton "Цена" [ref=f12e2767]
+            - generic [ref=f12e2768]:
+              - generic [ref=f12e2769]:
+                - checkbox "Доступен" [checked] [ref=f12e2770]
+                - generic [ref=f12e2771]: Доступен
+              - button "Создать" [ref=f12e2772] [cursor=pointer]
+  - contentinfo [ref=f12e2773]:
+    - generic [ref=f12e2774]:
+      - generic [ref=f12e2775]:
+        - link "Рица" [ref=f12e2776] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=f12e2785]: "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз."
+      - navigation [ref=f12e2786]:
+        - heading "Каталог" [level=3] [ref=f12e2787]
+        - list [ref=f12e2788]:
+          - listitem [ref=f12e2789]:
+            - link "Сувлаки и шаурма" [ref=f12e2790] [cursor=pointer]:
+              - /url: /menu?category=suvlaki
+          - listitem [ref=f12e2791]:
+            - link "Морепродукты" [ref=f12e2792] [cursor=pointer]:
+              - /url: /menu?category=seafood
+          - listitem [ref=f12e2793]:
+            - link "Грузинская кухня" [ref=f12e2794] [cursor=pointer]:
+              - /url: /menu?category=georgian
+          - listitem [ref=f12e2795]:
+            - link "Пицца" [ref=f12e2796] [cursor=pointer]:
+              - /url: /menu?category=pizza
+          - listitem [ref=f12e2797]:
+            - link "Конструктор пиццы" [ref=f12e2798] [cursor=pointer]:
+              - /url: /pizza-builder
+          - listitem [ref=f12e2799]:
+            - link "Все блюда" [ref=f12e2800] [cursor=pointer]:
+              - /url: /menu
+      - navigation [ref=f12e2801]:
+        - heading "Компания" [level=3] [ref=f12e2802]
+        - list [ref=f12e2803]:
+          - listitem [ref=f12e2804]:
+            - link "О кафе" [ref=f12e2805] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f12e2806]:
+            - link "Мои заказы" [ref=f12e2807] [cursor=pointer]:
+              - /url: /orders
+          - listitem [ref=f12e2808]:
+            - link "Личный кабинет" [ref=f12e2809] [cursor=pointer]:
+              - /url: /account
+      - generic [ref=f12e2810]:
+        - heading "Контакты" [level=3] [ref=f12e2811]
+        - list [ref=f12e2812]:
+          - listitem [ref=f12e2813]: +7 (900) 000-00-00
+          - listitem [ref=f12e2816]: Ежедневно 10:00–23:00
+          - listitem [ref=f12e2820]: г. Сочи, ул. Примерная, 15
+    - paragraph [ref=f12e2825]: © 2026 Рица. Кафе и доставка, Сочи.
+  - alert [ref=f12e2826]

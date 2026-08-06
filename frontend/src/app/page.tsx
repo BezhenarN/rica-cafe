@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Clock, Truck, Pizza as PizzaIcon, MapPin, ShoppingBag } from 'lucide-react';
+import { Clock, Truck, MapPin, Calendar } from 'lucide-react';
 import type { Metadata } from 'next';
 import { CategoryStrip } from '@/components/product/category-strip';
 import { ProductCard } from '@/components/product/product-card';
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 
 const PERKS = [
   { icon: Clock, title: '30–45 минут', text: 'Доставляем быстро и в горячем виде' },
-  { icon: Truck, title: 'Бесплатно от 1500 ₽', text: 'Иначе доставка — 149 ₽' },
-  { icon: MapPin, title: 'Доставка и самовывоз', text: 'Выберите удобный способ получения' },
-  { icon: ShoppingBag, title: 'Честные цены', text: 'Пересчёт стоимости на сервере' },
+  { icon: Truck, title: 'Бесплатная доставка', text: 'Доставка с 8:00 до 23:00' },
+  { icon: MapPin, title: 'Самовывоз', text: 'Самовывоз — скидка 10%' },
+  { icon: Calendar, title: 'Бронирование', text: 'Стол для теплой встречи или целый зал для вашего мероприятия' },
 ];
 
 /** Force dynamic: SSR on every request, no ISR cache with stale JSON. */
@@ -41,7 +41,11 @@ export default async function HomePage() {
   return (
     <div className="container-page space-y-16 py-6 sm:py-10">
       {/* HERO */}
-      <section className="relative overflow-hidden rounded-3xl bg-primary px-6 py-12 text-white sm:px-12 sm:py-16">
+      <section
+        className="relative overflow-hidden rounded-3xl px-6 py-12 text-white sm:px-12 sm:py-16"
+        style={{ backgroundImage: "url('/mainrica.webp')", backgroundSize: "cover", backgroundPosition: "center" }}
+      >
+        <div className="absolute inset-0 bg-primary/50" />
         <div className="relative z-10 max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">
             <Truck className="h-3.5 w-3.5" /> Доставка по Сочи · 30–45 минут
@@ -52,17 +56,7 @@ export default async function HomePage() {
           <p className="mt-3 max-w-lg text-white/80 sm:text-lg">
             Завтраки, закуски, салаты, супы, мясо, рыба, паста, бургеры, кавказская выпечка и напитки. Доставка и самовывоз по Сочи.
           </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/menu" className="btn bg-white text-primary hover:bg-white/90">
-              Перейти в меню <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/pizza-builder"
-              className="btn border border-white/30 bg-white/10 text-white hover:bg-white/20"
-            >
-              <PizzaIcon className="h-4 w-4" /> Собрать пиццу
-            </Link>
-          </div>
+          
         </div>
         <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 right-24 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />

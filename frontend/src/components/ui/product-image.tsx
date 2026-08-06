@@ -84,7 +84,9 @@ interface ProductImageProps {
   name?: string;
   className?: string;
   imagePath?: string | null;
-  /** Для совместимости с next/image, но мы рендерим SVG inline. */
+  /** Product ID for fetching image via API endpoint */
+  productId?: string | null;
+  /** For compatibility with next/image, but we render SVG inline. */
   alt?: string;
   priority?: boolean;
 }
@@ -93,13 +95,13 @@ interface ProductImageProps {
  * SVG-плейсхолдер для изображений блюд.
  * Если есть реальное фото (imagePath) — рендерим его, иначе — SVG.
  */
-export function ProductImage({ imageType = 'OTHER', name, className, imagePath }: ProductImageProps) {
+export function ProductImage({ imageType = 'OTHER', name, className, imagePath, productId }: ProductImageProps) {
   const { bg, fg } = PALETTE[imageType] ?? PALETTE.OTHER;
 
   if (imagePath) {
     return (
       <img
-        src={imagePath}
+        src={`/api/products/${productId}/image`}
         alt={name ?? ''}
         className={cn('h-full w-full object-cover rounded-2xl', className)}
       />

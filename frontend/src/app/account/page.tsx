@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LogOut, Mail, User as UserIcon, Phone, Plus, Trash2, Star, Package, RotateCcw } from 'lucide-react';
+import { LogOut, Mail, User as UserIcon, Phone, Plus, Trash2, Star, Package, RotateCcw, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/auth-store';
@@ -185,9 +185,16 @@ export default function AccountPage() {
           <h1 className="text-2xl font-extrabold sm:text-3xl">{user.name ?? 'Профиль'}</h1>
           <p className="text-sm text-muted">{user.email}</p>
         </div>
-        <button onClick={logout} className="btn-outline">
-          <LogOut className="h-4 w-4" /> Выйти
-        </button>
+        <div className="flex items-center gap-2">
+          {user.role === 'ADMIN' && (
+            <Link href="/admin" className="btn-primary inline-flex items-center gap-2">
+              <Shield className="h-4 w-4" /> Админ-панель
+            </Link>
+          )}
+          <button onClick={logout} className="btn-outline">
+            <LogOut className="h-4 w-4" /> Выйти
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}

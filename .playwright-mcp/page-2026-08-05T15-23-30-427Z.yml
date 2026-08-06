@@ -1,0 +1,1290 @@
+- generic [ref=f28e1]:
+  - banner [ref=f28e2]:
+    - generic [ref=f28e3]:
+      - link "Рица" [ref=f28e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f28e14]:
+        - link "Меню" [ref=f28e15] [cursor=pointer]:
+          - /url: /menu
+        - link "Конструктор пиццы" [ref=f28e17] [cursor=pointer]:
+          - /url: /pizza-builder
+        - link "О кафе" [ref=f28e18] [cursor=pointer]:
+          - /url: /about
+        - link "Заказы" [ref=f28e19] [cursor=pointer]:
+          - /url: /orders
+      - generic [ref=f28e20]:
+        - button "Корзина" [ref=f28e21] [cursor=pointer]:
+          - generic [ref=f28e1784]: "1"
+        - link "Админ-панель" [ref=f28e191] [cursor=pointer]:
+          - /url: /admin
+  - main [ref=f28e29]:
+    - generic [ref=f28e30]:
+      - generic [ref=f28e31]:
+        - heading "Меню" [level=1] [ref=f28e32]
+        - paragraph [ref=f28e33]: 108 блюд в наличии
+      - generic [ref=f28e34]:
+        - textbox "Поиск блюда..." [ref=f28e36]
+        - generic [ref=f28e37]:
+          - button "Все" [ref=f28e38] [cursor=pointer]
+          - button "Завтрак" [ref=f28e39] [cursor=pointer]
+          - button "Закуски" [ref=f28e40] [cursor=pointer]
+          - button "Салаты" [ref=f28e41] [cursor=pointer]
+          - button "Супы" [ref=f28e42] [cursor=pointer]
+          - button "Паста" [ref=f28e43] [cursor=pointer]
+          - button "Мясные блюда" [ref=f28e44] [cursor=pointer]
+          - button "Рыба и морепродукты" [ref=f28e45] [cursor=pointer]
+          - button "Пицца" [ref=f28e46] [cursor=pointer]
+          - button "Бургеры и хот-доги" [ref=f28e47] [cursor=pointer]
+          - button "Кавказская кухня" [ref=f28e48] [cursor=pointer]
+          - button "Соусы" [ref=f28e49] [cursor=pointer]
+          - button "Десерты" [ref=f28e50] [cursor=pointer]
+          - button "Бар Меню" [ref=f28e51] [cursor=pointer]
+          - button "Напитки" [ref=f28e52] [cursor=pointer]
+        - generic [ref=f28e53]:
+          - button "Веган" [ref=f28e54] [cursor=pointer]
+          - button "Острое" [ref=f28e58] [cursor=pointer]
+          - combobox [ref=f28e63]:
+            - option "По популярности" [selected]
+            - option "Сначала дешевле"
+            - option "Сначала дороже"
+            - option "По названию"
+      - generic [ref=f28e194]:
+        - article [ref=f28e195]:
+          - link "Блинчики" [ref=f28e196] [cursor=pointer]:
+            - /url: /menu/blinchiki
+          - generic [ref=f28e201]:
+            - link [ref=f28e202] [cursor=pointer]:
+              - /url: /menu/blinchiki
+              - heading "Блинчики" [level=3] [ref=f28e203]
+              - paragraph [ref=f28e204]: Тонкие блинчики со сметаной и джемом
+            - generic [ref=f28e205]:
+              - generic [ref=f28e206]: 340 ₽
+              - button "Добавить в корзину" [active] [ref=f28e207] [cursor=pointer]
+        - article [ref=f28e209]:
+          - link "Круассан с семгой с.с" [ref=f28e210] [cursor=pointer]:
+            - /url: /menu/kruassan-s-semgoy-ss
+          - generic [ref=f28e215]:
+            - link [ref=f28e216] [cursor=pointer]:
+              - /url: /menu/kruassan-s-semgoy-ss
+              - heading "Круассан с семгой с.с" [level=3] [ref=f28e217]
+              - paragraph [ref=f28e218]: Круассан с слабосолёной семгой
+            - generic [ref=f28e219]:
+              - generic [ref=f28e220]: 550 ₽
+              - button "Добавить в корзину" [ref=f28e221] [cursor=pointer]
+        - article [ref=f28e223]:
+          - link "Цезарь с семгой с.с" [ref=f28e224] [cursor=pointer]:
+            - /url: /menu/tsezar-semga
+          - generic [ref=f28e229]:
+            - link [ref=f28e230] [cursor=pointer]:
+              - /url: /menu/tsezar-semga
+              - heading "Цезарь с семгой с.с" [level=3] [ref=f28e231]
+              - paragraph [ref=f28e232]: Цезарь с слабосолёной сёмгой
+            - generic [ref=f28e233]:
+              - generic [ref=f28e234]: 590 ₽
+              - button "Добавить в корзину" [ref=f28e235] [cursor=pointer]
+        - article [ref=f28e237]:
+          - link "Глазунья" [ref=f28e238] [cursor=pointer]:
+            - /url: /menu/glazunya
+          - generic [ref=f28e243]:
+            - link [ref=f28e244] [cursor=pointer]:
+              - /url: /menu/glazunya
+              - heading "Глазунья" [level=3] [ref=f28e245]
+              - paragraph [ref=f28e246]: Классическая яичница-глазунья
+            - generic [ref=f28e247]:
+              - generic [ref=f28e248]: 290 ₽
+              - button "Добавить в корзину" [ref=f28e249] [cursor=pointer]
+        - article [ref=f28e251]:
+          - link "Скрембл с томатами" [ref=f28e252] [cursor=pointer]:
+            - /url: /menu/skrembl-s-tomatami
+          - generic [ref=f28e257]:
+            - link [ref=f28e258] [cursor=pointer]:
+              - /url: /menu/skrembl-s-tomatami
+              - heading "Скрембл с томатами" [level=3] [ref=f28e259]
+              - paragraph [ref=f28e260]: Мягкий яичный скрэмбл с помидорами, из 3 яиц
+            - generic [ref=f28e261]:
+              - generic [ref=f28e262]: 350 ₽
+              - button "Добавить в корзину" [ref=f28e263] [cursor=pointer]
+        - article [ref=f28e265]:
+          - link "Куриные стрипсы" [ref=f28e266] [cursor=pointer]:
+            - /url: /menu/kurinie-stripsy
+          - generic [ref=f28e271]:
+            - link [ref=f28e272] [cursor=pointer]:
+              - /url: /menu/kurinie-stripsy
+              - heading "Куриные стрипсы" [level=3] [ref=f28e273]
+              - paragraph [ref=f28e274]: Обжаренные полоски куриного филе в панировке
+            - generic [ref=f28e275]:
+              - generic [ref=f28e276]: 480 ₽
+              - button "Добавить в корзину" [ref=f28e277] [cursor=pointer]
+        - article [ref=f28e279]:
+          - link "Соленье «Наш посол»" [ref=f28e280] [cursor=pointer]:
+            - /url: /menu/solenie-nash-posol
+          - generic [ref=f28e285]:
+            - link [ref=f28e286] [cursor=pointer]:
+              - /url: /menu/solenie-nash-posol
+              - heading "Соленье «Наш посол»" [level=3] [ref=f28e287]
+              - paragraph [ref=f28e288]: Ассорти домашних солений
+            - generic [ref=f28e289]:
+              - generic [ref=f28e290]: 380 ₽
+              - button "Добавить в корзину" [ref=f28e291] [cursor=pointer]
+        - article [ref=f28e293]:
+          - link "Селёдочка с картофелем" [ref=f28e294] [cursor=pointer]:
+            - /url: /menu/seledochka
+          - generic [ref=f28e299]:
+            - link [ref=f28e300] [cursor=pointer]:
+              - /url: /menu/seledochka
+              - heading "Селёдочка с картофелем" [level=3] [ref=f28e301]
+              - paragraph [ref=f28e302]: Сельдь с отварным картофелем
+            - generic [ref=f28e303]:
+              - generic [ref=f28e304]: 390 ₽
+              - button "Добавить в корзину" [ref=f28e305] [cursor=pointer]
+        - article [ref=f28e307]:
+          - link "Сырное плато «Кавказ»" [ref=f28e308] [cursor=pointer]:
+            - /url: /menu/syrnoe-plato-kavkaz
+          - generic [ref=f28e313]:
+            - link [ref=f28e314] [cursor=pointer]:
+              - /url: /menu/syrnoe-plato-kavkaz
+              - heading "Сырное плато «Кавказ»" [level=3] [ref=f28e315]
+              - paragraph [ref=f28e316]: Чанах, мёд, адыгейский, молочный, сулугуни, пармезан
+            - generic [ref=f28e317]:
+              - generic [ref=f28e318]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e319] [cursor=pointer]
+        - article [ref=f28e321]:
+          - link "Маслины-оливки" [ref=f28e322] [cursor=pointer]:
+            - /url: /menu/maslini-olivki
+          - generic [ref=f28e327]:
+            - link [ref=f28e328] [cursor=pointer]:
+              - /url: /menu/maslini-olivki
+              - heading "Маслины-оливки" [level=3] [ref=f28e329]
+              - paragraph [ref=f28e330]: Порция маслин и оливок, 100 г
+            - generic [ref=f28e331]:
+              - generic [ref=f28e332]: 250 ₽
+              - button "Добавить в корзину" [ref=f28e333] [cursor=pointer]
+        - article [ref=f28e335]:
+          - link "Салат «Летний»" [ref=f28e336] [cursor=pointer]:
+            - /url: /menu/salat-letniy
+          - generic [ref=f28e341]:
+            - link [ref=f28e342] [cursor=pointer]:
+              - /url: /menu/salat-letniy
+              - heading "Салат «Летний»" [level=3] [ref=f28e343]
+              - paragraph [ref=f28e344]: Лёгкий овощной салат с авокадо
+            - generic [ref=f28e345]:
+              - generic [ref=f28e346]: 380 ₽
+              - button "Добавить в корзину" [ref=f28e347] [cursor=pointer]
+        - article [ref=f28e349]:
+          - link "Цезарь с куриной грудкой" [ref=f28e350] [cursor=pointer]:
+            - /url: /menu/tsezar-kuritsa
+          - generic [ref=f28e355]:
+            - link [ref=f28e356] [cursor=pointer]:
+              - /url: /menu/tsezar-kuritsa
+              - heading "Цезарь с куриной грудкой" [level=3] [ref=f28e357]
+              - paragraph [ref=f28e358]: Классический салат Цезарь с куриной грудкой
+            - generic [ref=f28e359]:
+              - generic [ref=f28e360]: 460 ₽
+              - button "Добавить в корзину" [ref=f28e361] [cursor=pointer]
+        - article [ref=f28e363]:
+          - link "Цезарь с креветкой" [ref=f28e364] [cursor=pointer]:
+            - /url: /menu/tsezar-krevetka
+          - generic [ref=f28e369]:
+            - link [ref=f28e370] [cursor=pointer]:
+              - /url: /menu/tsezar-krevetka
+              - heading "Цезарь с креветкой" [level=3] [ref=f28e371]
+              - paragraph [ref=f28e372]: Цезарь с добавлением креветок
+            - generic [ref=f28e373]:
+              - generic [ref=f28e374]: 610 ₽
+              - button "Добавить в корзину" [ref=f28e375] [cursor=pointer]
+        - article [ref=f28e377]:
+          - link "Лаззат с хрустящим баклажаном" [ref=f28e378] [cursor=pointer]:
+            - /url: /menu/lazzat
+          - generic [ref=f28e383]:
+            - link [ref=f28e384] [cursor=pointer]:
+              - /url: /menu/lazzat
+              - heading "Лаззат с хрустящим баклажаном" [level=3] [ref=f28e385]
+              - paragraph [ref=f28e386]: Салат с хрустящим баклажаном в восточном стиле
+            - generic [ref=f28e387]:
+              - generic [ref=f28e388]: 580 ₽
+              - button "Добавить в корзину" [ref=f28e389] [cursor=pointer]
+        - article [ref=f28e391]:
+          - link "Жареный сулугуни" [ref=f28e392] [cursor=pointer]:
+            - /url: /menu/zharenniy-suluguni
+          - generic [ref=f28e397]:
+            - link [ref=f28e398] [cursor=pointer]:
+              - /url: /menu/zharenniy-suluguni
+              - heading "Жареный сулугуни" [level=3] [ref=f28e399]
+              - paragraph [ref=f28e400]: Обжаренный кавказский сыр сулугуни
+            - generic [ref=f28e401]:
+              - generic [ref=f28e402]: 520 ₽
+              - button "Добавить в корзину" [ref=f28e403] [cursor=pointer]
+        - article [ref=f28e405]:
+          - link "Бельгийские вафли с ягодой и мороженым" [ref=f28e406] [cursor=pointer]:
+            - /url: /menu/belgiiskie-vafli-s-yagodoy
+          - generic [ref=f28e411]:
+            - link [ref=f28e412] [cursor=pointer]:
+              - /url: /menu/belgiiskie-vafli-s-yagodoy
+              - heading "Бельгийские вафли с ягодой и мороженым" [level=3] [ref=f28e413]
+              - paragraph [ref=f28e414]: Вафли с ягодами и шариком мороженого
+            - generic [ref=f28e415]:
+              - generic [ref=f28e416]: 510 ₽
+              - button "Добавить в корзину" [ref=f28e417] [cursor=pointer]
+        - article [ref=f28e419]:
+          - link "Креветка тигровая" [ref=f28e420] [cursor=pointer]:
+            - /url: /menu/krevetka-tigrovaya
+          - generic [ref=f28e425]:
+            - link [ref=f28e426] [cursor=pointer]:
+              - /url: /menu/krevetka-tigrovaya
+              - heading "Креветка тигровая" [level=3] [ref=f28e427]
+              - paragraph [ref=f28e428]: Порция тигровых креветок (горячая закуска)
+            - generic [ref=f28e429]:
+              - generic [ref=f28e430]: 680 ₽
+              - button "Добавить в корзину" [ref=f28e431] [cursor=pointer]
+        - article [ref=f28e433]:
+          - link "Семга с.с" [ref=f28e434] [cursor=pointer]:
+            - /url: /menu/semga-ss
+          - generic [ref=f28e439]:
+            - link [ref=f28e440] [cursor=pointer]:
+              - /url: /menu/semga-ss
+              - heading "Семга с.с" [level=3] [ref=f28e441]
+              - paragraph [ref=f28e442]: Слабосолёная сёмга
+            - generic [ref=f28e443]:
+              - generic [ref=f28e444]: 720 ₽
+              - button "Добавить в корзину" [ref=f28e445] [cursor=pointer]
+        - article [ref=f28e447]:
+          - link "Мясное ассорти" [ref=f28e448] [cursor=pointer]:
+            - /url: /menu/myasnoe-assorti
+          - generic [ref=f28e453]:
+            - link [ref=f28e454] [cursor=pointer]:
+              - /url: /menu/myasnoe-assorti
+              - heading "Мясное ассорти" [level=3] [ref=f28e455]
+              - paragraph [ref=f28e456]: Буженина, сырокопчёная колбаса, бастурма, суджук, хрен
+            - generic [ref=f28e457]:
+              - generic [ref=f28e458]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e459] [cursor=pointer]
+        - article [ref=f28e461]:
+          - link "Круассан с маслом" [ref=f28e462] [cursor=pointer]:
+            - /url: /menu/kruassan-s-maslom
+          - generic [ref=f28e467]:
+            - link [ref=f28e468] [cursor=pointer]:
+              - /url: /menu/kruassan-s-maslom
+              - heading "Круассан с маслом" [level=3] [ref=f28e469]
+              - paragraph [ref=f28e470]: Свежий круассан, подаётся только из духовки
+            - generic [ref=f28e471]:
+              - generic [ref=f28e472]: 250 ₽
+              - button "Добавить в корзину" [ref=f28e473] [cursor=pointer]
+        - article [ref=f28e475]:
+          - link "Круассан с ветчиной" [ref=f28e476] [cursor=pointer]:
+            - /url: /menu/kruassan-s-vetchinoi
+          - generic [ref=f28e481]:
+            - link [ref=f28e482] [cursor=pointer]:
+              - /url: /menu/kruassan-s-vetchinoi
+              - heading "Круассан с ветчиной" [level=3] [ref=f28e483]
+              - paragraph [ref=f28e484]: Сытный круассан с начинкой из ветчины
+            - generic [ref=f28e485]:
+              - generic [ref=f28e486]: 515 ₽
+              - button "Добавить в корзину" [ref=f28e487] [cursor=pointer]
+        - article [ref=f28e489]:
+          - link "Кукурузная с пармезаном" [ref=f28e490] [cursor=pointer]:
+            - /url: /menu/kukuruznaya
+          - generic [ref=f28e495]:
+            - link [ref=f28e496] [cursor=pointer]:
+              - /url: /menu/kukuruznaya
+              - heading "Кукурузная с пармезаном" [level=3] [ref=f28e497]
+              - paragraph [ref=f28e498]: Кукурузная каша с добавлением пармезана
+            - generic [ref=f28e499]:
+              - generic [ref=f28e500]: 360 ₽
+              - button "Добавить в корзину" [ref=f28e501] [cursor=pointer]
+        - article [ref=f28e503]:
+          - link "Круассан на десерт" [ref=f28e504] [cursor=pointer]:
+            - /url: /menu/kruassan-na-desert
+          - generic [ref=f28e509]:
+            - link [ref=f28e510] [cursor=pointer]:
+              - /url: /menu/kruassan-na-desert
+              - heading "Круассан на десерт" [level=3] [ref=f28e511]
+              - paragraph [ref=f28e512]: Сладкий десертный вариант круассана
+            - generic [ref=f28e513]:
+              - generic [ref=f28e514]: 450 ₽
+              - button "Добавить в корзину" [ref=f28e515] [cursor=pointer]
+        - article [ref=f28e517]:
+          - link "Каша на выбор" [ref=f28e518] [cursor=pointer]:
+            - /url: /menu/kasha-na-vibor
+          - generic [ref=f28e523]:
+            - link [ref=f28e524] [cursor=pointer]:
+              - /url: /menu/kasha-na-vibor
+              - heading "Каша на выбор" [level=3] [ref=f28e525]
+              - paragraph [ref=f28e526]: Овсяная, манная, рисовая или злаковая каша на выбор
+            - generic [ref=f28e527]:
+              - generic [ref=f28e528]: 300 ₽
+              - button "Добавить в корзину" [ref=f28e529] [cursor=pointer]
+        - article [ref=f28e531]:
+          - link "Блинчики с лососем и сливочным сыром" [ref=f28e532] [cursor=pointer]:
+            - /url: /menu/blinchiki-s-lososem
+          - generic [ref=f28e537]:
+            - link [ref=f28e538] [cursor=pointer]:
+              - /url: /menu/blinchiki-s-lososem
+              - heading "Блинчики с лососем и сливочным сыром" [level=3] [ref=f28e539]
+              - paragraph [ref=f28e540]: Блинчики с лососем и нежным сливочным сыром
+            - generic [ref=f28e541]:
+              - generic [ref=f28e542]: 640 ₽
+              - button "Добавить в корзину" [ref=f28e543] [cursor=pointer]
+        - article [ref=f28e545]:
+          - link "Фритатта Острое" [ref=f28e546] [cursor=pointer]:
+            - /url: /menu/fritatta
+            - generic [ref=f28e547]: Фритатта
+            - generic [ref=f28e551]: Острое
+          - generic [ref=f28e555]:
+            - link [ref=f28e556] [cursor=pointer]:
+              - /url: /menu/fritatta
+              - heading "Фритатта" [level=3] [ref=f28e557]
+              - paragraph [ref=f28e558]: Итальянский омлет с фасолью
+            - generic [ref=f28e559]:
+              - generic [ref=f28e560]: 410 ₽
+              - button "Добавить в корзину" [ref=f28e561] [cursor=pointer]
+        - article [ref=f28e563]:
+          - link "Тёплый с мраморной говядиной" [ref=f28e564] [cursor=pointer]:
+            - /url: /menu/tepliy-govyadina
+          - generic [ref=f28e569]:
+            - link [ref=f28e570] [cursor=pointer]:
+              - /url: /menu/tepliy-govyadina
+              - heading "Тёплый с мраморной говядиной" [level=3] [ref=f28e571]
+              - paragraph [ref=f28e572]: Тёплый салат с кусочками мраморной говядины
+            - generic [ref=f28e573]:
+              - generic [ref=f28e574]: 680 ₽
+              - button "Добавить в корзину" [ref=f28e575] [cursor=pointer]
+        - article [ref=f28e577]:
+          - link "С сёмгой, киноа и апельсином" [ref=f28e578] [cursor=pointer]:
+            - /url: /menu/semga-kinoa
+          - generic [ref=f28e583]:
+            - link [ref=f28e584] [cursor=pointer]:
+              - /url: /menu/semga-kinoa
+              - heading "С сёмгой, киноа и апельсином" [level=3] [ref=f28e585]
+              - paragraph [ref=f28e586]: Салат с сёмгой, киноа и цитрусовыми нотами апельсина
+            - generic [ref=f28e587]:
+              - generic [ref=f28e588]: 720 ₽
+              - button "Добавить в корзину" [ref=f28e589] [cursor=pointer]
+        - article [ref=f28e591]:
+          - link "Борщ с говядиной" [ref=f28e592] [cursor=pointer]:
+            - /url: /menu/borsch
+          - generic [ref=f28e598]:
+            - link [ref=f28e599] [cursor=pointer]:
+              - /url: /menu/borsch
+              - heading "Борщ с говядиной" [level=3] [ref=f28e600]
+              - paragraph [ref=f28e601]: Классический борщ с говядиной
+            - generic [ref=f28e602]:
+              - generic [ref=f28e603]: 520 ₽
+              - button "Добавить в корзину" [ref=f28e604] [cursor=pointer]
+        - article [ref=f28e606]:
+          - link "Грибной крем-суп" [ref=f28e607] [cursor=pointer]:
+            - /url: /menu/mushroom-cream-soup
+          - generic [ref=f28e613]:
+            - link [ref=f28e614] [cursor=pointer]:
+              - /url: /menu/mushroom-cream-soup
+              - heading "Грибной крем-суп" [level=3] [ref=f28e615]
+              - paragraph [ref=f28e616]: Нежный крем-суп из грибов
+            - generic [ref=f28e617]:
+              - generic [ref=f28e618]: 550 ₽
+              - button "Добавить в корзину" [ref=f28e619] [cursor=pointer]
+        - article [ref=f28e621]:
+          - link "Куриный бульон с лапшой" [ref=f28e622] [cursor=pointer]:
+            - /url: /menu/chicken-broth
+          - generic [ref=f28e628]:
+            - link [ref=f28e629] [cursor=pointer]:
+              - /url: /menu/chicken-broth
+              - heading "Куриный бульон с лапшой" [level=3] [ref=f28e630]
+              - paragraph [ref=f28e631]: Куриный бульон с лапшой, подаётся на выбор
+            - generic [ref=f28e632]:
+              - generic [ref=f28e633]: 330 ₽
+              - button "Добавить в корзину" [ref=f28e634] [cursor=pointer]
+        - article [ref=f28e636]:
+          - link "Солянка мясная" [ref=f28e637] [cursor=pointer]:
+            - /url: /menu/solianka-meat
+          - generic [ref=f28e643]:
+            - link [ref=f28e644] [cursor=pointer]:
+              - /url: /menu/solianka-meat
+              - heading "Солянка мясная" [level=3] [ref=f28e645]
+              - paragraph [ref=f28e646]: Традиционная мясная солянка
+            - generic [ref=f28e647]:
+              - generic [ref=f28e648]: 480 ₽
+              - button "Добавить в корзину" [ref=f28e649] [cursor=pointer]
+        - article [ref=f28e651]:
+          - link "Солянка мясная по-грузински" [ref=f28e652] [cursor=pointer]:
+            - /url: /menu/solianka-georgian
+          - generic [ref=f28e658]:
+            - link [ref=f28e659] [cursor=pointer]:
+              - /url: /menu/solianka-georgian
+              - heading "Солянка мясная по-грузински" [level=3] [ref=f28e660]
+              - paragraph [ref=f28e661]: Солянка с мясом, приготовленная по грузинскому рецепту
+            - generic [ref=f28e662]:
+              - generic [ref=f28e663]: 660 ₽
+              - button "Добавить в корзину" [ref=f28e664] [cursor=pointer]
+        - article [ref=f28e666]:
+          - link "Том Ям" [ref=f28e667] [cursor=pointer]:
+            - /url: /menu/tom-yum
+          - generic [ref=f28e673]:
+            - link [ref=f28e674] [cursor=pointer]:
+              - /url: /menu/tom-yum
+              - heading "Том Ям" [level=3] [ref=f28e675]
+              - paragraph [ref=f28e676]: Острый тайский суп с морепродуктами/курицей (в классическом стиле)
+            - generic [ref=f28e677]:
+              - generic [ref=f28e678]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e679] [cursor=pointer]
+        - article [ref=f28e681]:
+          - link "Уха из форели" [ref=f28e682] [cursor=pointer]:
+            - /url: /menu/ukha
+          - generic [ref=f28e688]:
+            - link [ref=f28e689] [cursor=pointer]:
+              - /url: /menu/ukha
+              - heading "Уха из форели" [level=3] [ref=f28e690]
+              - paragraph [ref=f28e691]: Рыбный суп на основе форели
+            - generic [ref=f28e692]:
+              - generic [ref=f28e693]: 560 ₽
+              - button "Добавить в корзину" [ref=f28e694] [cursor=pointer]
+        - article [ref=f28e696]:
+          - link "Хашлома из говядины" [ref=f28e697] [cursor=pointer]:
+            - /url: /menu/hashlama
+          - generic [ref=f28e703]:
+            - link [ref=f28e704] [cursor=pointer]:
+              - /url: /menu/hashlama
+              - heading "Хашлома из говядины" [level=3] [ref=f28e705]
+              - paragraph [ref=f28e706]: Наваристый суп/бульон с говядиной, кавказский стиль
+            - generic [ref=f28e707]:
+              - generic [ref=f28e708]: 560 ₽
+              - button "Добавить в корзину" [ref=f28e709] [cursor=pointer]
+        - article [ref=f28e711]:
+          - link "Тальятелле с грибами и куриным филе" [ref=f28e712] [cursor=pointer]:
+            - /url: /menu/tagliatelle-mushroom-chicken
+          - generic [ref=f28e717]:
+            - link [ref=f28e718] [cursor=pointer]:
+              - /url: /menu/tagliatelle-mushroom-chicken
+              - heading "Тальятелле с грибами и куриным филе" [level=3] [ref=f28e719]
+              - paragraph [ref=f28e720]: Паста тальятелле с грибным соусом и нежным куриным филе
+            - generic [ref=f28e721]:
+              - generic [ref=f28e722]: 510 ₽
+              - button "Добавить в корзину" [ref=f28e723] [cursor=pointer]
+        - article [ref=f28e725]:
+          - link "Тальятелле с семгой" [ref=f28e726] [cursor=pointer]:
+            - /url: /menu/tagliatelle-semga
+          - generic [ref=f28e731]:
+            - link [ref=f28e732] [cursor=pointer]:
+              - /url: /menu/tagliatelle-semga
+              - heading "Тальятелле с семгой" [level=3] [ref=f28e733]
+              - paragraph [ref=f28e734]: Тальятелле с кусочками сёмги в сливочном/томатном соусе
+            - generic [ref=f28e735]:
+              - generic [ref=f28e736]: 670 ₽
+              - button "Добавить в корзину" [ref=f28e737] [cursor=pointer]
+        - article [ref=f28e739]:
+          - link "Спагетти Карбонара" [ref=f28e740] [cursor=pointer]:
+            - /url: /menu/spaghetti-carbonara
+          - generic [ref=f28e745]:
+            - link [ref=f28e746] [cursor=pointer]:
+              - /url: /menu/spaghetti-carbonara
+              - heading "Спагетти Карбонара" [level=3] [ref=f28e747]
+              - paragraph [ref=f28e748]: Спагетти в классическом итальянском соусе карбонара (яйцо, сыр, бекон/панчетта)
+            - generic [ref=f28e749]:
+              - generic [ref=f28e750]: 500 ₽
+              - button "Добавить в корзину" [ref=f28e751] [cursor=pointer]
+        - article [ref=f28e753]:
+          - link "Нерри с морепродуктами" [ref=f28e754] [cursor=pointer]:
+            - /url: /menu/neri-seafood
+          - generic [ref=f28e759]:
+            - link [ref=f28e760] [cursor=pointer]:
+              - /url: /menu/neri-seafood
+              - heading "Нерри с морепродуктами" [level=3] [ref=f28e761]
+              - paragraph [ref=f28e762]: Паста нерри с ассорти морепродуктов
+            - generic [ref=f28e763]:
+              - generic [ref=f28e764]: 850 ₽
+              - button "Добавить в корзину" [ref=f28e765] [cursor=pointer]
+        - article [ref=f28e767]:
+          - link "Тальятелле Арабьята" [ref=f28e768] [cursor=pointer]:
+            - /url: /menu/tagliatelle-arabbiata
+          - generic [ref=f28e773]:
+            - link [ref=f28e774] [cursor=pointer]:
+              - /url: /menu/tagliatelle-arabbiata
+              - heading "Тальятелле Арабьята" [level=3] [ref=f28e775]
+              - paragraph [ref=f28e776]: Тальятелле в остром томатном соусе арабьята (с перцем чили), «с остринкой»
+            - generic [ref=f28e777]:
+              - generic [ref=f28e778]: 450 ₽
+              - button "Добавить в корзину" [ref=f28e779] [cursor=pointer]
+        - article [ref=f28e781]:
+          - link "Говяжьи щёчки" [ref=f28e782] [cursor=pointer]:
+            - /url: /menu/guinea-cheeks
+          - generic [ref=f28e787]:
+            - link [ref=f28e788] [cursor=pointer]:
+              - /url: /menu/guinea-cheeks
+              - heading "Говяжьи щёчки" [level=3] [ref=f28e789]
+              - paragraph [ref=f28e790]: Тушёные говяжьи щёчки, нежное мясо длительного приготовления
+            - generic [ref=f28e791]:
+              - generic [ref=f28e792]: 950 ₽
+              - button "Добавить в корзину" [ref=f28e793] [cursor=pointer]
+        - article [ref=f28e795]:
+          - link "Мраморный стейк Нью-Йорк" [ref=f28e796] [cursor=pointer]:
+            - /url: /menu/nyu-york-steak
+          - generic [ref=f28e801]:
+            - link [ref=f28e802] [cursor=pointer]:
+              - /url: /menu/nyu-york-steak
+              - heading "Мраморный стейк Нью-Йорк" [level=3] [ref=f28e803]
+              - paragraph [ref=f28e804]: Стейк из мраморной говядины (Нью-Йорк), цена за 100 г
+            - generic [ref=f28e805]:
+              - generic [ref=f28e806]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e807] [cursor=pointer]
+        - article [ref=f28e809]:
+          - link "Перепела" [ref=f28e810] [cursor=pointer]:
+            - /url: /menu/perpela
+          - generic [ref=f28e815]:
+            - link [ref=f28e816] [cursor=pointer]:
+              - /url: /menu/perpela
+              - heading "Перепела" [level=3] [ref=f28e817]
+              - paragraph [ref=f28e818]: Приготовленные перепела
+            - generic [ref=f28e819]:
+              - generic [ref=f28e820]: 310 ₽
+              - button "Добавить в корзину" [ref=f28e821] [cursor=pointer]
+        - article [ref=f28e823]:
+          - link "Ребра свиные" [ref=f28e824] [cursor=pointer]:
+            - /url: /menu/rebra-svinye
+          - generic [ref=f28e829]:
+            - link [ref=f28e830] [cursor=pointer]:
+              - /url: /menu/rebra-svinye
+              - heading "Ребра свиные" [level=3] [ref=f28e831]
+              - paragraph [ref=f28e832]: Свиные рёбрышки, жареные/запечённые
+            - generic [ref=f28e833]:
+              - generic [ref=f28e834]: 900 ₽
+              - button "Добавить в корзину" [ref=f28e835] [cursor=pointer]
+        - article [ref=f28e837]:
+          - link "Ребро ягнёнка" [ref=f28e838] [cursor=pointer]:
+            - /url: /menu/rebero-yagnenka
+          - generic [ref=f28e843]:
+            - link [ref=f28e844] [cursor=pointer]:
+              - /url: /menu/rebero-yagnenka
+              - heading "Ребро ягнёнка" [level=3] [ref=f28e845]
+              - paragraph [ref=f28e846]: Ребро ягнёнка, порционное блюдо
+            - generic [ref=f28e847]:
+              - generic [ref=f28e848]: 1 450 ₽
+              - button "Добавить в корзину" [ref=f28e849] [cursor=pointer]
+        - article [ref=f28e851]:
+          - link "Стейк Оссобуко по-милански" [ref=f28e852] [cursor=pointer]:
+            - /url: /menu/ossobuco
+          - generic [ref=f28e857]:
+            - link [ref=f28e858] [cursor=pointer]:
+              - /url: /menu/ossobuco
+              - heading "Стейк Оссобуко по-милански" [level=3] [ref=f28e859]
+              - paragraph [ref=f28e860]: Говяжья голяшка (оссобуко), приготовленная по-милански
+            - generic [ref=f28e861]:
+              - generic [ref=f28e862]: 1 380 ₽
+              - button "Добавить в корзину" [ref=f28e863] [cursor=pointer]
+        - article [ref=f28e865]:
+          - link "Стейк из филе цыплёнка" [ref=f28e866] [cursor=pointer]:
+            - /url: /menu/steak-chicken
+          - generic [ref=f28e871]:
+            - link [ref=f28e872] [cursor=pointer]:
+              - /url: /menu/steak-chicken
+              - heading "Стейк из филе цыплёнка" [level=3] [ref=f28e873]
+              - paragraph [ref=f28e874]: Стейк из куриного филе
+            - generic [ref=f28e875]:
+              - generic [ref=f28e876]: 850 ₽
+              - button "Добавить в корзину" [ref=f28e877] [cursor=pointer]
+        - article [ref=f28e879]:
+          - link "Шницель Венский (мраморный)" [ref=f28e880] [cursor=pointer]:
+            - /url: /menu/schnitzel
+          - generic [ref=f28e885]:
+            - link [ref=f28e886] [cursor=pointer]:
+              - /url: /menu/schnitzel
+              - heading "Шницель Венский (мраморный)" [level=3] [ref=f28e887]
+              - paragraph [ref=f28e888]: Венский шницель из мраморной говядины в панировке
+            - generic [ref=f28e889]:
+              - generic [ref=f28e890]: 1 260 ₽
+              - button "Добавить в корзину" [ref=f28e891] [cursor=pointer]
+        - article [ref=f28e893]:
+          - link "Строганов из говяжьей вырезки" [ref=f28e894] [cursor=pointer]:
+            - /url: /menu/stroganov
+          - generic [ref=f28e899]:
+            - link [ref=f28e900] [cursor=pointer]:
+              - /url: /menu/stroganov
+              - heading "Строганов из говяжьей вырезки" [level=3] [ref=f28e901]
+              - paragraph [ref=f28e902]: Классический бефстроганов из вырезки в сливочном соусе
+            - generic [ref=f28e903]:
+              - generic [ref=f28e904]: 800 ₽
+              - button "Добавить в корзину" [ref=f28e905] [cursor=pointer]
+        - article [ref=f28e907]:
+          - link "Утиная ножка Конфи" [ref=f28e908] [cursor=pointer]:
+            - /url: /menu/duck-confit
+          - generic [ref=f28e913]:
+            - link [ref=f28e914] [cursor=pointer]:
+              - /url: /menu/duck-confit
+              - heading "Утиная ножка Конфи" [level=3] [ref=f28e915]
+              - paragraph [ref=f28e916]: Утиная ножка, приготовленная по технологии конфи (томление в собственном жиру)
+            - generic [ref=f28e917]:
+              - generic [ref=f28e918]: 990 ₽
+              - button "Добавить в корзину" [ref=f28e919] [cursor=pointer]
+        - article [ref=f28e921]:
+          - link "Цыплёнок Тапака" [ref=f28e922] [cursor=pointer]:
+            - /url: /menu/tyapok
+          - generic [ref=f28e927]:
+            - link [ref=f28e928] [cursor=pointer]:
+              - /url: /menu/tyapok
+              - heading "Цыплёнок Тапака" [level=3] [ref=f28e929]
+              - paragraph [ref=f28e930]: Жареный цыплёнок, сплюснутый под гнётом, в кавказском стиле
+            - generic [ref=f28e931]:
+              - generic [ref=f28e932]: 999 ₽
+              - button "Добавить в корзину" [ref=f28e933] [cursor=pointer]
+        - article [ref=f28e935]:
+          - link "Мидии в соусе" [ref=f28e936] [cursor=pointer]:
+            - /url: /menu/mussels-sauce
+          - generic [ref=f28e941]:
+            - link [ref=f28e942] [cursor=pointer]:
+              - /url: /menu/mussels-sauce
+              - heading "Мидии в соусе" [level=3] [ref=f28e943]
+              - paragraph [ref=f28e944]: "Мидии, подаются на выбор в одном из соусов: сливочный, томатный, том ям, блю-чиз"
+            - generic [ref=f28e945]:
+              - generic [ref=f28e946]: 800 ₽
+              - button "Добавить в корзину" [ref=f28e947] [cursor=pointer]
+        - article [ref=f28e949]:
+          - link "Филе морского окуня под икорным соусом" [ref=f28e950] [cursor=pointer]:
+            - /url: /menu/sea-bass-caviar-sauce
+          - generic [ref=f28e955]:
+            - link [ref=f28e956] [cursor=pointer]:
+              - /url: /menu/sea-bass-caviar-sauce
+              - heading "Филе морского окуня под икорным соусом" [level=3] [ref=f28e957]
+              - paragraph [ref=f28e958]: Филе морского окуня с нежным икорным соусом
+            - generic [ref=f28e959]:
+              - generic [ref=f28e960]: 850 ₽
+              - button "Добавить в корзину" [ref=f28e961] [cursor=pointer]
+        - article [ref=f28e963]:
+          - link "Семга на гриле" [ref=f28e964] [cursor=pointer]:
+            - /url: /menu/semga-grill
+          - generic [ref=f28e969]:
+            - link [ref=f28e970] [cursor=pointer]:
+              - /url: /menu/semga-grill
+              - heading "Семга на гриле" [level=3] [ref=f28e971]
+              - paragraph [ref=f28e972]: Стейк/филе сёмги на гриле, с гарниром из спаржи и соусом наршараб
+            - generic [ref=f28e973]:
+              - generic [ref=f28e974]: 1 480 ₽
+              - button "Добавить в корзину" [ref=f28e975] [cursor=pointer]
+        - article [ref=f28e977]:
+          - link "Форель радужная" [ref=f28e978] [cursor=pointer]:
+            - /url: /menu/forel
+          - generic [ref=f28e983]:
+            - link [ref=f28e984] [cursor=pointer]:
+              - /url: /menu/forel
+              - heading "Форель радужная" [level=3] [ref=f28e985]
+              - paragraph [ref=f28e986]: "Радужная форель, на выбор: гриль, запечённая в фольге или на пару"
+            - generic [ref=f28e987]:
+              - generic [ref=f28e988]: 1 100 ₽
+              - button "Добавить в корзину" [ref=f28e989] [cursor=pointer]
+        - article [ref=f28e991]:
+          - link "Барабуля черноморская" [ref=f28e992] [cursor=pointer]:
+            - /url: /menu/barabulya
+          - generic [ref=f28e997]:
+            - link [ref=f28e998] [cursor=pointer]:
+              - /url: /menu/barabulya
+              - heading "Барабуля черноморская" [level=3] [ref=f28e999]
+              - paragraph [ref=f28e1000]: Черноморская барабуля, порция 250 г
+            - generic [ref=f28e1001]:
+              - generic [ref=f28e1002]: 950 ₽
+              - button "Добавить в корзину" [ref=f28e1003] [cursor=pointer]
+        - article [ref=f28e1005]:
+          - link "Пеленгас черноморский" [ref=f28e1006] [cursor=pointer]:
+            - /url: /menu/pelengas
+          - generic [ref=f28e1011]:
+            - link [ref=f28e1012] [cursor=pointer]:
+              - /url: /menu/pelengas
+              - heading "Пеленгас черноморский" [level=3] [ref=f28e1013]
+              - paragraph [ref=f28e1014]: Черноморский пеленгас, цельная рыба или порционное блюдо
+            - generic [ref=f28e1015]:
+              - generic [ref=f28e1016]: 700 ₽
+              - button "Добавить в корзину" [ref=f28e1017] [cursor=pointer]
+        - article [ref=f28e1019]:
+          - link "Камбала «Черноморский калкан»" [ref=f28e1020] [cursor=pointer]:
+            - /url: /menu/kampala
+          - generic [ref=f28e1025]:
+            - link [ref=f28e1026] [cursor=pointer]:
+              - /url: /menu/kampala
+              - heading "Камбала «Черноморский калкан»" [level=3] [ref=f28e1027]
+              - paragraph [ref=f28e1028]: Камбала (калкан), цена за 100 г
+            - generic [ref=f28e1029]:
+              - generic [ref=f28e1030]: 650 ₽
+              - button "Добавить в корзину" [ref=f28e1031] [cursor=pointer]
+        - article [ref=f28e1033]:
+          - link "Бургер фирменный" [ref=f28e1034] [cursor=pointer]:
+            - /url: /menu/burger-signature
+          - generic [ref=f28e1040]:
+            - link [ref=f28e1041] [cursor=pointer]:
+              - /url: /menu/burger-signature
+              - heading "Бургер фирменный" [level=3] [ref=f28e1042]
+              - paragraph [ref=f28e1043]: Булка бриошь, соус ранч, соус BBQ «Рино», микс-салат, томаты, огурцы маринованные, красный лук, сыр чеддер, говяжья котлета, халапеньо, картофель фри
+            - generic [ref=f28e1044]:
+              - generic [ref=f28e1045]: 710 ₽
+              - button "Добавить в корзину" [ref=f28e1046] [cursor=pointer]
+        - article [ref=f28e1048]:
+          - link "Бургер Мраморный" [ref=f28e1049] [cursor=pointer]:
+            - /url: /menu/burger-marbled
+          - generic [ref=f28e1055]:
+            - link [ref=f28e1056] [cursor=pointer]:
+              - /url: /menu/burger-marbled
+              - heading "Бургер Мраморный" [level=3] [ref=f28e1057]
+              - paragraph [ref=f28e1058]: Булка бриошь, мраморная говядина в панировке, микс-салат, томаты, огурцы маринованные, красный лук, сыр чеддер, фирменный соус «Рино»
+            - generic [ref=f28e1059]:
+              - generic [ref=f28e1060]: 650 ₽
+              - button "Добавить в корзину" [ref=f28e1061] [cursor=pointer]
+        - article [ref=f28e1063]:
+          - link "Хот-дог «как надо»" [ref=f28e1064] [cursor=pointer]:
+            - /url: /menu/hotdog-classic
+          - generic [ref=f28e1070]:
+            - link [ref=f28e1071] [cursor=pointer]:
+              - /url: /menu/hotdog-classic
+              - heading "Хот-дог «как надо»" [level=3] [ref=f28e1072]
+              - paragraph [ref=f28e1073]: Булка, сосиска, горчица, кетчуп, огурец маринованный, жареный лук, картофель фри, сырный соус
+            - generic [ref=f28e1074]:
+              - generic [ref=f28e1075]: 380 ₽
+              - button "Добавить в корзину" [ref=f28e1076] [cursor=pointer]
+        - article [ref=f28e1078]:
+          - link "Хот-дог с лососем" [ref=f28e1079] [cursor=pointer]:
+            - /url: /menu/hotdog-salmon
+          - generic [ref=f28e1085]:
+            - link [ref=f28e1086] [cursor=pointer]:
+              - /url: /menu/hotdog-salmon
+              - heading "Хот-дог с лососем" [level=3] [ref=f28e1087]
+              - paragraph [ref=f28e1088]: Булка для хот-дога, лосось слабой соли, творожный сыр, вяленые томаты, руккола
+            - generic [ref=f28e1089]:
+              - generic [ref=f28e1090]: 490 ₽
+              - button "Добавить в корзину" [ref=f28e1091] [cursor=pointer]
+        - article [ref=f28e1093]:
+          - link "Наш хлеб" [ref=f28e1094] [cursor=pointer]:
+            - /url: /menu/our-bread
+          - generic [ref=f28e1099]:
+            - link [ref=f28e1100] [cursor=pointer]:
+              - /url: /menu/our-bread
+              - heading "Наш хлеб" [level=3] [ref=f28e1101]
+              - paragraph [ref=f28e1102]: Фирменный хлеб кафе
+            - generic [ref=f28e1103]:
+              - generic [ref=f28e1104]: 190 ₽
+              - button "Добавить в корзину" [ref=f28e1105] [cursor=pointer]
+        - article [ref=f28e1107]:
+          - link "Фокачча с пармезаном и вялеными томатами" [ref=f28e1108] [cursor=pointer]:
+            - /url: /menu/foccacia-parmesan-tomato
+          - generic [ref=f28e1113]:
+            - link [ref=f28e1114] [cursor=pointer]:
+              - /url: /menu/foccacia-parmesan-tomato
+              - heading "Фокачча с пармезаном и вялеными томатами" [level=3] [ref=f28e1115]
+              - paragraph [ref=f28e1116]: Итальянская лепёшка фокачча с пармезаном и вялеными томатами
+            - generic [ref=f28e1117]:
+              - generic [ref=f28e1118]: 360 ₽
+              - button "Добавить в корзину" [ref=f28e1119] [cursor=pointer]
+        - article [ref=f28e1121]:
+          - link "Хачапури «Нарта»" [ref=f28e1122] [cursor=pointer]:
+            - /url: /menu/khachapuri-narta
+          - generic [ref=f28e1127]:
+            - link [ref=f28e1128] [cursor=pointer]:
+              - /url: /menu/khachapuri-narta
+              - heading "Хачапури «Нарта»" [level=3] [ref=f28e1129]
+              - paragraph [ref=f28e1130]: Хачапури в стиле «Нарта» (авторский вариант с сыром и, возможно, мясом)
+            - generic [ref=f28e1131]:
+              - generic [ref=f28e1132]: 650 ₽
+              - button "Добавить в корзину" [ref=f28e1133] [cursor=pointer]
+        - article [ref=f28e1135]:
+          - link "Хачапури по-аджарски" [ref=f28e1136] [cursor=pointer]:
+            - /url: /menu/khachapuri-adjarian
+          - generic [ref=f28e1141]:
+            - link [ref=f28e1142] [cursor=pointer]:
+              - /url: /menu/khachapuri-adjarian
+              - heading "Хачапури по-аджарски" [level=3] [ref=f28e1143]
+              - paragraph [ref=f28e1144]: Классическое аджарское хачапури («лодочка») с яйцом и сыром
+            - generic [ref=f28e1145]:
+              - generic [ref=f28e1146]: 600 ₽
+              - button "Добавить в корзину" [ref=f28e1147] [cursor=pointer]
+        - article [ref=f28e1149]:
+          - link "Хачапури по-аджарски с беконом" [ref=f28e1150] [cursor=pointer]:
+            - /url: /menu/khachapuri-adjarian-bacon
+          - generic [ref=f28e1155]:
+            - link [ref=f28e1156] [cursor=pointer]:
+              - /url: /menu/khachapuri-adjarian-bacon
+              - heading "Хачапури по-аджарски с беконом" [level=3] [ref=f28e1157]
+              - paragraph [ref=f28e1158]: Аджарское хачапури с добавлением бекона
+            - generic [ref=f28e1159]:
+              - generic [ref=f28e1160]: 600 ₽
+              - button "Добавить в корзину" [ref=f28e1161] [cursor=pointer]
+        - article [ref=f28e1163]:
+          - link "Хачапури по-аджарски с барабулей" [ref=f28e1164] [cursor=pointer]:
+            - /url: /menu/khachapuri-adjarian-barabulya
+          - generic [ref=f28e1169]:
+            - link [ref=f28e1170] [cursor=pointer]:
+              - /url: /menu/khachapuri-adjarian-barabulya
+              - heading "Хачапури по-аджарски с барабулей" [level=3] [ref=f28e1171]
+              - paragraph [ref=f28e1172]: Аджарское хачапури с черноморской барабулей
+            - generic [ref=f28e1173]:
+              - generic [ref=f28e1174]: 600 ₽
+              - button "Добавить в корзину" [ref=f28e1175] [cursor=pointer]
+        - article [ref=f28e1177]:
+          - link "Хачапури по-аджарски с курицей и грибами" [ref=f28e1178] [cursor=pointer]:
+            - /url: /menu/khachapuri-adjarian-chicken
+          - generic [ref=f28e1183]:
+            - link [ref=f28e1184] [cursor=pointer]:
+              - /url: /menu/khachapuri-adjarian-chicken
+              - heading "Хачапури по-аджарски с курицей и грибами" [level=3] [ref=f28e1185]
+              - paragraph [ref=f28e1186]: Аджарское хачапури с курицей и грибами
+            - generic [ref=f28e1187]:
+              - generic [ref=f28e1188]: 600 ₽
+              - button "Добавить в корзину" [ref=f28e1189] [cursor=pointer]
+        - article [ref=f28e1191]:
+          - link "Осетинский пирог" [ref=f28e1192] [cursor=pointer]:
+            - /url: /menu/osetin-pie
+          - generic [ref=f28e1197]:
+            - link [ref=f28e1198] [cursor=pointer]:
+              - /url: /menu/osetin-pie
+              - heading "Осетинский пирог" [level=3] [ref=f28e1199]
+              - paragraph [ref=f28e1200]: "Осетинский пирог с начинкой: сыр сулугуни, картофель, наше тесто, сливочное масло, куриное яйцо"
+            - generic [ref=f28e1201]:
+              - generic [ref=f28e1202]: 650 ₽
+              - button "Добавить в корзину" [ref=f28e1203] [cursor=pointer]
+        - article [ref=f28e1205]:
+          - link "Пирог с мясом" [ref=f28e1206] [cursor=pointer]:
+            - /url: /menu/pie-meat
+          - generic [ref=f28e1211]:
+            - link [ref=f28e1212] [cursor=pointer]:
+              - /url: /menu/pie-meat
+              - heading "Пирог с мясом" [level=3] [ref=f28e1213]
+              - paragraph [ref=f28e1214]: Закрытый или открытый пирог с мясной начинкой
+            - generic [ref=f28e1215]:
+              - generic [ref=f28e1216]: 800 ₽
+              - button "Добавить в корзину" [ref=f28e1217] [cursor=pointer]
+        - article [ref=f28e1219]:
+          - link "Барбикю Heinz" [ref=f28e1220] [cursor=pointer]:
+            - /url: /menu/sauce-bbq
+          - generic [ref=f28e1225]:
+            - link [ref=f28e1226] [cursor=pointer]:
+              - /url: /menu/sauce-bbq
+              - heading "Барбикю Heinz" [level=3] [ref=f28e1227]
+              - paragraph [ref=f28e1228]: Фирменный соус барбекю от Heinz
+            - generic [ref=f28e1229]:
+              - generic [ref=f28e1230]: 99 ₽
+              - button "Добавить в корзину" [ref=f28e1231] [cursor=pointer]
+        - article [ref=f28e1233]:
+          - link "Кетчуп" [ref=f28e1234] [cursor=pointer]:
+            - /url: /menu/sauce-ketchup
+          - generic [ref=f28e1239]:
+            - link [ref=f28e1240] [cursor=pointer]:
+              - /url: /menu/sauce-ketchup
+              - heading "Кетчуп" [level=3] [ref=f28e1241]
+              - paragraph [ref=f28e1242]: Классический томатный кетчуп
+            - generic [ref=f28e1243]:
+              - generic [ref=f28e1244]: 99 ₽
+              - button "Добавить в корзину" [ref=f28e1245] [cursor=pointer]
+        - article [ref=f28e1247]:
+          - link "Сливочно-горчичный" [ref=f28e1248] [cursor=pointer]:
+            - /url: /menu/sauce-sour-mustard
+          - generic [ref=f28e1253]:
+            - link [ref=f28e1254] [cursor=pointer]:
+              - /url: /menu/sauce-sour-mustard
+              - heading "Сливочно-горчичный" [level=3] [ref=f28e1255]
+              - paragraph [ref=f28e1256]: Нежный соус на основе сливок и горчицы
+            - generic [ref=f28e1257]:
+              - generic [ref=f28e1258]: 99 ₽
+              - button "Добавить в корзину" [ref=f28e1259] [cursor=pointer]
+        - article [ref=f28e1261]:
+          - link "Сырный Heinz" [ref=f28e1262] [cursor=pointer]:
+            - /url: /menu/sauce-cheese
+          - generic [ref=f28e1267]:
+            - link [ref=f28e1268] [cursor=pointer]:
+              - /url: /menu/sauce-cheese
+              - heading "Сырный Heinz" [level=3] [ref=f28e1269]
+              - paragraph [ref=f28e1270]: Сливочно-сырный соус от Heinz
+            - generic [ref=f28e1271]:
+              - generic [ref=f28e1272]: 99 ₽
+              - button "Добавить в корзину" [ref=f28e1273] [cursor=pointer]
+        - article [ref=f28e1275]:
+          - link "Цахтон" [ref=f28e1276] [cursor=pointer]:
+            - /url: /menu/sauce-tzakhton
+          - generic [ref=f28e1281]:
+            - link [ref=f28e1282] [cursor=pointer]:
+              - /url: /menu/sauce-tzakhton
+              - heading "Цахтон" [level=3] [ref=f28e1283]
+              - paragraph [ref=f28e1284]: Кавказский соус на основе кисломолочных продуктов с зеленью и специями
+            - generic [ref=f28e1285]:
+              - generic [ref=f28e1286]: 99 ₽
+              - button "Добавить в корзину" [ref=f28e1287] [cursor=pointer]
+        - article [ref=f28e1289]:
+          - link "Наполеон" [ref=f28e1290] [cursor=pointer]:
+            - /url: /menu/napoleon
+          - generic [ref=f28e1296]:
+            - link [ref=f28e1297] [cursor=pointer]:
+              - /url: /menu/napoleon
+              - heading "Наполеон" [level=3] [ref=f28e1298]
+              - paragraph [ref=f28e1299]: Классический слоёный торт «Наполеон» с заварным кремом
+            - generic [ref=f28e1300]:
+              - generic [ref=f28e1301]: 350 ₽
+              - button "Добавить в корзину" [ref=f28e1302] [cursor=pointer]
+        - article [ref=f28e1304]:
+          - link "Боржоми" [ref=f28e1305] [cursor=pointer]:
+            - /url: /menu/borzhomi
+          - generic [ref=f28e1310]:
+            - link [ref=f28e1311] [cursor=pointer]:
+              - /url: /menu/borzhomi
+              - heading "Боржоми" [level=3] [ref=f28e1312]
+              - paragraph [ref=f28e1313]: Минеральная газированная вода «Боржоми»
+            - generic [ref=f28e1314]:
+              - generic [ref=f28e1315]: 250 ₽
+              - button "Добавить в корзину" [ref=f28e1316] [cursor=pointer]
+        - article [ref=f28e1318]:
+          - link "Бельгийские вафли с семгой и яйцом пашот" [ref=f28e1319] [cursor=pointer]:
+            - /url: /menu/belgiiskie-vafli-s-semgoy
+          - generic [ref=f28e1324]:
+            - link [ref=f28e1325] [cursor=pointer]:
+              - /url: /menu/belgiiskie-vafli-s-semgoy
+              - heading "Бельгийские вафли с семгой и яйцом пашот" [level=3] [ref=f28e1326]
+              - paragraph [ref=f28e1327]: Вафли с слабосолёной семгой и яйцом пашот
+            - generic [ref=f28e1328]:
+              - generic [ref=f28e1329]: 650 ₽
+              - button "Добавить в корзину" [ref=f28e1330] [cursor=pointer]
+        - article [ref=f28e1332]:
+          - link "Чизбургер" [ref=f28e1333] [cursor=pointer]:
+            - /url: /menu/cheeseburger
+          - generic [ref=f28e1339]:
+            - link [ref=f28e1340] [cursor=pointer]:
+              - /url: /menu/cheeseburger
+              - heading "Чизбургер" [level=3] [ref=f28e1341]
+              - paragraph [ref=f28e1342]: Говяжья котлета, солёный огурец, сыр чеддер, крем-чиз, чизбургерный соус, томаты, булка бриошь
+            - generic [ref=f28e1343]:
+              - generic [ref=f28e1344]: 530 ₽
+              - button "Добавить в корзину" [ref=f28e1345] [cursor=pointer]
+        - article [ref=f28e1347]:
+          - link "Шакшука" [ref=f28e1348] [cursor=pointer]:
+            - /url: /menu/shakshuka
+          - generic [ref=f28e1353]:
+            - link [ref=f28e1354] [cursor=pointer]:
+              - /url: /menu/shakshuka
+              - heading "Шакшука" [level=3] [ref=f28e1355]
+              - paragraph [ref=f28e1356]: Яйца, запечённые в пряном томатном соусе с овощами
+            - generic [ref=f28e1357]:
+              - generic [ref=f28e1358]: 430 ₽
+              - button "Добавить в корзину" [ref=f28e1359] [cursor=pointer]
+        - article [ref=f28e1361]:
+          - link "Руккола с креветкой" [ref=f28e1362] [cursor=pointer]:
+            - /url: /menu/rukola-krevetka
+          - generic [ref=f28e1367]:
+            - link [ref=f28e1368] [cursor=pointer]:
+              - /url: /menu/rukola-krevetka
+              - heading "Руккола с креветкой" [level=3] [ref=f28e1369]
+              - paragraph [ref=f28e1370]: Салат на основе рукколы с креветками
+            - generic [ref=f28e1371]:
+              - generic [ref=f28e1372]: 690 ₽
+              - button "Добавить в корзину" [ref=f28e1373] [cursor=pointer]
+        - article [ref=f28e1375]:
+          - link "Сырники" [ref=f28e1376] [cursor=pointer]:
+            - /url: /menu/sirniki
+          - generic [ref=f28e1381]:
+            - link [ref=f28e1382] [cursor=pointer]:
+              - /url: /menu/sirniki
+              - heading "Сырники" [level=3] [ref=f28e1383]
+              - paragraph [ref=f28e1384]: Творожные сырники с джемом и сметаной
+            - generic [ref=f28e1385]:
+              - generic [ref=f28e1386]: 370 ₽
+              - button "Добавить в корзину" [ref=f28e1387] [cursor=pointer]
+        - article [ref=f28e1389]:
+          - link "Тестовый Товар" [ref=f28e1390] [cursor=pointer]:
+            - /url: /menu/test-product-1785935852226
+          - generic [ref=f28e1395]:
+            - link [ref=f28e1396] [cursor=pointer]:
+              - /url: /menu/test-product-1785935852226
+              - heading "Тестовый Товар" [level=3] [ref=f28e1397]
+            - generic [ref=f28e1398]:
+              - generic [ref=f28e1399]: 0 ₽
+              - button "Добавить в корзину" [ref=f28e1400] [cursor=pointer]
+        - article [ref=f28e1402]:
+          - link "Драники с семгой и яйцом пашот" [ref=f28e1403] [cursor=pointer]:
+            - /url: /menu/draniki-s-semgoy
+          - generic [ref=f28e1408]:
+            - link [ref=f28e1409] [cursor=pointer]:
+              - /url: /menu/draniki-s-semgoy
+              - heading "Драники с семгой и яйцом пашот" [level=3] [ref=f28e1410]
+              - paragraph [ref=f28e1411]: Драники с слабосолёной семгой и яйцом пашот
+            - generic [ref=f28e1412]:
+              - generic [ref=f28e1413]: 680 ₽
+              - button "Добавить в корзину" [ref=f28e1414] [cursor=pointer]
+        - article [ref=f28e1416]:
+          - link "Гренки с пармезаном" [ref=f28e1417] [cursor=pointer]:
+            - /url: /menu/grenki-s-parmezanom
+          - generic [ref=f28e1422]:
+            - link [ref=f28e1423] [cursor=pointer]:
+              - /url: /menu/grenki-s-parmezanom
+              - heading "Гренки с пармезаном" [level=3] [ref=f28e1424]
+              - paragraph [ref=f28e1425]: Хрустящие гренки с тёртым пармезаном
+            - generic [ref=f28e1426]:
+              - generic [ref=f28e1427]: 390 ₽
+              - button "Добавить в корзину" [ref=f28e1428] [cursor=pointer]
+        - article [ref=f28e1430]:
+          - link "Драники со сметаной" [ref=f28e1431] [cursor=pointer]:
+            - /url: /menu/draniki-so-smetanoy
+          - generic [ref=f28e1436]:
+            - link [ref=f28e1437] [cursor=pointer]:
+              - /url: /menu/draniki-so-smetanoy
+              - heading "Драники со сметаной" [level=3] [ref=f28e1438]
+              - paragraph [ref=f28e1439]: Картофельные драники со сметаной
+            - generic [ref=f28e1440]:
+              - generic [ref=f28e1441]: 350 ₽
+              - button "Добавить в корзину" [ref=f28e1442] [cursor=pointer]
+        - article [ref=f28e1444]:
+          - link "Четыре сыра" [ref=f28e1445] [cursor=pointer]:
+            - /url: /menu/chetyre-syra
+          - generic [ref=f28e1453]:
+            - link [ref=f28e1454] [cursor=pointer]:
+              - /url: /menu/chetyre-syra
+              - heading "Четыре сыра" [level=3] [ref=f28e1455]
+              - paragraph [ref=f28e1456]: Крем-чиз, моцарелла, чеддер, горгонзола, дорблю
+            - generic [ref=f28e1457]:
+              - generic [ref=f28e1458]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e1459] [cursor=pointer]
+        - article [ref=f28e1461]:
+          - link "Фрутти Де Море" [ref=f28e1462] [cursor=pointer]:
+            - /url: /menu/frutti-de-mare
+          - generic [ref=f28e1470]:
+            - link [ref=f28e1471] [cursor=pointer]:
+              - /url: /menu/frutti-de-mare
+              - heading "Фрутти Де Море" [level=3] [ref=f28e1472]
+              - paragraph [ref=f28e1473]: Сливочный соус, лосось, креветка, кальмар, моцарелла, черри, руккола
+            - generic [ref=f28e1474]:
+              - generic [ref=f28e1475]: 790 ₽
+              - button "Добавить в корзину" [ref=f28e1476] [cursor=pointer]
+        - article [ref=f28e1478]:
+          - link "Джипа" [ref=f28e1479] [cursor=pointer]:
+            - /url: /menu/djivo
+          - generic [ref=f28e1487]:
+            - link [ref=f28e1488] [cursor=pointer]:
+              - /url: /menu/djivo
+              - heading "Джипа" [level=3] [ref=f28e1489]
+              - paragraph [ref=f28e1490]: Сливочный соус, курица, грибы, моцарелла, томаты, перец халапеньо
+            - generic [ref=f28e1491]:
+              - generic [ref=f28e1492]: 730 ₽
+              - button "Добавить в корзину" [ref=f28e1493] [cursor=pointer]
+        - article [ref=f28e1495]:
+          - link "Гавричешка" [ref=f28e1496] [cursor=pointer]:
+            - /url: /menu/gavricheska
+          - generic [ref=f28e1504]:
+            - link [ref=f28e1505] [cursor=pointer]:
+              - /url: /menu/gavricheska
+              - heading "Гавричешка" [level=3] [ref=f28e1506]
+              - paragraph [ref=f28e1507]: Сливочный соус, курица, шампиньоны, моцарелла, томаты, перец, лук, перец халапеньо
+            - generic [ref=f28e1508]:
+              - generic [ref=f28e1509]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e1510] [cursor=pointer]
+        - article [ref=f28e1512]:
+          - link "Хебуоли" [ref=f28e1513] [cursor=pointer]:
+            - /url: /menu/khebuoli
+          - generic [ref=f28e1521]:
+            - link [ref=f28e1522] [cursor=pointer]:
+              - /url: /menu/khebuoli
+              - heading "Хебуоли" [level=3] [ref=f28e1523]
+              - paragraph [ref=f28e1524]: Томатный соус, моцарелла, фермерская колбаса, сулугуни, чеснок, базилик
+            - generic [ref=f28e1525]:
+              - generic [ref=f28e1526]: 770 ₽
+              - button "Добавить в корзину" [ref=f28e1527] [cursor=pointer]
+        - article [ref=f28e1529]:
+          - link "Карачаевская" [ref=f28e1530] [cursor=pointer]:
+            - /url: /menu/karachaiska
+          - generic [ref=f28e1538]:
+            - link [ref=f28e1539] [cursor=pointer]:
+              - /url: /menu/karachaiska
+              - heading "Карачаевская" [level=3] [ref=f28e1540]
+              - paragraph [ref=f28e1541]: Томатный соус, моцарелла, брынза, лук, перец халапеньо, орегано
+            - generic [ref=f28e1542]:
+              - generic [ref=f28e1543]: 710 ₽
+              - button "Добавить в корзину" [ref=f28e1544] [cursor=pointer]
+        - article [ref=f28e1546]:
+          - link "Сырно-картофельная" [ref=f28e1547] [cursor=pointer]:
+            - /url: /menu/syrno-kartofelnaya
+          - generic [ref=f28e1555]:
+            - link [ref=f28e1556] [cursor=pointer]:
+              - /url: /menu/syrno-kartofelnaya
+              - heading "Сырно-картофельная" [level=3] [ref=f28e1557]
+              - paragraph [ref=f28e1558]: Сливочный соус, моцарелла, сулугуни, картофель, курица, сметанный соус
+            - generic [ref=f28e1559]:
+              - generic [ref=f28e1560]: 740 ₽
+              - button "Добавить в корзину" [ref=f28e1561] [cursor=pointer]
+        - article [ref=f28e1563]:
+          - link "Пепперони" [ref=f28e1564] [cursor=pointer]:
+            - /url: /menu/pepperoni
+          - generic [ref=f28e1572]:
+            - link [ref=f28e1573] [cursor=pointer]:
+              - /url: /menu/pepperoni
+              - heading "Пепперони" [level=3] [ref=f28e1574]
+              - paragraph [ref=f28e1575]: Томатный соус, пепперони, моцарелла, томаты
+            - generic [ref=f28e1576]:
+              - generic [ref=f28e1577]: 710 ₽
+              - button "Добавить в корзину" [ref=f28e1578] [cursor=pointer]
+        - article [ref=f28e1580]:
+          - link "Баварская" [ref=f28e1581] [cursor=pointer]:
+            - /url: /menu/bavarska
+          - generic [ref=f28e1589]:
+            - link [ref=f28e1590] [cursor=pointer]:
+              - /url: /menu/bavarska
+              - heading "Баварская" [level=3] [ref=f28e1591]
+              - paragraph [ref=f28e1592]: Томатный соус, моцарелла, колбаски, шампиньоны, томаты, лук
+            - generic [ref=f28e1593]:
+              - generic [ref=f28e1594]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e1595] [cursor=pointer]
+        - article [ref=f28e1597]:
+          - link "Прошутто" [ref=f28e1598] [cursor=pointer]:
+            - /url: /menu/prochutto
+          - generic [ref=f28e1606]:
+            - link [ref=f28e1607] [cursor=pointer]:
+              - /url: /menu/prochutto
+              - heading "Прошутто" [level=3] [ref=f28e1608]
+              - paragraph [ref=f28e1609]: Томатный соус, прошутто, вяленые томаты, моцарелла, руккола
+            - generic [ref=f28e1610]:
+              - generic [ref=f28e1611]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e1612] [cursor=pointer]
+        - article [ref=f28e1614]:
+          - link "Капсио" [ref=f28e1615] [cursor=pointer]:
+            - /url: /menu/kapsiyo
+          - generic [ref=f28e1623]:
+            - link [ref=f28e1624] [cursor=pointer]:
+              - /url: /menu/kapsiyo
+              - heading "Капсио" [level=3] [ref=f28e1625]
+              - paragraph [ref=f28e1626]: Сливочный соус, моцарелла, курица, говядина, томаты, перец халапеньо, соус шрирача
+            - generic [ref=f28e1627]:
+              - generic [ref=f28e1628]: 750 ₽
+              - button "Добавить в корзину" [ref=f28e1629] [cursor=pointer]
+        - article [ref=f28e1631]:
+          - link "Барбекю" [ref=f28e1632] [cursor=pointer]:
+            - /url: /menu/barbekyu
+          - generic [ref=f28e1640]:
+            - link [ref=f28e1641] [cursor=pointer]:
+              - /url: /menu/barbekyu
+              - heading "Барбекю" [level=3] [ref=f28e1642]
+              - paragraph [ref=f28e1643]: Соус барбекю, моцарелла, курица, соус шрирача, соус шримп
+            - generic [ref=f28e1644]:
+              - generic [ref=f28e1645]: 740 ₽
+              - button "Добавить в корзину" [ref=f28e1646] [cursor=pointer]
+        - article [ref=f28e1648]:
+          - link "Гармония вкусов" [ref=f28e1649] [cursor=pointer]:
+            - /url: /menu/garmoniya-vkusov
+          - generic [ref=f28e1657]:
+            - link [ref=f28e1658] [cursor=pointer]:
+              - /url: /menu/garmoniya-vkusov
+              - heading "Гармония вкусов" [level=3] [ref=f28e1659]
+              - paragraph [ref=f28e1660]: Томатный соус, моцарелла, халапеньо, пепперони, руккола
+            - generic [ref=f28e1661]:
+              - generic [ref=f28e1662]: 740 ₽
+              - button "Добавить в корзину" [ref=f28e1663] [cursor=pointer]
+        - article [ref=f28e1665]:
+          - link "Рджеттос" [ref=f28e1666] [cursor=pointer]:
+            - /url: /menu/rjettos
+          - generic [ref=f28e1674]:
+            - link [ref=f28e1675] [cursor=pointer]:
+              - /url: /menu/rjettos
+              - heading "Рджеттос" [level=3] [ref=f28e1676]
+              - paragraph [ref=f28e1677]: Томатный соус, моцарелла, салями, колбаски, бекон, ветчина, чоризо
+            - generic [ref=f28e1678]:
+              - generic [ref=f28e1679]: 770 ₽
+              - button "Добавить в корзину" [ref=f28e1680] [cursor=pointer]
+        - article [ref=f28e1682]:
+          - link "Трюфельная с креветкой" [ref=f28e1683] [cursor=pointer]:
+            - /url: /menu/trufelnaya-s-krevetkoy
+          - generic [ref=f28e1691]:
+            - link [ref=f28e1692] [cursor=pointer]:
+              - /url: /menu/trufelnaya-s-krevetkoy
+              - heading "Трюфельная с креветкой" [level=3] [ref=f28e1693]
+              - paragraph [ref=f28e1694]: Трюфельный соус, креветка, моцарелла, пармезан, томат-чери, оливки
+            - generic [ref=f28e1695]:
+              - generic [ref=f28e1696]: 770 ₽
+              - button "Добавить в корзину" [ref=f28e1697] [cursor=pointer]
+        - article [ref=f28e1699]:
+          - link "Бурата" [ref=f28e1700] [cursor=pointer]:
+            - /url: /menu/burata
+          - generic [ref=f28e1708]:
+            - link [ref=f28e1709] [cursor=pointer]:
+              - /url: /menu/burata
+              - heading "Бурата" [level=3] [ref=f28e1710]
+              - paragraph [ref=f28e1711]: Трюфельный соус, бурата, горгонзола, моцарелла, пепперони, вяленые томаты, руккола
+            - generic [ref=f28e1712]:
+              - generic [ref=f28e1713]: 850 ₽
+              - button "Добавить в корзину" [ref=f28e1714] [cursor=pointer]
+        - article [ref=f28e1716]:
+          - link "Раскол" [ref=f28e1717] [cursor=pointer]:
+            - /url: /menu/raskol
+          - generic [ref=f28e1725]:
+            - link [ref=f28e1726] [cursor=pointer]:
+              - /url: /menu/raskol
+              - heading "Раскол" [level=3] [ref=f28e1727]
+              - paragraph [ref=f28e1728]: Томатный соус, моцарелла, прошутто, бурата, сулугуни, вятская брынза, руккола
+            - generic [ref=f28e1729]:
+              - generic [ref=f28e1730]: 790 ₽
+              - button "Добавить в корзину" [ref=f28e1731] [cursor=pointer]
+        - article [ref=f28e1733]:
+          - link "Место для ТП" [ref=f28e1734] [cursor=pointer]:
+            - /url: /menu/mesto-tp-kpt
+          - generic [ref=f28e1742]:
+            - link [ref=f28e1743] [cursor=pointer]:
+              - /url: /menu/mesto-tp-kpt
+              - heading "Место для ТП" [level=3] [ref=f28e1744]
+              - paragraph [ref=f28e1745]: Томатный соус, моцарелла, прошутто, курица, грибы, халапеньо, томаты, соус шрирача, соус шримп
+            - generic [ref=f28e1746]:
+              - generic [ref=f28e1747]: 790 ₽
+              - button "Добавить в корзину" [ref=f28e1748] [cursor=pointer]
+        - article [ref=f28e1750]:
+          - link "Анти Рджеттос" [ref=f28e1751] [cursor=pointer]:
+            - /url: /menu/anti-rjettos
+          - generic [ref=f28e1759]:
+            - link [ref=f28e1760] [cursor=pointer]:
+              - /url: /menu/anti-rjettos
+              - heading "Анти Рджеттос" [level=3] [ref=f28e1761]
+              - paragraph [ref=f28e1762]: Томатный соус, моцарелла, прошутто, руккола, соус шримп
+            - generic [ref=f28e1763]:
+              - generic [ref=f28e1764]: 770 ₽
+              - button "Добавить в корзину" [ref=f28e1765] [cursor=pointer]
+        - article [ref=f28e1767]:
+          - link "Мастер (Хват Лопаты)" [ref=f28e1768] [cursor=pointer]:
+            - /url: /menu/master
+          - generic [ref=f28e1776]:
+            - link [ref=f28e1777] [cursor=pointer]:
+              - /url: /menu/master
+              - heading "Мастер (Хват Лопаты)" [level=3] [ref=f28e1778]
+              - paragraph [ref=f28e1779]: Томатный соус, моцарелла, прошутто, курица, халапеньо, соус барбекю, соус шримп
+            - generic [ref=f28e1780]:
+              - generic [ref=f28e1781]: 790 ₽
+              - button "Добавить в корзину" [ref=f28e1782] [cursor=pointer]
+  - contentinfo [ref=f28e137]:
+    - generic [ref=f28e138]:
+      - generic [ref=f28e139]:
+        - link "Рица" [ref=f28e140] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=f28e149]: "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз."
+      - navigation [ref=f28e150]:
+        - heading "Каталог" [level=3] [ref=f28e151]
+        - list [ref=f28e152]:
+          - listitem [ref=f28e153]:
+            - link "Сувлаки и шаурма" [ref=f28e154] [cursor=pointer]:
+              - /url: /menu?category=suvlaki
+          - listitem [ref=f28e155]:
+            - link "Морепродукты" [ref=f28e156] [cursor=pointer]:
+              - /url: /menu?category=seafood
+          - listitem [ref=f28e157]:
+            - link "Грузинская кухня" [ref=f28e158] [cursor=pointer]:
+              - /url: /menu?category=georgian
+          - listitem [ref=f28e159]:
+            - link "Пицца" [ref=f28e160] [cursor=pointer]:
+              - /url: /menu?category=pizza
+          - listitem [ref=f28e161]:
+            - link "Конструктор пиццы" [ref=f28e162] [cursor=pointer]:
+              - /url: /pizza-builder
+          - listitem [ref=f28e163]:
+            - link "Все блюда" [ref=f28e164] [cursor=pointer]:
+              - /url: /menu
+      - navigation [ref=f28e165]:
+        - heading "Компания" [level=3] [ref=f28e166]
+        - list [ref=f28e167]:
+          - listitem [ref=f28e168]:
+            - link "О кафе" [ref=f28e169] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f28e170]:
+            - link "Мои заказы" [ref=f28e171] [cursor=pointer]:
+              - /url: /orders
+          - listitem [ref=f28e172]:
+            - link "Личный кабинет" [ref=f28e173] [cursor=pointer]:
+              - /url: /account
+      - generic [ref=f28e174]:
+        - heading "Контакты" [level=3] [ref=f28e175]
+        - list [ref=f28e176]:
+          - listitem [ref=f28e177]: +7 (900) 000-00-00
+          - listitem [ref=f28e180]: Ежедневно 10:00–23:00
+          - listitem [ref=f28e184]: г. Сочи, ул. Примерная, 15
+    - paragraph [ref=f28e189]: © 2026 Рица. Кафе и доставка, Сочи.
+  - generic [ref=f28e1785]:
+    - generic [ref=f28e1786]: Добавлено в корзину
+    - button [ref=f28e1787] [cursor=pointer]
+  - alert [ref=f28e190]

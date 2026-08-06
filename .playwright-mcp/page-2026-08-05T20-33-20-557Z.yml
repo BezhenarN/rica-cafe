@@ -1,0 +1,147 @@
+- generic [active] [ref=f2e1]:
+  - banner [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - link "Рица" [ref=f2e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f2e14]:
+        - link "Меню" [ref=f2e15] [cursor=pointer]:
+          - /url: /menu
+        - link "Конструктор пиццы" [ref=f2e16] [cursor=pointer]:
+          - /url: /pizza-builder
+        - link "О кафе" [ref=f2e17] [cursor=pointer]:
+          - /url: /about
+        - link "Заказы" [ref=f2e18] [cursor=pointer]:
+          - /url: /orders
+      - generic [ref=f2e19]:
+        - button "Корзина" [ref=f2e20] [cursor=pointer]:
+          - generic [ref=f2e24]: "1"
+        - link "Личный кабинет" [ref=f2e25] [cursor=pointer]:
+          - /url: /account
+  - main [ref=f2e29]:
+    - generic [ref=f2e30]:
+      - link "Назад в корзину" [ref=f2e31] [cursor=pointer]:
+        - /url: /cart
+      - heading "Оформление заказа" [level=1] [ref=f2e34]
+      - generic [ref=f2e35]:
+        - generic [ref=f2e36]:
+          - generic [ref=f2e37]:
+            - heading "Контакты" [level=2] [ref=f2e38]
+            - generic [ref=f2e39]:
+              - generic [ref=f2e40]:
+                - generic [ref=f2e41]: Имя
+                - textbox "Имя" [ref=f2e42]
+              - generic [ref=f2e43]:
+                - generic [ref=f2e44]: Телефон
+                - textbox "Телефон" [ref=f2e45]:
+                  - /placeholder: +7 900 000-00-00
+            - generic [ref=f2e46]:
+              - generic [ref=f2e47]: Email (необязательно)
+              - textbox "Email (необязательно)" [ref=f2e48]
+          - generic [ref=f2e49]:
+            - heading "Как получите заказ?" [level=2] [ref=f2e50]
+            - generic [ref=f2e51]:
+              - generic [ref=f2e52] [cursor=pointer]:
+                - radio "Доставка 149 ₽" [checked] [ref=f2e53]
+                - generic [ref=f2e59]:
+                  - generic [ref=f2e60]: Доставка
+                  - generic [ref=f2e61]: 149 ₽
+              - generic [ref=f2e62] [cursor=pointer]:
+                - radio "Самовывоз Бесплатно" [ref=f2e63]
+                - generic [ref=f2e67]:
+                  - generic [ref=f2e68]: Самовывоз
+                  - generic [ref=f2e69]: Бесплатно
+          - generic [ref=f2e70]:
+            - heading "Адрес доставки" [level=2] [ref=f2e71]
+            - generic [ref=f2e72]:
+              - generic [ref=f2e73]: Улица
+              - textbox "Улица" [ref=f2e74]
+            - generic [ref=f2e75]:
+              - generic [ref=f2e76]:
+                - generic [ref=f2e77]: Дом
+                - textbox "Дом" [ref=f2e78]
+              - generic [ref=f2e79]:
+                - generic [ref=f2e80]: Квартира
+                - textbox "Квартира" [ref=f2e81]
+              - generic [ref=f2e82]:
+                - generic [ref=f2e83]: Подъезд
+                - textbox "Подъезд" [ref=f2e84]
+              - generic [ref=f2e85]:
+                - generic [ref=f2e86]: Этаж
+                - textbox "Этаж" [ref=f2e87]
+            - generic [ref=f2e88]:
+              - generic [ref=f2e89]: Комментарий курьеру (необязательно)
+              - textbox "Комментарий курьеру (необязательно)" [ref=f2e90]
+          - generic [ref=f2e91]:
+            - heading "Способ оплаты" [level=2] [ref=f2e92]
+            - generic [ref=f2e93]:
+              - generic [ref=f2e94] [cursor=pointer]:
+                - radio "Наличными при получении" [checked] [ref=f2e95]
+                - text: Наличными при получении
+              - generic [ref=f2e96] [cursor=pointer]:
+                - radio "Картой при получении" [ref=f2e97]
+                - text: Картой при получении
+            - paragraph [ref=f2e98]: Онлайн-оплата будет добавлена в следующей итерации.
+        - complementary [ref=f2e99]:
+          - generic [ref=f2e100]:
+            - heading "Ваш заказ" [level=2] [ref=f2e101]
+            - generic [ref=f2e103]:
+              - generic [ref=f2e104]: 1 × Блинчики
+              - generic [ref=f2e105]: 340 ₽
+            - generic [ref=f2e106]:
+              - generic [ref=f2e107]:
+                - generic [ref=f2e108]: Товары
+                - generic [ref=f2e109]: 340 ₽
+              - generic [ref=f2e110]:
+                - generic [ref=f2e111]: Доставка
+                - generic [ref=f2e112]: 149 ₽
+            - generic [ref=f2e113]:
+              - generic [ref=f2e114]: Итого
+              - generic [ref=f2e115]: 489 ₽
+            - button "Подтвердить заказ · 489 ₽" [ref=f2e116] [cursor=pointer]
+  - contentinfo [ref=f2e117]:
+    - generic [ref=f2e118]:
+      - generic [ref=f2e119]:
+        - link "Рица" [ref=f2e120] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=f2e129]: "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз."
+      - navigation [ref=f2e130]:
+        - heading "Каталог" [level=3] [ref=f2e131]
+        - list [ref=f2e132]:
+          - listitem [ref=f2e133]:
+            - link "Сувлаки и шаурма" [ref=f2e134] [cursor=pointer]:
+              - /url: /menu?category=suvlaki
+          - listitem [ref=f2e135]:
+            - link "Морепродукты" [ref=f2e136] [cursor=pointer]:
+              - /url: /menu?category=seafood
+          - listitem [ref=f2e137]:
+            - link "Грузинская кухня" [ref=f2e138] [cursor=pointer]:
+              - /url: /menu?category=georgian
+          - listitem [ref=f2e139]:
+            - link "Пицца" [ref=f2e140] [cursor=pointer]:
+              - /url: /menu?category=pizza
+          - listitem [ref=f2e141]:
+            - link "Конструктор пиццы" [ref=f2e142] [cursor=pointer]:
+              - /url: /pizza-builder
+          - listitem [ref=f2e143]:
+            - link "Все блюда" [ref=f2e144] [cursor=pointer]:
+              - /url: /menu
+      - navigation [ref=f2e145]:
+        - heading "Компания" [level=3] [ref=f2e146]
+        - list [ref=f2e147]:
+          - listitem [ref=f2e148]:
+            - link "О кафе" [ref=f2e149] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f2e150]:
+            - link "Мои заказы" [ref=f2e151] [cursor=pointer]:
+              - /url: /orders
+          - listitem [ref=f2e152]:
+            - link "Личный кабинет" [ref=f2e153] [cursor=pointer]:
+              - /url: /account
+      - generic [ref=f2e154]:
+        - heading "Контакты" [level=3] [ref=f2e155]
+        - list [ref=f2e156]:
+          - listitem [ref=f2e157]: +7 (900) 000-00-00
+          - listitem [ref=f2e160]: Ежедневно 10:00–23:00
+          - listitem [ref=f2e164]: г. Сочи, ул. Примерная, 15
+    - paragraph [ref=f2e169]: © 2026 Рица. Кафе и доставка, Сочи.
+  - alert [ref=f2e170]

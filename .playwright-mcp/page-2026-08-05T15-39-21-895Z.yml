@@ -1,0 +1,261 @@
+- generic [ref=f36e1]:
+  - banner [ref=f36e2]:
+    - generic [ref=f36e3]:
+      - link "Рица" [active] [ref=f36e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f36e14]:
+        - link "Меню" [ref=f36e15] [cursor=pointer]:
+          - /url: /menu
+        - link "Конструктор пиццы" [ref=f36e16] [cursor=pointer]:
+          - /url: /pizza-builder
+        - link "О кафе" [ref=f36e17] [cursor=pointer]:
+          - /url: /about
+        - link "Заказы" [ref=f36e18] [cursor=pointer]:
+          - /url: /orders
+      - generic [ref=f36e19]:
+        - button "Корзина" [ref=f36e20] [cursor=pointer]
+        - link "Личный кабинет" [ref=f36e24] [cursor=pointer]:
+          - /url: /account
+  - main [ref=f36e28]:
+    - generic [ref=f36e1737]:
+      - generic [ref=f36e1739]:
+        - generic [ref=f36e1740]: Доставка по Сочи · 30–45 минут
+        - heading "Кафе «Рица» — сувлаки, морепродукты, грузинская кухня" [level=1] [ref=f36e1746]
+        - paragraph [ref=f36e1747]: Попробуйте лучшие сувлаки, хинкали и морепродукты с доставкой или заберите самовывозом из нашего кафе в Сочи.
+        - generic [ref=f36e1748]:
+          - link "Перейти в меню" [ref=f36e1749] [cursor=pointer]:
+            - /url: /menu
+          - link "Собрать пиццу" [ref=f36e1752] [cursor=pointer]:
+            - /url: /pizza-builder
+      - generic [ref=f36e1759]:
+        - generic [ref=f36e1760]:
+          - heading "30–45 минут" [level=3] [ref=f36e1765]
+          - paragraph [ref=f36e1766]: Доставляем быстро и в горячем виде
+        - generic [ref=f36e1767]:
+          - heading "Бесплатно от 1500 ₽" [level=3] [ref=f36e1774]
+          - paragraph [ref=f36e1775]: Иначе доставка — 149 ₽
+        - generic [ref=f36e1776]:
+          - heading "Доставка и самовывоз" [level=3] [ref=f36e1781]
+          - paragraph [ref=f36e1782]: Выберите удобный способ получения
+        - generic [ref=f36e1783]:
+          - heading "Честные цены" [level=3] [ref=f36e1788]
+          - paragraph [ref=f36e1789]: Пересчёт стоимости на сервере
+      - generic [ref=f36e1790]:
+        - generic [ref=f36e1791]:
+          - heading "Категории" [level=2] [ref=f36e1792]
+          - link "Весь каталог →" [ref=f36e1793] [cursor=pointer]:
+            - /url: /menu
+        - generic [ref=f36e1794]:
+          - link "🌯 Сувлаки и шаурма" [ref=f36e1796] [cursor=pointer]:
+            - /url: /menu?category=suvlaki
+            - generic [ref=f36e1797]: 🌯
+            - generic [ref=f36e1798]: Сувлаки и шаурма
+          - link "🍽️ Завтрак" [ref=f36e1800] [cursor=pointer]:
+            - /url: /menu?category=breakfast
+            - generic [ref=f36e1801]: 🍽️
+            - generic [ref=f36e1802]: Завтрак
+          - link "🦐 Морепродукты и гриль" [ref=f36e1804] [cursor=pointer]:
+            - /url: /menu?category=seafood
+            - generic [ref=f36e1805]: 🦐
+            - generic [ref=f36e1806]: Морепродукты и гриль
+          - link "🫓 Грузинская кухня" [ref=f36e1808] [cursor=pointer]:
+            - /url: /menu?category=georgian
+            - generic [ref=f36e1809]: 🫓
+            - generic [ref=f36e1810]: Грузинская кухня
+          - link "🥗 Салаты" [ref=f36e1812] [cursor=pointer]:
+            - /url: /menu?category=salads
+            - generic [ref=f36e1813]: 🥗
+            - generic [ref=f36e1814]: Салаты
+          - link "🍲 Супы" [ref=f36e1816] [cursor=pointer]:
+            - /url: /menu?category=soups
+            - generic [ref=f36e1817]: 🍲
+            - generic [ref=f36e1818]: Супы
+          - link "🍽️ Паста" [ref=f36e1820] [cursor=pointer]:
+            - /url: /menu?category=pasta
+            - generic [ref=f36e1821]: 🍽️
+            - generic [ref=f36e1822]: Паста
+          - link "🍽️ Мясные блюда" [ref=f36e1824] [cursor=pointer]:
+            - /url: /menu?category=meat
+            - generic [ref=f36e1825]: 🍽️
+            - generic [ref=f36e1826]: Мясные блюда
+          - link "🧒 Детские блюда" [ref=f36e1828] [cursor=pointer]:
+            - /url: /menu?category=kids
+            - generic [ref=f36e1829]: 🧒
+            - generic [ref=f36e1830]: Детские блюда
+          - link "🍽️ Блюда из рыбы и морепродуктов" [ref=f36e1832] [cursor=pointer]:
+            - /url: /menu?category=fish
+            - generic [ref=f36e1833]: 🍽️
+            - generic [ref=f36e1834]: Блюда из рыбы и морепродуктов
+          - link "🍰 Десерты" [ref=f36e1836] [cursor=pointer]:
+            - /url: /menu?category=desserts
+            - generic [ref=f36e1837]: 🍰
+            - generic [ref=f36e1838]: Десерты
+          - link "🥤 Напитки" [ref=f36e1840] [cursor=pointer]:
+            - /url: /menu?category=drinks
+            - generic [ref=f36e1841]: 🥤
+            - generic [ref=f36e1842]: Напитки
+          - link "🍕 Пицца" [ref=f36e1844] [cursor=pointer]:
+            - /url: /menu?category=pizza
+            - generic [ref=f36e1845]: 🍕
+            - generic [ref=f36e1846]: Пицца
+          - link "🍽️ Выпечка из кавказской кухни" [ref=f36e1848] [cursor=pointer]:
+            - /url: /menu?category=caucasian-pastry
+            - generic [ref=f36e1849]: 🍽️
+            - generic [ref=f36e1850]: Выпечка из кавказской кухни
+          - link "🍔 Бургеры" [ref=f36e1852] [cursor=pointer]:
+            - /url: /menu?category=burgers
+            - generic [ref=f36e1853]: 🍔
+            - generic [ref=f36e1854]: Бургеры
+          - link "🍽️ Соусы" [ref=f36e1856] [cursor=pointer]:
+            - /url: /menu?category=sauces
+            - generic [ref=f36e1857]: 🍽️
+            - generic [ref=f36e1858]: Соусы
+          - link "🍟 Закуски" [ref=f36e1860] [cursor=pointer]:
+            - /url: /menu?category=snacks
+            - generic [ref=f36e1861]: 🍟
+            - generic [ref=f36e1862]: Закуски
+          - link "🍽️ Бар Меню" [ref=f36e1864] [cursor=pointer]:
+            - /url: /menu?category=bar
+            - generic [ref=f36e1865]: 🍽️
+            - generic [ref=f36e1866]: Бар Меню
+      - generic [ref=f36e1867]:
+        - generic [ref=f36e1868]:
+          - heading "Популярное" [level=2] [ref=f36e1869]
+          - link "Смотреть все →" [ref=f36e1870] [cursor=pointer]:
+            - /url: /menu
+        - generic [ref=f36e1871]:
+          - article [ref=f36e1872]:
+            - link "Сувлаки свинина" [ref=f36e1873] [cursor=pointer]:
+              - /url: /menu/pork-suvlaki-wrap
+            - generic [ref=f36e1878]:
+              - link [ref=f36e1879] [cursor=pointer]:
+                - /url: /menu/pork-suvlaki-wrap
+                - heading "Сувлаки свинина" [level=3] [ref=f36e1880]
+                - paragraph [ref=f36e1881]: Свинина на гриле, лаваш, помидор, лук, соус цацики
+              - generic [ref=f36e1882]:
+                - generic [ref=f36e1883]: 349 ₽
+                - button "Добавить в корзину" [ref=f36e1884] [cursor=pointer]
+          - article [ref=f36e1886]:
+            - link "Сувлаки курица" [ref=f36e1887] [cursor=pointer]:
+              - /url: /menu/chicken-suvlaki-wrap
+            - generic [ref=f36e1892]:
+              - link [ref=f36e1893] [cursor=pointer]:
+                - /url: /menu/chicken-suvlaki-wrap
+                - heading "Сувлаки курица" [level=3] [ref=f36e1894]
+                - paragraph [ref=f36e1895]: Куриное филе, лаваш, салат, томат, чесночный соус
+              - generic [ref=f36e1896]:
+                - generic [ref=f36e1897]: 329 ₽
+                - button "Добавить в корзину" [ref=f36e1898] [cursor=pointer]
+          - article [ref=f36e1900]:
+            - link "Сувлаки-плат микс" [ref=f36e1901] [cursor=pointer]:
+              - /url: /menu/mixed-suvlaki-plate
+            - generic [ref=f36e1906]:
+              - link [ref=f36e1907] [cursor=pointer]:
+                - /url: /menu/mixed-suvlaki-plate
+                - heading "Сувлаки-плат микс" [level=3] [ref=f36e1908]
+                - paragraph [ref=f36e1909]: Свинина + курица на тарелке с картофелем фри и соусами
+              - generic [ref=f36e1910]:
+                - generic [ref=f36e1911]: 549 ₽
+                - button "Добавить в корзину" [ref=f36e1912] [cursor=pointer]
+          - article [ref=f36e1914]:
+            - link "Гриль-плат морепродуктов" [ref=f36e1915] [cursor=pointer]:
+              - /url: /menu/grilled-mix-plate
+            - generic [ref=f36e1920]:
+              - link [ref=f36e1921] [cursor=pointer]:
+                - /url: /menu/grilled-mix-plate
+                - heading "Гриль-плат морепродуктов" [level=3] [ref=f36e1922]
+                - paragraph [ref=f36e1923]: Креветки, мидии, кальмары, лимон, зелень
+              - generic [ref=f36e1924]:
+                - generic [ref=f36e1925]: 899 ₽
+                - button "Добавить в корзину" [ref=f36e1926] [cursor=pointer]
+          - article [ref=f36e1928]:
+            - link "Пицца с морепродуктами" [ref=f36e1929] [cursor=pointer]:
+              - /url: /menu/seafood-pizza
+            - generic [ref=f36e1937]:
+              - link [ref=f36e1938] [cursor=pointer]:
+                - /url: /menu/seafood-pizza
+                - heading "Пицца с морепродуктами" [level=3] [ref=f36e1939]
+                - paragraph [ref=f36e1940]: Креветки, мидии, кальмар, моцарелла, сливочный соус
+              - generic [ref=f36e1941]:
+                - generic [ref=f36e1942]: 649 ₽
+                - button "Добавить в корзину" [ref=f36e1943] [cursor=pointer]
+          - article [ref=f36e1945]:
+            - link "Хачапури по-аджарски" [ref=f36e1946] [cursor=pointer]:
+              - /url: /menu/khachapuri-adjarian
+            - generic [ref=f36e1951]:
+              - link [ref=f36e1952] [cursor=pointer]:
+                - /url: /menu/khachapuri-adjarian
+                - heading "Хачапури по-аджарски" [level=3] [ref=f36e1953]
+                - paragraph [ref=f36e1954]: Лодочка с сыром сулугуни, маслом и желтком
+              - generic [ref=f36e1955]:
+                - generic [ref=f36e1956]: 399 ₽
+                - button "Добавить в корзину" [ref=f36e1957] [cursor=pointer]
+          - article [ref=f36e1959]:
+            - link "Средиземноморский" [ref=f36e1960] [cursor=pointer]:
+              - /url: /menu/mediteranean-salad
+            - generic [ref=f36e1966]:
+              - link [ref=f36e1967] [cursor=pointer]:
+                - /url: /menu/mediteranean-salad
+                - heading "Средиземноморский" [level=3] [ref=f36e1968]
+                - paragraph [ref=f36e1969]: Руккола, моцарелла, вяленые томаты, кедровый орех, бальзамик
+              - generic [ref=f36e1970]:
+                - generic [ref=f36e1971]: 389 ₽
+                - button "Добавить в корзину" [ref=f36e1972] [cursor=pointer]
+          - article [ref=f36e1974]:
+            - link "Суп из морепродуктов" [ref=f36e1975] [cursor=pointer]:
+              - /url: /menu/lobster-soup
+            - generic [ref=f36e1981]:
+              - link [ref=f36e1982] [cursor=pointer]:
+                - /url: /menu/lobster-soup
+                - heading "Суп из морепродуктов" [level=3] [ref=f36e1983]
+                - paragraph [ref=f36e1984]: Креветки, мидии, рыба, томатный бульон, шафран
+              - generic [ref=f36e1985]:
+                - generic [ref=f36e1986]: 499 ₽
+                - button "Добавить в корзину" [ref=f36e1987] [cursor=pointer]
+  - contentinfo [ref=f36e49]:
+    - generic [ref=f36e50]:
+      - generic [ref=f36e51]:
+        - link "Рица" [ref=f36e52] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=f36e61]: "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз."
+      - navigation [ref=f36e62]:
+        - heading "Каталог" [level=3] [ref=f36e63]
+        - list [ref=f36e64]:
+          - listitem [ref=f36e65]:
+            - link "Сувлаки и шаурма" [ref=f36e66] [cursor=pointer]:
+              - /url: /menu?category=suvlaki
+          - listitem [ref=f36e67]:
+            - link "Морепродукты" [ref=f36e68] [cursor=pointer]:
+              - /url: /menu?category=seafood
+          - listitem [ref=f36e69]:
+            - link "Грузинская кухня" [ref=f36e70] [cursor=pointer]:
+              - /url: /menu?category=georgian
+          - listitem [ref=f36e71]:
+            - link "Пицца" [ref=f36e72] [cursor=pointer]:
+              - /url: /menu?category=pizza
+          - listitem [ref=f36e73]:
+            - link "Конструктор пиццы" [ref=f36e74] [cursor=pointer]:
+              - /url: /pizza-builder
+          - listitem [ref=f36e75]:
+            - link "Все блюда" [ref=f36e76] [cursor=pointer]:
+              - /url: /menu
+      - navigation [ref=f36e77]:
+        - heading "Компания" [level=3] [ref=f36e78]
+        - list [ref=f36e79]:
+          - listitem [ref=f36e80]:
+            - link "О кафе" [ref=f36e81] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f36e82]:
+            - link "Мои заказы" [ref=f36e83] [cursor=pointer]:
+              - /url: /orders
+          - listitem [ref=f36e84]:
+            - link "Личный кабинет" [ref=f36e85] [cursor=pointer]:
+              - /url: /account
+      - generic [ref=f36e86]:
+        - heading "Контакты" [level=3] [ref=f36e87]
+        - list [ref=f36e88]:
+          - listitem [ref=f36e89]: +7 (900) 000-00-00
+          - listitem [ref=f36e92]: Ежедневно 10:00–23:00
+          - listitem [ref=f36e96]: г. Сочи, ул. Примерная, 15
+    - paragraph [ref=f36e101]: © 2026 Рица. Кафе и доставка, Сочи.
+  - alert [ref=f36e102]: Рица — кафе и доставка, Сочи

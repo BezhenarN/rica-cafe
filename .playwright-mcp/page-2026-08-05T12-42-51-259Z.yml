@@ -1,0 +1,81 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - link "Рица" [ref=f1e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f1e14]:
+        - link "Меню" [ref=f1e15] [cursor=pointer]:
+          - /url: /menu
+        - link "Конструктор пиццы" [ref=f1e16] [cursor=pointer]:
+          - /url: /pizza-builder
+        - link "О кафе" [ref=f1e17] [cursor=pointer]:
+          - /url: /about
+        - link "Заказы" [ref=f1e18] [cursor=pointer]:
+          - /url: /orders
+      - generic [ref=f1e19]:
+        - button "Корзина" [ref=f1e20] [cursor=pointer]
+        - link "Личный кабинет" [ref=f1e24] [cursor=pointer]:
+          - /url: /account
+  - main [ref=f1e28]:
+    - generic [ref=f1e30]:
+      - generic [ref=f1e31]:
+        - heading "Админ-панель" [level=1] [ref=f1e35]
+        - paragraph [ref=f1e36]: Войдите для управления
+      - generic [ref=f1e37]:
+        - generic [ref=f1e38]:
+          - generic [ref=f1e39]: Логин
+          - textbox "Логин" [ref=f1e40]
+        - generic [ref=f1e41]:
+          - generic [ref=f1e42]: Пароль
+          - textbox "Пароль" [ref=f1e43]
+        - button "Войти" [ref=f1e44] [cursor=pointer]
+      - paragraph [ref=f1e48]:
+        - link "← На главную" [ref=f1e49] [cursor=pointer]:
+          - /url: /
+  - contentinfo [ref=f1e50]:
+    - generic [ref=f1e51]:
+      - generic [ref=f1e52]:
+        - link "Рица" [ref=f1e53] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=f1e62]: "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз."
+      - navigation [ref=f1e63]:
+        - heading "Каталог" [level=3] [ref=f1e64]
+        - list [ref=f1e65]:
+          - listitem [ref=f1e66]:
+            - link "Сувлаки и шаурма" [ref=f1e67] [cursor=pointer]:
+              - /url: /menu?category=suvlaki
+          - listitem [ref=f1e68]:
+            - link "Морепродукты" [ref=f1e69] [cursor=pointer]:
+              - /url: /menu?category=seafood
+          - listitem [ref=f1e70]:
+            - link "Грузинская кухня" [ref=f1e71] [cursor=pointer]:
+              - /url: /menu?category=georgian
+          - listitem [ref=f1e72]:
+            - link "Пицца" [ref=f1e73] [cursor=pointer]:
+              - /url: /menu?category=pizza
+          - listitem [ref=f1e74]:
+            - link "Конструктор пиццы" [ref=f1e75] [cursor=pointer]:
+              - /url: /pizza-builder
+          - listitem [ref=f1e76]:
+            - link "Все блюда" [ref=f1e77] [cursor=pointer]:
+              - /url: /menu
+      - navigation [ref=f1e78]:
+        - heading "Компания" [level=3] [ref=f1e79]
+        - list [ref=f1e80]:
+          - listitem [ref=f1e81]:
+            - link "О кафе" [ref=f1e82] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f1e83]:
+            - link "Мои заказы" [ref=f1e84] [cursor=pointer]:
+              - /url: /orders
+          - listitem [ref=f1e85]:
+            - link "Личный кабинет" [ref=f1e86] [cursor=pointer]:
+              - /url: /account
+      - generic [ref=f1e87]:
+        - heading "Контакты" [level=3] [ref=f1e88]
+        - list [ref=f1e89]:
+          - listitem [ref=f1e90]: +7 (900) 000-00-00
+          - listitem [ref=f1e93]: Ежедневно 10:00–23:00
+          - listitem [ref=f1e97]: г. Сочи, ул. Примерная, 15
+    - paragraph [ref=f1e102]: © 2026 Рица. Кафе и доставка, Сочи.
+  - alert [ref=f1e103]

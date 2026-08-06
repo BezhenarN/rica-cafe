@@ -86,28 +86,30 @@ export function Header() {
               </motion.span>
             )}
           </button>
-          <Link
-            href="/account"
-            className={cn(
-              'btn-ghost rounded-full p-2.5',
-              pathname === '/account' && 'text-primary',
-            )}
-            aria-label="Личный кабинет"
-          >
-            <User className="h-5 w-5" />
-          </Link>
-          {/* Скрыто до доработки */}
-          {/* <Link
-            href="/webadmin"
-            className={cn(
-              'btn-ghost rounded-full p-2.5 hidden sm:inline-flex',
-              pathname === '/webadmin' && 'text-primary',
-            )}
-            aria-label="Админ-панель"
-            title="Админ-панель"
-          >
-            <Shield className="h-5 w-5" />
-          </Link> */}
+          {user?.role === 'ADMIN' ? (
+            <Link
+              href="/admin"
+              className={cn(
+                'btn-ghost rounded-full p-2.5',
+                pathname?.startsWith('/admin') && 'text-primary',
+              )}
+              aria-label="Админ-панель"
+              title="Админ-панель"
+            >
+              <Shield className="h-5 w-5" />
+            </Link>
+          ) : (
+            <Link
+              href="/account"
+              className={cn(
+                'btn-ghost rounded-full p-2.5',
+                pathname === '/account' && 'text-primary',
+              )}
+              aria-label="Личный кабинет"
+            >
+              <User className="h-5 w-5" />
+            </Link>
+          )}
         </div>
       </div>
     </header>

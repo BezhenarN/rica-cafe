@@ -70,6 +70,7 @@ export function ProductCard({ product }: ProductCardProps) {
           imageType={product.imageType}
           name={product.name}
           imagePath={product.imagePath}
+          productId={product.id}
           className="aspect-[4/3] w-full rounded-b-none"
         />
         <div className="absolute left-2 top-2 flex flex-wrap gap-1">

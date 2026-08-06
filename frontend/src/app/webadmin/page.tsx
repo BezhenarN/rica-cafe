@@ -8,13 +8,13 @@ import { Shield, LogIn } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/auth-store';
-import { useSignIn } from '@/hooks/use-queries';
+import { setToken } from '@/lib/api-client';
 import { PageLoader } from '@/components/ui/loader';
 import { showToast } from '@/components/ui/toast';
 
 const adminLoginSchema = z.object({
-  email: z.string().email('Введите корректный email'),
-  password: z.string().min(6, 'Минимум 6 символов'),
+  login: z.string().min(1, 'Введите логин'),
+  password: z.string().min(8, 'Минимум 8 символов'),
 });
 
 export default function WebAdminPage() {
@@ -24,40 +24,31 @@ export default function WebAdminPage() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
-  // Уже авторизован — редирект на админку
-  if (loading) return <PageLoader />;
-  if (user?.role === 'ADMIN') {
-    router.push('/admin');
-    return <PageLoader />;
-  }
-
+  // Все хуки ДО любых условных return
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<z.infer<typeof adminLoginSchema>>({
+    defaultValues: { login: '', password: '' },
     resolver: zodResolver(adminLoginSchema),
   });
-
-  const signIn = useSignIn();
 
   const onSubmit = async (data: z.infer<typeof adminLoginSchema>) => {
     setError('');
     setSubmitting(true);
     try {
-      // Админы логинятся по email — ищем их по email
-      // Бэкенд логин теперь по phone, поэтому используем прямой вызов API
       const res = await fetch('/api/auth/admin-login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ email: data.login, password: data.password }),
       });
       const result = await res.json();
       if (!res.ok) {
         setError(result.error || 'Ошибка входа');
         return;
       }
+      setToken(result.accessToken);
       useAuthStore.getState().setUser(result.user);
       showToast('Вы вошли как администратор', 'success');
       router.push('/admin');
@@ -68,6 +59,13 @@ export default function WebAdminPage() {
       setSubmitting(false);
     }
   };
+
+  // Уже авторизован — редирект на админку
+  if (loading) return <PageLoader />;
+  if (user?.role === 'ADMIN') {
+    router.push('/admin');
+    return <PageLoader />;
+  }
 
   return (
     <div className="container-page flex min-h-[70vh] items-center justify-center py-10">
@@ -82,9 +80,9 @@ export default function WebAdminPage() {
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
           <label className="block">
-            <span className="label">Email</span>
-            <input className="input" type="email" {...register('email')} />
-            {errors.email && <span className="mt-1 block text-xs text-danger">{errors.email.message}</span>}
+            <span className="label">Логин</span>
+            <input className="input" type="text" {...register('login')} required />
+            {errors.login && <span className="mt-1 block text-xs text-danger">{errors.login.message}</span>}
           </label>
           <label className="block">
             <span className="label">Пароль</span>

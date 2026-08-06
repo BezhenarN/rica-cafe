@@ -1,0 +1,78 @@
+- generic [ref=f1e1]:
+  - generic [active]:
+    - generic [ref=f1e97]:
+      - generic [ref=f1e98]:
+        - navigation [ref=f1e100]:
+          - button [disabled] [ref=f1e101]:
+            - img "previous" [ref=f1e102]
+          - generic [ref=f1e104]:
+            - generic [ref=f1e105]: 1/
+            - text: "1"
+          - button [disabled] [ref=f1e106]:
+            - img "next" [ref=f1e107]
+        - link "Next.js 16.2.11 (stale) Turbopack" [ref=f1e110] [cursor=pointer]:
+          - /url: https://nextjs.org/docs/messages/version-staleness
+          - generic "There is a newer version (16.3.0) available, upgrade recommended!" [ref=f1e113]: Next.js 16.2.11 (stale)
+          - generic [ref=f1e114]: Turbopack
+      - dialog "Runtime PrismaClientInitializationError" [ref=f1e116]:
+        - generic [ref=f1e119]:
+          - generic [ref=f1e120]:
+            - generic [ref=f1e121]:
+              - generic [ref=f1e122]:
+                - generic [ref=f1e123]: Runtime PrismaClientInitializationError
+                - generic [ref=f1e124]: Server
+              - generic [ref=f1e125]:
+                - button "Copy Error Info" [ref=f1e126] [cursor=pointer]
+                - button "No related documentation found" [disabled] [ref=f1e129]
+                - button "Attach Node.js inspector" [ref=f1e132] [cursor=pointer]
+            - generic [ref=f1e141]:
+              - generic [ref=f1e142]: "Invalid `{imported module ./src/lib/prisma.ts}[\"prisma\"].category.findMany()` invocation in /Users/nickb/.zcode/workspace/default/frontend/.next/dev/server/chunks/ssr/[root-of-the-server]__06-_hda._.js:85:160 82 const revalidate = 60; 83 async function MenuPage({ searchParams }) { 84 const sp = await searchParams; → 85 const cats = await {imported module ./src/lib/prisma.ts}[\"prisma\"].category.findMany( error: Environment variable not found: DATABASE_URL. --> schema.prisma:11 | 10 | provider = \"postgresql\" 11 | url = env(\"DATABASE_URL\") | Validation Error Count: 1"
+              - button "Show More" [ref=f1e144] [cursor=pointer]
+          - generic [ref=f1e145]:
+            - generic [ref=f1e146]:
+              - paragraph [ref=f1e148]:
+                - generic [ref=f1e153]: src/app/menu/page.tsx (18:38) @ <unknown>
+                - button "Open in editor" [ref=f1e154] [cursor=pointer]
+              - generic [ref=f1e159]:
+                - generic [ref=f1e160]: "16 | }) {"
+                - generic [ref=f1e161]: 17 | const sp = await searchParams;
+                - generic [ref=f1e162]: "> 18 | const cats = await prisma.category.findMany({ orderBy: { sortOrder: 'asc' } });"
+                - generic [ref=f1e163]: "| ^"
+                - generic [ref=f1e164]: 19 |
+                - generic [ref=f1e165]: "20 | let products: any[] = [];"
+                - generic [ref=f1e166]: "21 | try {"
+            - generic [ref=f1e167]:
+              - generic [ref=f1e168]:
+                - paragraph [ref=f1e169]:
+                  - text: Call Stack
+                  - generic [ref=f1e170]: "8"
+                - button "Show 5 ignore-listed frame(s)" [ref=f1e171] [cursor=pointer]
+              - generic [ref=f1e174]:
+                - generic [ref=f1e175]:
+                  - text: <unknown>
+                  - button "Open <unknown> in editor" [ref=f1e176] [cursor=pointer]
+                - text: src/app/menu/page.tsx (18:38)
+              - generic [ref=f1e179]:
+                - generic [ref=f1e180]: <unknown>
+                - text: "--> schema.prisma (11)"
+              - generic [ref=f1e181]:
+                - generic [ref=f1e182]:
+                  - text: MenuPage
+                  - button "Open MenuPage in editor" [ref=f1e183] [cursor=pointer]
+                - text: src/app/menu/page.tsx (18:16)
+        - generic [ref=f1e186]: "1"
+        - generic [ref=f1e187]: "2"
+    - generic [ref=f1e89] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=f1e90]
+      - generic [ref=f1e188]:
+        - button "Open issues overlay" [ref=f1e189]:
+          - generic [ref=f1e190]:
+            - generic [ref=f1e191]: "0"
+            - generic [ref=f1e192]: "1"
+          - generic [ref=f1e193]: Issue
+        - button "Collapse issues badge" [ref=f1e194]
+  - generic [ref=f1e198]:
+    - heading "This page couldn’t load" [level=1] [ref=f1e201]
+    - paragraph [ref=f1e202]: A server error occurred. Reload to try again.
+    - button "Reload" [ref=f1e205] [cursor=pointer]
+  - paragraph [ref=f1e206]: ERROR 2244145573

@@ -59,6 +59,7 @@ export function ProductDetailClient({ product }: { product: Product }) {
             imageType={product.imageType}
             name={product.name}
             imagePath={product.imagePath}
+            productId={product.id}
             className="aspect-square w-full"
           />
           <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">

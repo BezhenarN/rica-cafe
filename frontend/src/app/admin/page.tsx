@@ -3,8 +3,9 @@
 import { useState, useRef } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ChevronLeft, Power, PowerOff, Pencil, Trash2, Plus, X, Upload, Heart } from 'lucide-react';
+import { ChevronLeft, Power, PowerOff, Pencil, Trash2, Plus, X, Upload, Heart, LogOut } from 'lucide-react';
 import { AdminGuard } from '@/components/admin/admin-guard';
 import { OrderStatusManager } from '@/components/admin/order-status-manager';
 import { useAdminOrders, useAdminProducts, useAdminToggleProduct } from '@/hooks/use-queries';
@@ -12,8 +13,9 @@ import { Badge } from '@/components/ui/badge';
 import { formatPrice } from '@/lib/cn';
 import { getStatusMeta } from '@/lib/order-status';
 import { adminApi } from '@/lib/api';
+import { useAuthStore } from '@/store/auth-store';
 import { useCategories } from '@/hooks/use-queries';
-import { unwrapError, getToken } from '@/lib/api-client';
+import { unwrapError, getToken, setToken } from '@/lib/api-client';
 import { showToast } from '@/components/ui/toast';
 import type { OrderStatus, Category, Product as ProductType } from '@/lib/types';
 
@@ -35,17 +37,31 @@ export default function AdminPage() {
 }
 
 function AdminContent() {
+  const router = useRouter();
+  const logout = useAuthStore((s) => s.logout);
   const [tab, setTab] = useState<'orders' | 'products'>('orders');
   const [statusFilter, setStatusFilter] = useState<OrderStatus | 'ALL'>('ALL');
 
+  const handleLogout = () => {
+    logout();
+    setToken(null);
+    router.push('/');
+    router.refresh();
+  };
+
   return (
     <div className="container-page py-6 sm:py-8">
-      <Link
-        href="/"
-        className="mb-4 inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-ink"
-      >
-        <ChevronLeft className="h-4 w-4" /> На сайт
-      </Link>
+      <div className="mb-4 flex items-center justify-between">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-1 text-sm font-medium text-muted hover:text-ink"
+        >
+          <ChevronLeft className="h-4 w-4" /> На сайт
+        </Link>
+        <button onClick={handleLogout} className="btn-outline inline-flex items-center gap-2">
+          <LogOut className="h-4 w-4" /> Выйти
+        </button>
+      </div>
 
       <h1 className="mb-5 text-2xl font-extrabold sm:text-3xl">Админ-панель</h1>
 
@@ -176,9 +192,32 @@ function ProductsAdmin() {
 
   const [editingId, setEditingId] = useState<string | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const qc = useQueryClient();
+
+  const handleImageUpload = async (productId: string, file: File) => {
+    const fd = new FormData();
+    fd.append('file', file);
+    try {
+      const r = await fetch(`/api/admin/products/${productId}/image`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${getToken()}` },
+        body: fd,
+      });
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({ error: 'Ошибка сервера' }));
+        throw new Error(err.error || 'Ошибка сервера');
+      }
+      const data = await r.json();
+      showToast('Фото загружено', 'success');
+      qc.setQueryData(['admin', 'products'], (old: any[]) =>
+        old?.map((item) => item.id === productId ? { ...item, imagePath: data.imagePath } : item)
+      );
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Ошибка загрузки фото';
+      showToast(msg, 'error');
+    }
+  };
 
   const toggleFeatured = async (id: string, isFeatured: boolean) => {
     const token = getToken();
@@ -196,123 +235,122 @@ function ProductsAdmin() {
     <div className="space-y-4">
       {/* Кнопка «Добавить товар» */}
       <button
-        onClick={() => {
-          setEditingId(null);
-          setShowForm(true);
-        }}
+        onClick={() => setShowForm(true)}
         className="btn-primary inline-flex items-center gap-2"
       >
         <Plus className="h-4 w-4" /> Добавить товар
       </button>
 
-      {/* Список товаров */}
-      {isLoading ? (
-        <p className="py-8 text-center text-muted">Загрузка...</p>
-      ) : products?.length === 0 ? (
-        <p className="py-8 text-center text-muted">Товаров нет</p>
-      ) : (
-        products!.map((p) => (
-          <div key={p.id} className="space-y-3">
-            {/* Карточка товара */}
-            <div className="card flex items-center gap-3 p-4">
-              {/* Превью фото */}
-              {p.imagePath ? (
-                <img src={p.imagePath} alt={p.name} className="h-16 w-16 rounded-lg object-cover" />
-              ) : (
-                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-line text-muted">
-                  <Plus className="h-5 w-5" />
-                </div>
-              )}
-
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2">
-                  <p className="font-semibold truncate">{p.name}</p>
-                  {!p.isAvailable && <Badge variant="danger">Скрыт</Badge>}
-                  {p.isFeatured && <Badge variant="success">Хит</Badge>}
-                </div>
-                <p className="text-xs text-muted truncate">
-                  {p.category.name} · {formatPrice(p.basePrice)} · slug: {p.slug}
-                </p>
-              </div>
-
-              <div className="flex items-center gap-1">
-                {/* Кнопка загрузки фото */}
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="btn-outline h-9 w-9 rounded-full p-0"
-                  title="Загрузить фото"
-                >
-                  <Upload className="h-4 w-4" />
-                </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  className="hidden"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (!file) return;
-                    const fd = new FormData();
-                    fd.append('file', file);
-                    fetch(`/api/admin/products/${p.id}/image`, {
-                      method: 'POST',
-                      headers: { Authorization: `Bearer ${getToken()}` },
-                      body: fd,
-                    })
-                      .then((r) => r.json())
-                      .then(() => {
-                        showToast('Фото загружено', 'success');
-                        qc.invalidateQueries({ queryKey: ['admin', 'products'] });
-                      })
-                      .catch(() => showToast('Ошибка загрузки фото', 'error'));
-                  }}
-                />
-
-                <button
-                  onClick={() => {
-                    setEditingId(p.id);
-                    setShowForm(true);
-                  }}
-                  className="btn-outline h-9 w-9 rounded-full p-0"
-                  title="Редактировать"
-                >
-                  <Pencil className="h-4 w-4" />
-                </button>
-                <button
-                  onClick={() => toggleFeatured(p.id, !p.isFeatured)}
-                  className={p.isFeatured ? 'btn-primary h-9 w-9 rounded-full p-0' : 'btn-outline h-9 w-9 rounded-full p-0'}
-                  title={p.isFeatured ? 'Убрать из хитов' : 'Отметить как хит'}
-                >
-                  <Heart className={p.isFeatured ? 'h-4 w-4 fill-current' : 'h-4 w-4'} />
-                </button>
-                <button
-                  onClick={() => toggle.mutate({ id: p.id, isAvailable: !p.isAvailable })}
-                  className={p.isAvailable ? 'btn-outline' : 'btn-primary'}
-                >
-                  {p.isAvailable ? (
-                    <><PowerOff className="h-4 w-4" /> Скрыть</>
-                  ) : (
-                    <><Power className="h-4 w-4" /> Показать</>
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Форма редактирования — раскрывается под товаром */}
-            {showForm && editingId === p.id && (
-              <ProductForm
-                product={p}
-                categories={categories}
-                queryClient={qc}
-                onClose={() => {
-                  setShowForm(false);
-                  setEditingId(null);
-                }}
-              />
-            )}
-          </div>
-        ))
+      {/* Форма создания нового товара — сразу под кнопкой */}
+      {showForm && (
+        <ProductForm
+          product={null}
+          categories={categories}
+          queryClient={qc}
+          onClose={() => { setShowForm(false); setEditingId(null); }}
+        />
       )}
+
+      {/* Список товаров */}
+      <div>
+        {isLoading ? (
+          <p className="py-8 text-center text-muted">Загрузка...</p>
+        ) : products?.length === 0 ? (
+          <p className="py-8 text-center text-muted">Товаров нет</p>
+        ) : (
+          <div className="space-y-3">
+            {products!.map((p) => (
+              <div key={p.id} className="space-y-3">
+                {/* Карточка товара */}
+                <div className="card flex items-center gap-3 p-4">
+                  {/* Превью фото */}
+                  {p.imagePath ? (
+                    <img src={`/api/products/${p.id}/image`} alt={p.name} className="h-16 w-16 rounded-lg object-cover" />
+                  ) : (
+                    <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-line text-muted">
+                      <Plus className="h-5 w-5" />
+                    </div>
+                  )}
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <p className="font-semibold truncate">{p.name}</p>
+                      {!p.isAvailable && <Badge variant="danger">Скрыт</Badge>}
+                      {p.isFeatured && <Badge variant="success">Хит</Badge>}
+                    </div>
+                    <p className="text-xs text-muted truncate">
+                      {p.category.name} · {formatPrice(p.basePrice)} · slug: {p.slug}
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-1">
+                    {/* Кнопка загрузки фото */}
+                    <label
+                      title="Загрузить фото"
+                      className="btn-outline h-9 w-9 cursor-pointer rounded-full p-0"
+                    >
+                      <Upload className="h-4 w-4" />
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        className="sr-only"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (!file) return;
+                          // Сбросим значение чтобы можно было выбрать тот же файл повторно
+                          e.target.value = '';
+                          handleImageUpload(p.id, file);
+                        }}
+                      />
+                    </label>
+
+                    <button
+                      onClick={() => {
+                        setEditingId(p.id);
+                        setShowForm(true);
+                      }}
+                      className="btn-outline h-9 w-9 rounded-full p-0"
+                      title="Редактировать"
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </button>
+                    <button
+                      onClick={() => toggleFeatured(p.id, !p.isFeatured)}
+                      className={p.isFeatured ? 'btn-primary h-9 w-9 rounded-full p-0' : 'btn-outline h-9 w-9 rounded-full p-0'}
+                      title={p.isFeatured ? 'Убрать из хитов' : 'Отметить как хит'}
+                    >
+                      <Heart className={p.isFeatured ? 'h-4 w-4 fill-current' : 'h-4 w-4'} />
+                    </button>
+                    <button
+                      onClick={() => toggle.mutate({ id: p.id, isAvailable: !p.isAvailable })}
+                      className={p.isAvailable ? 'btn-outline' : 'btn-primary'}
+                    >
+                      {p.isAvailable ? (
+                        <><PowerOff className="h-4 w-4" /> Скрыть</>
+                      ) : (
+                        <><Power className="h-4 w-4" /> Показать</>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Форма редактирования — раскрывается под товаром */}
+                {showForm && editingId === p.id && (
+                  <ProductForm
+                    product={p}
+                    categories={categories}
+                    queryClient={qc}
+                    onClose={() => {
+                      setShowForm(false);
+                      setEditingId(null);
+                    }}
+                  />
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -380,10 +418,6 @@ function ProductForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const variants = variantNames
-      .filter(Boolean)
-      .map((v, i) => ({ name: v, price: parseFloat(variantPrices[i] ?? '0'), isDefault: i === 0 }));
-
     const token = getToken();
     if (!token) {
       showToast('Не авторизованы', 'error');
@@ -391,19 +425,46 @@ function ProductForm({
     }
 
     try {
+      const trimmedSlug = slug.trim();
+      const trimmedName = name.trim();
+
+      if (!trimmedSlug) {
+        showToast('Slug обязателен', 'error');
+        return;
+      }
+      if (!trimmedName) {
+        showToast('Название обязательно', 'error');
+        return;
+      }
+      const price = parseFloat(basePrice);
+      if (isNaN(price) || price <= 0) {
+        showToast('Цена должна быть положительным числом', 'error');
+        return;
+      }
+
+      const variants = variantNames
+        .filter(Boolean)
+        .map((v, i) => ({ name: v, price: variantPrices[i] ?? '' }));
+
       const data: Record<string, unknown> = {
-        slug,
-        name,
-        description: description || undefined,
+        slug: trimmedSlug,
+        name: trimmedName,
+        description: description.trim() || undefined,
         categoryId,
-        basePrice: parseFloat(basePrice) || 0,
-        weight: weight ? parseInt(weight) : undefined,
-        kcal: kcal ? parseInt(kcal) : undefined,
+        basePrice: price,
+        weight: weight ? parseInt(weight, 10) : undefined,
+        kcal: kcal ? parseInt(kcal, 10) : undefined,
         isVegan,
         isSpicy,
         isFeatured,
         isAvailable,
-        variants: variants.filter((v) => v.name.trim()),
+        variants: variants
+          .filter((v) => v.name.trim())
+          .map((v, i) => ({
+            name: v.name.trim(),
+            price: v.price ? parseFloat(v.price) : undefined,
+            isDefault: i === 0,
+          })),
       };
 
       if (isEdit && product) {

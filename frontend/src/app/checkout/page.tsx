@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -23,13 +23,13 @@ const schema = z.object({
   phone: z.string().min(6, 'Введите телефон'),
   email: z.string().email('Некорректный email').optional().or(z.literal('')),
   deliveryType: z.enum(['DELIVERY', 'PICKUP']).default('DELIVERY'),
-  street: z.string().min(3, 'Введите улицу').optional(),
-  building: z.string().optional(),
-  apt: z.string().optional(),
-  entrance: z.string().optional(),
-  floor: z.string().optional(),
-  comment: z.string().optional(),
-  paymentMethod: z.enum(['CASH', 'CARD_ON_DELIVERY']),
+  street: z.string(),
+  building: z.string(),
+  apt: z.string(),
+  entrance: z.string(),
+  floor: z.string(),
+  comment: z.string(),
+  paymentMethod: z.enum(['CASH', 'CARD_ON_DELIVERY']).default('CASH'),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -49,16 +49,23 @@ export default function CheckoutPage() {
     handleSubmit,
     formState: { errors },
     watch,
+    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      name: user?.name ?? '',
-      phone: user?.phone ?? '',
-      email: user?.email ?? '',
       paymentMethod: 'CASH',
       deliveryType: 'DELIVERY',
     },
   });
+
+  // Fill user fields after mount to avoid SSR mismatch
+  useEffect(() => {
+    if (user) {
+      setValue('name', user.name ?? '');
+      setValue('phone', user.phone ?? '');
+      setValue('email', user.email ?? '');
+    }
+  }, [user, setValue]);
 
   const deliveryType = watch('deliveryType');
 
@@ -72,7 +79,7 @@ export default function CheckoutPage() {
       showToast('Корзина пуста', 'error');
       return;
     }
-    if (deliveryType === 'DELIVERY' && (!data.street || !data.building)) {
+    if (data.deliveryType === 'DELIVERY' && (!data.street || !data.building)) {
       showToast('Укажите адрес доставки', 'error');
       return;
     }
@@ -152,7 +159,14 @@ export default function CheckoutPage() {
       <h1 className="mb-5 text-2xl font-extrabold sm:text-3xl">Оформление заказа</h1>
 
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, (e) => {
+          console.error('Form validation errors:', e);
+          const fields = Object.keys(e);
+          showToast(
+            `Ошибка формы: ${fields.join(', ')}`,
+            'error',
+          );
+        })}
         className="grid gap-6 lg:grid-cols-[1fr_360px]"
       >
         <div className="space-y-6">

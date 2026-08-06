@@ -6,6 +6,133 @@ import { prisma } from '@/lib/prisma';
 import { verifyToken } from '@/lib/auth';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import fs from 'fs';
+import pathModule from 'path';
+import crypto from 'crypto';
+
+/** Allowed image MIME types and their extensions */
+const IMAGE_MIME_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp', 'image/gif']);
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024; // 10 MB
+
+/**
+ * Upload directory lives outside the app folder so it survives builds and deployments.
+ * /var/lib/rica-cafe/images/products/ — absolute path, persisted across deployments.
+ */
+const UPLOAD_DIR = pathModule.join('/var', 'lib', 'rica-cafe', 'images', 'products');
+
+/** Ensure the uploads/products directory exists */
+function ensureUploadDir(): string {
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+  return UPLOAD_DIR;
+}
+
+/** Save a file buffer to /var/lib/rica-cafe/images/products/ and return relative path */
+function saveImageBuffer(buffer: Buffer, originalName: string): string {
+  const ext = pathModule.extname(originalName) || '.jpg';
+  const safeExt = `.${ext.split('.').pop()?.toLowerCase()}`;
+  const fileName = `${crypto.randomUUID()}${safeExt}`;
+  const filePath = pathModule.join(UPLOAD_DIR, fileName);
+  fs.writeFileSync(filePath, buffer);
+  return `uploads/products/${fileName}`;
+}
+
+/** Parse multipart/form-data from a NextRequest manually (binary-safe). Returns fields and files. */
+async function parseMultipartForm(request: NextRequest): Promise<{
+  fields: Record<string, string>;
+  files: { field: string; buffer: Buffer; name: string; mime: string }[];
+}> {
+  const contentType = request.headers.get('content-type') ?? '';
+  const match = contentType.match(/boundary=(.+)/);
+  if (!match) throw new Error('Missing multipart boundary');
+  const boundary = match[1];
+
+  const body = Buffer.from(await request.arrayBuffer());
+
+  // multipart/form-data format: each part is preceded by \r\n--{boundary}
+  // We must NOT match a raw --{boundary} inside binary file content.
+  // Encode boundary as raw bytes
+  const preambleCR = Buffer.from('\r\n--', 'latin1'); // \r\n--
+  const closingMarker = Buffer.from(`--${boundary}--`, 'latin1'); // --boundary--
+  const partPrefix = Buffer.from(`--${boundary}`, 'latin1'); // --boundary
+
+  // Also handle the first boundary (no leading \r\n)
+  const firstPrefix = Buffer.from(`--${boundary}`, 'latin1');
+
+  const fields: Record<string, string> = {};
+  const files: { field: string; buffer: Buffer; name: string; mime: string }[] = [];
+
+  // ── Find all boundary positions ──
+  const boundaryPositions: number[] = [];
+
+  // WebKit browsers send \r\n--{boundary} before the FIRST part per the WHATWG spec.
+  // We find ALL occurrences of \r\n--{boundary} and also --{boundary} at position 0 (no leading CRLF).
+  // We must NOT match a raw --{boundary} inside binary file content, so we require \r\n prefix
+  // (or it being at the very start of body).
+  const preambleLen = preambleCR.length;
+
+  // Check for \r\n--{boundary} at position 0 (WebKit/Chrome format)
+  if (body.subarray(0, preambleCR.length).equals(preambleCR)) {
+    boundaryPositions.push(preambleLen);
+  }
+  // Check for --{boundary} at position 0 (no leading CRLF)
+  else if (body.subarray(0, partPrefix.length).equals(partPrefix)) {
+    boundaryPositions.push(0);
+  }
+
+  // Find all subsequent boundaries: \r\n--{boundary}
+  for (let i = 0; i <= body.length - partPrefix.length; i++) {
+    if (body[i] === 0x0d && body[i + 1] === 0x0a && body.subarray(i, i + partPrefix.length).equals(partPrefix)) {
+      // Don't add duplicate if this is the leading \r\n-- boundary we already found
+      if (i === 0 && body.subarray(0, preambleCR.length).equals(preambleCR)) continue;
+      boundaryPositions.push(i + preambleLen);
+    }
+  }
+
+  // ── Extract each part between consecutive boundaries ──
+  for (let i = 0; i < boundaryPositions.length; i++) {
+    const partStart = boundaryPositions[i];
+    const nextBoundary = boundaryPositions[i + 1] ?? body.length;
+
+    // Check if this is the closing boundary (--{boundary}--)
+    if (nextBoundary - partStart >= closingMarker.length) {
+      const candidate = body.subarray(nextBoundary, nextBoundary + closingMarker.length);
+      if (candidate.equals(closingMarker)) {
+        break;
+      }
+    }
+
+    let partEnd = nextBoundary;
+    // Strip trailing \r\n
+    while (partEnd > partStart && body[partEnd - 1] === 0x0a) partEnd--;
+    while (partEnd > partStart && body[partEnd - 1] === 0x0d) partEnd--;
+
+    const part = body.subarray(partStart, partEnd);
+
+    // Find the header/body separator (\r\n\r\n)
+    const sepIndex = part.indexOf('\r\n\r\n');
+    if (sepIndex === -1) continue;
+
+    const headerBlock = part.subarray(0, sepIndex).toString('latin1');
+    const partBody = part.subarray(sepIndex + 4);
+
+    // Parse content-disposition
+    const cdMatch = headerBlock.match(/Content-Disposition:\s*form-data;\s*name="([^"]+)"(?:;\s*filename="([^"]+)")?/i);
+    if (!cdMatch) continue;
+
+    const fieldName = cdMatch[1];
+    const fileName = cdMatch[2];
+
+    if (fileName) {
+      const contentLine = headerBlock.match(/Content-Type:\s*([^;\r\n]+)/i);
+      const mime = contentLine ? contentLine[1].trim() : 'application/octet-stream';
+      files.push({ field: fieldName, buffer: partBody, name: fileName, mime });
+    } else {
+      fields[fieldName] = partBody.toString('utf8');
+    }
+  }
+
+  return { fields, files };
+}
 
 const JWT_SECRET = process.env.JWT_SECRET ?? 'insecure_dev_secret';
 
@@ -306,6 +433,47 @@ export async function GET(request: NextRequest) {
     }
   }
 
+  // ── products/[id]/image (serve image) ──
+  if (path[0] === 'products' && path[1] && path[2] === 'image' && path.length === 3) {
+    const productId = path[1];
+    try {
+      const product = await prisma.product.findUnique({
+        where: { id: productId },
+        select: { imagePath: true },
+      });
+      if (!product || !product.imagePath) {
+        // Fallback: return a blank 1x1 PNG
+        const blank = Buffer.from(
+          'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==',
+          'base64',
+        );
+        return new NextResponse(blank, {
+          status: 404,
+          headers: { 'Content-Type': 'image/png' },
+        });
+      }
+      // imagePath is stored as 'uploads/products/filename.ext' — resolve from shared dir
+      const relativePath = product.imagePath;
+      const filePath = pathModule.join(UPLOAD_DIR, relativePath.replace('uploads/products/', ''));
+      const fileBuffer = fs.readFileSync(filePath);
+      // Determine Content-Type from file extension
+      const ext = pathModule.extname(relativePath).toLowerCase();
+      let contentType = 'image/jpeg'; // fallback
+      if (ext === '.png') contentType = 'image/png';
+      else if (ext === '.webp') contentType = 'image/webp';
+      else if (ext === '.gif') contentType = 'image/gif';
+      return new NextResponse(fileBuffer, {
+        headers: { 'Content-Type': contentType },
+      });
+    } catch {
+      return errorResponse('Image not found', 404);
+    }
+  }
+
+  // ── admin/products/[id]/image (upload via GET for backward compat) ──
+  // NOTE: kept here because Next.js route handler may route POST through GET when no POST handler exists.
+  // Best practice: see POST handler below for the actual POST path.
+
   return errorResponse('Not found', 404);
 }
 
@@ -555,7 +723,9 @@ export async function POST(request: NextRequest) {
     if (admin.error) return admin.error;
     try {
       const body = await request.json();
-      const { slug, name, description, categoryId, basePrice, weight, kcal, isVegan, isSpicy, isFeatured, isAvailable, variants } = body;
+      const { description, categoryId, basePrice, weight, kcal, isVegan, isSpicy, isFeatured, isAvailable, variants, imageType } = body;
+      const slug = String(body.slug ?? '').trim();
+      const name = String(body.name ?? '').trim();
       if (!slug || !name || !categoryId || basePrice == null) {
         return errorResponse('slug, name, categoryId, basePrice обязательны', 400);
       }
@@ -565,6 +735,8 @@ export async function POST(request: NextRequest) {
           slug, name,
           description: description || null,
           categoryId,
+          imagePath: null,
+          imageType: (imageType as any) ?? 'OTHER',
           basePrice: Number(basePrice),
           weight: weight ? Number(weight) : null,
           kcal: kcal ? Number(kcal) : null,
@@ -642,6 +814,49 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // ── admin/products/[id]/image (upload via POST) ──
+  // Path: ['admin', 'products', id, 'image'] — length 4
+  if (path[0] === 'admin' && path[1] === 'products' && path[3] === 'image' && path.length === 4) {
+    const admin = requireAdmin(request);
+    if (admin.error) return admin.error;
+    const productId = path[2];
+    try {
+      const product = await prisma.product.findUnique({ where: { id: productId } });
+      if (!product) return errorResponse('Товар не найден', 404);
+
+      const { fields, files } = await parseMultipartForm(request);
+      if (files.length === 0) return errorResponse('Файл не найден', 400);
+
+      const file = files[0];
+      if (!IMAGE_MIME_TYPES.has(file.mime)) {
+        return errorResponse('Допустимые типы: jpeg, png, webp, gif', 400);
+      }
+      if (file.buffer.length > MAX_IMAGE_SIZE) {
+        return errorResponse('Файл слишком большой (макс. 10MB)', 400);
+      }
+
+      // Delete old image file if exists
+      if (product.imagePath) {
+        try { fs.unlinkSync(pathModule.join(process.cwd(), product.imagePath)); } catch { /* ignore */ }
+      }
+
+      // Save new image
+      const imagePath = saveImageBuffer(file.buffer, file.name);
+
+      // Update product
+      const updated = await prisma.product.update({
+        where: { id: productId },
+        data: { imagePath },
+        include: { category: { select: { name: true, slug: true } }, variants: true },
+      });
+      return NextResponse.json(updated);
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      console.error('[admin/product image upload] error:', msg.slice(0, 500));
+      return errorResponse('Ошибка загрузки фото');
+    }
+  }
+
   return errorResponse('Not found', 404);
 }
 
@@ -685,11 +900,23 @@ export async function PATCH(request: NextRequest) {
     try {
       const body = await request.json();
       const data: Record<string, unknown> = {};
-      if (body.slug !== undefined) data.slug = body.slug;
-      if (body.name !== undefined) data.name = body.name;
-      if (body.description !== undefined) data.description = body.description || null;
+      if (body.slug !== undefined) {
+        const trimmedSlug = String(body.slug).trim();
+        if (!trimmedSlug) return errorResponse('Slug обязателен', 400);
+        data.slug = trimmedSlug;
+      }
+      if (body.name !== undefined) {
+        const trimmedName = String(body.name).trim();
+        if (!trimmedName) return errorResponse('Название обязательно', 400);
+        data.name = trimmedName;
+      }
+      if (body.description !== undefined) data.description = body.description ? String(body.description).trim() || null : null;
       if (body.categoryId !== undefined) data.categoryId = body.categoryId;
-      if (body.basePrice !== undefined) data.basePrice = Number(body.basePrice);
+      if (body.basePrice !== undefined) {
+        const price = Number(body.basePrice);
+        if (isNaN(price) || price <= 0) return errorResponse('Цена должна быть положительным числом', 400);
+        data.basePrice = price;
+      }
       if (body.weight !== undefined) data.weight = body.weight ? Number(body.weight) : null;
       if (body.kcal !== undefined) data.kcal = body.kcal ? Number(body.kcal) : null;
       if (body.isVegan !== undefined) data.isVegan = Boolean(body.isVegan);
@@ -697,6 +924,8 @@ export async function PATCH(request: NextRequest) {
       if (body.isFeatured !== undefined) data.isFeatured = Boolean(body.isFeatured);
       if (body.isAvailable !== undefined) data.isAvailable = Boolean(body.isAvailable);
       if (body.sortOrder !== undefined) data.sortOrder = Number(body.sortOrder);
+      if (body.imagePath !== undefined) data.imagePath = body.imagePath || null;
+      if (body.imageType !== undefined) data.imageType = body.imageType || 'OTHER';
 
       const product = await prisma.product.update({
         where: { id: productId },
@@ -728,6 +957,26 @@ export async function PATCH(request: NextRequest) {
       const msg = e instanceof Error ? e.message : String(e);
       console.error('[admin/product update] error:', msg.slice(0, 500));
       return errorResponse('Ошибка обновления товара');
+    }
+  }
+
+  // ── admin/categories/[id] (update) ──
+  // Path segments: ['admin', 'categories', id]
+  if (path[0] === 'admin' && path[1] === 'categories' && path.length === 3) {
+    const admin = requireAdmin(request);
+    if (admin.error) return admin.error;
+    const categoryId = path[2];
+    try {
+      const body = await request.json();
+      const data: Record<string, unknown> = {};
+      if (body.name !== undefined) data.name = String(body.name).trim();
+      if (body.slug !== undefined) data.slug = String(body.slug).trim();
+      if (body.icon !== undefined) data.icon = body.icon || null;
+      if (body.sortOrder !== undefined) data.sortOrder = Number(body.sortOrder);
+      const category = await prisma.category.update({ where: { id: categoryId }, data });
+      return NextResponse.json(category);
+    } catch {
+      return errorResponse('Категория не найдена', 404);
     }
   }
 

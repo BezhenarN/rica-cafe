@@ -1,0 +1,372 @@
+- generic [active] [ref=f21e1]:
+  - banner [ref=f21e2]:
+    - generic [ref=f21e3]:
+      - link "Рица" [ref=f21e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f21e14]:
+        - link "Меню" [ref=f21e15] [cursor=pointer]:
+          - /url: /menu
+        - link "Конструктор пиццы" [ref=f21e16] [cursor=pointer]:
+          - /url: /pizza-builder
+        - link "О кафе" [ref=f21e17] [cursor=pointer]:
+          - /url: /about
+        - link "Заказы" [ref=f21e18] [cursor=pointer]:
+          - /url: /orders
+      - generic [ref=f21e19]:
+        - button "Корзина" [ref=f21e20] [cursor=pointer]
+        - link "Админ-панель" [ref=f21e86] [cursor=pointer]:
+          - /url: /admin
+  - main [ref=f21e28]:
+    - generic [ref=f21e89]:
+      - generic [ref=f21e90]:
+        - link "На сайт" [ref=f21e91] [cursor=pointer]:
+          - /url: /
+        - button "Выйти" [ref=f21e94] [cursor=pointer]
+      - heading "Админ-панель" [level=1] [ref=f21e98]
+      - generic [ref=f21e99]:
+        - button "Заказы" [ref=f21e100] [cursor=pointer]
+        - button "Товары" [ref=f21e101] [cursor=pointer]
+      - generic [ref=f21e102]:
+        - generic [ref=f21e103]:
+          - button "Все" [ref=f21e104] [cursor=pointer]
+          - button "Новые" [ref=f21e105] [cursor=pointer]
+          - button "Подтверждённые" [ref=f21e106] [cursor=pointer]
+          - button "Готовятся" [ref=f21e107] [cursor=pointer]
+          - button "В пути" [ref=f21e108] [cursor=pointer]
+          - button "Доставлены" [ref=f21e109] [cursor=pointer]
+        - generic [ref=f21e110]:
+          - generic [ref=f21e111]:
+            - generic [ref=f21e112]:
+              - generic [ref=f21e113]:
+                - generic [ref=f21e114]:
+                  - generic [ref=f21e115]: "#10"
+                  - generic [ref=f21e116]: ✅ Подтверждён
+                - paragraph [ref=f21e117]: 06.08.2026, 00:08:10
+                - paragraph [ref=f21e118]: Nick · +79000000000
+                - paragraph [ref=f21e119]: 📍 ,
+              - generic [ref=f21e120]:
+                - generic [ref=f21e121]: 340 ₽
+                - generic [ref=f21e122]: Нал.
+            - generic [ref=f21e123]:
+              - paragraph [ref=f21e124]: Состав
+              - list [ref=f21e125]:
+                - listitem [ref=f21e126]:
+                  - generic [ref=f21e127]: 1 × Блинчики
+                  - generic [ref=f21e128]: 340 ₽
+              - generic [ref=f21e129]:
+                - generic [ref=f21e130]: Статус
+                - generic [ref=f21e131]:
+                  - button "Заказ создан" [ref=f21e132] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e133] [cursor=pointer]
+                  - button "Готовится" [ref=f21e134] [cursor=pointer]
+                  - button "В пути" [ref=f21e135] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e136] [cursor=pointer]
+                  - button "Отменён" [ref=f21e137] [cursor=pointer]
+          - generic [ref=f21e138]:
+            - generic [ref=f21e139]:
+              - generic [ref=f21e140]:
+                - generic [ref=f21e141]:
+                  - generic [ref=f21e142]: "#9"
+                  - generic [ref=f21e143]: 👨‍🍳 Готовится
+                - paragraph [ref=f21e144]: 06.08.2026, 00:02:23
+                - paragraph [ref=f21e145]: Николай · +79996390401
+                - paragraph [ref=f21e146]: 📍 ,
+              - generic [ref=f21e147]:
+                - generic [ref=f21e148]: 590 ₽
+                - generic [ref=f21e149]: Нал.
+            - generic [ref=f21e150]:
+              - paragraph [ref=f21e151]: Состав
+              - list [ref=f21e152]:
+                - listitem [ref=f21e153]:
+                  - generic [ref=f21e154]: 1 × Цезарь с семгой с.с
+                  - generic [ref=f21e155]: 590 ₽
+              - generic [ref=f21e156]:
+                - generic [ref=f21e157]: Статус
+                - generic [ref=f21e158]:
+                  - button "Заказ создан" [ref=f21e159] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e160] [cursor=pointer]
+                  - button "Готовится" [ref=f21e161] [cursor=pointer]
+                  - button "В пути" [ref=f21e162] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e163] [cursor=pointer]
+                  - button "Отменён" [ref=f21e164] [cursor=pointer]
+          - generic [ref=f21e165]:
+            - generic [ref=f21e166]:
+              - generic [ref=f21e167]:
+                - generic [ref=f21e168]:
+                  - generic [ref=f21e169]: "#8"
+                  - generic [ref=f21e170]: ✅ Подтверждён
+                - paragraph [ref=f21e171]: 05.08.2026, 23:40:46
+                - paragraph [ref=f21e172]: Николай · +79996390401
+                - paragraph [ref=f21e173]: 📍 ,
+              - generic [ref=f21e174]:
+                - generic [ref=f21e175]: 1 140 ₽
+                - generic [ref=f21e176]: Нал.
+            - generic [ref=f21e177]:
+              - paragraph [ref=f21e178]: Состав
+              - list [ref=f21e179]:
+                - listitem [ref=f21e180]:
+                  - generic [ref=f21e181]: 1 × Круассан с семгой с.с
+                  - generic [ref=f21e182]: 550 ₽
+                - listitem [ref=f21e183]:
+                  - generic [ref=f21e184]: 1 × Цезарь с семгой с.с
+                  - generic [ref=f21e185]: 590 ₽
+              - generic [ref=f21e186]:
+                - generic [ref=f21e187]: Статус
+                - generic [ref=f21e188]:
+                  - button "Заказ создан" [ref=f21e189] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e190] [cursor=pointer]
+                  - button "Готовится" [ref=f21e191] [cursor=pointer]
+                  - button "В пути" [ref=f21e192] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e193] [cursor=pointer]
+                  - button "Отменён" [ref=f21e194] [cursor=pointer]
+          - generic [ref=f21e195]:
+            - generic [ref=f21e196]:
+              - generic [ref=f21e197]:
+                - generic [ref=f21e198]:
+                  - generic [ref=f21e199]: "#7"
+                  - generic [ref=f21e200]: 👨‍🍳 Готовится
+                - paragraph [ref=f21e201]: 05.08.2026, 21:35:05
+                - paragraph [ref=f21e202]: Антон · +79667776977
+                - paragraph [ref=f21e203]: 📍 Курортный проспект, 92/5
+              - generic [ref=f21e204]:
+                - generic [ref=f21e205]: 999 ₽
+                - generic [ref=f21e206]: Нал.
+            - generic [ref=f21e207]:
+              - paragraph [ref=f21e208]: Состав
+              - list [ref=f21e209]:
+                - listitem [ref=f21e210]:
+                  - generic [ref=f21e211]: 1 × Бурата
+                  - generic [ref=f21e212]: 850 ₽
+              - generic [ref=f21e213]:
+                - generic [ref=f21e214]: Статус
+                - generic [ref=f21e215]:
+                  - button "Заказ создан" [ref=f21e216] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e217] [cursor=pointer]
+                  - button "Готовится" [ref=f21e218] [cursor=pointer]
+                  - button "В пути" [ref=f21e219] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e220] [cursor=pointer]
+                  - button "Отменён" [ref=f21e221] [cursor=pointer]
+          - generic [ref=f21e222]:
+            - generic [ref=f21e223]:
+              - generic [ref=f21e224]:
+                - generic [ref=f21e225]:
+                  - generic [ref=f21e226]: "#6"
+                  - generic [ref=f21e227]: 🛵 В пути
+                - paragraph [ref=f21e228]: 05.08.2026, 21:31:34
+                - paragraph [ref=f21e229]: Администратор · +79667776977
+                - paragraph [ref=f21e230]: 📍 пр-кт Курортный, д.92/5
+              - generic [ref=f21e231]:
+                - generic [ref=f21e232]: 1 790 ₽
+                - generic [ref=f21e233]: Нал.
+            - generic [ref=f21e234]:
+              - paragraph [ref=f21e235]: Состав
+              - list [ref=f21e236]:
+                - listitem [ref=f21e237]:
+                  - generic [ref=f21e238]: 1 × Круассан с семгой с.с
+                  - generic [ref=f21e239]: 550 ₽
+                - listitem [ref=f21e240]:
+                  - generic [ref=f21e241]: 1 × Мраморный стейк Нью-Йорк
+                  - generic [ref=f21e242]: 750 ₽
+                - listitem [ref=f21e243]:
+                  - generic [ref=f21e244]: 1 × Хот-дог с лососем
+                  - generic [ref=f21e245]: 490 ₽
+              - generic [ref=f21e246]:
+                - generic [ref=f21e247]: Статус
+                - generic [ref=f21e248]:
+                  - button "Заказ создан" [ref=f21e249] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e250] [cursor=pointer]
+                  - button "Готовится" [ref=f21e251] [cursor=pointer]
+                  - button "В пути" [ref=f21e252] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e253] [cursor=pointer]
+                  - button "Отменён" [ref=f21e254] [cursor=pointer]
+          - generic [ref=f21e255]:
+            - generic [ref=f21e256]:
+              - generic [ref=f21e257]:
+                - generic [ref=f21e258]:
+                  - generic [ref=f21e259]: "#5"
+                  - generic [ref=f21e260]: 🎉 Доставлен
+                - paragraph [ref=f21e261]: 05.08.2026, 09:24:41
+                - paragraph [ref=f21e262]: Николай · +79996390401
+                - paragraph [ref=f21e263]: 📍 Хуюлица, 21, кв. 3
+              - generic [ref=f21e264]:
+                - generic [ref=f21e265]: 2 050 ₽
+                - generic [ref=f21e266]: Нал.
+            - generic [ref=f21e267]:
+              - paragraph [ref=f21e268]: Состав
+              - list [ref=f21e269]:
+                - listitem [ref=f21e270]:
+                  - generic [ref=f21e271]: 1 × Бургер фирменный
+                  - generic [ref=f21e272]: 710 ₽
+                - listitem [ref=f21e273]:
+                  - generic [ref=f21e274]: 1 × Блинчики
+                  - generic [ref=f21e275]: 340 ₽
+                - listitem [ref=f21e276]:
+                  - generic [ref=f21e277]: 1 × Боржоми
+                  - generic [ref=f21e278]: 250 ₽
+                - listitem [ref=f21e279]:
+                  - generic [ref=f21e280]: 1 × Четыре сыра
+                  - generic [ref=f21e281]: 750 ₽
+              - generic [ref=f21e282]:
+                - generic [ref=f21e283]: Статус
+                - generic [ref=f21e284]:
+                  - button "Заказ создан" [ref=f21e285] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e286] [cursor=pointer]
+                  - button "Готовится" [ref=f21e287] [cursor=pointer]
+                  - button "В пути" [ref=f21e288] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e289] [cursor=pointer]
+                  - button "Отменён" [ref=f21e290] [cursor=pointer]
+          - generic [ref=f21e291]:
+            - generic [ref=f21e292]:
+              - generic [ref=f21e293]:
+                - generic [ref=f21e294]:
+                  - generic [ref=f21e295]: "#4"
+                  - generic [ref=f21e296]: ❌ Отменён
+                - paragraph [ref=f21e297]: 05.08.2026, 07:52:42
+                - paragraph [ref=f21e298]: Test · 89001234567
+                - paragraph [ref=f21e299]: 📍 ,
+              - generic [ref=f21e300]:
+                - generic [ref=f21e301]: 680 ₽
+                - generic [ref=f21e302]: Нал.
+            - generic [ref=f21e303]:
+              - paragraph [ref=f21e304]: Состав
+              - list [ref=f21e305]:
+                - listitem [ref=f21e306]:
+                  - generic [ref=f21e307]: 2 × Блинчики
+                  - generic [ref=f21e308]: 680 ₽
+              - generic [ref=f21e309]:
+                - generic [ref=f21e310]: Статус
+                - generic [ref=f21e311]:
+                  - button "Заказ создан" [ref=f21e312] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e313] [cursor=pointer]
+                  - button "Готовится" [ref=f21e314] [cursor=pointer]
+                  - button "В пути" [ref=f21e315] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e316] [cursor=pointer]
+                  - button "Отменён" [ref=f21e317] [cursor=pointer]
+          - generic [ref=f21e318]:
+            - generic [ref=f21e319]:
+              - generic [ref=f21e320]:
+                - generic [ref=f21e321]:
+                  - generic [ref=f21e322]: "#3"
+                  - generic [ref=f21e323]: ❌ Отменён
+                - paragraph [ref=f21e324]: 05.08.2026, 07:16:35
+                - paragraph [ref=f21e325]: Reorder Test · +79990000000
+                - paragraph [ref=f21e326]: 📍 ,
+              - generic [ref=f21e327]:
+                - generic [ref=f21e328]: 340 ₽
+                - generic [ref=f21e329]: Нал.
+            - generic [ref=f21e330]:
+              - paragraph [ref=f21e331]: Состав
+              - list [ref=f21e332]:
+                - listitem [ref=f21e333]:
+                  - generic [ref=f21e334]: 1 × Блинчики
+                  - generic [ref=f21e335]: 340 ₽
+              - generic [ref=f21e336]:
+                - generic [ref=f21e337]: Статус
+                - generic [ref=f21e338]:
+                  - button "Заказ создан" [ref=f21e339] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e340] [cursor=pointer]
+                  - button "Готовится" [ref=f21e341] [cursor=pointer]
+                  - button "В пути" [ref=f21e342] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e343] [cursor=pointer]
+                  - button "Отменён" [ref=f21e344] [cursor=pointer]
+          - generic [ref=f21e345]:
+            - generic [ref=f21e346]:
+              - generic [ref=f21e347]:
+                - generic [ref=f21e348]:
+                  - generic [ref=f21e349]: "#2"
+                  - generic [ref=f21e350]: ❌ Отменён
+                - paragraph [ref=f21e351]: 05.08.2026, 07:08:21
+                - paragraph [ref=f21e352]: Николас · +79991234567
+                - paragraph [ref=f21e353]: 📍 Ленина, 10, кв. 5
+              - generic [ref=f21e354]:
+                - generic [ref=f21e355]: 829 ₽
+                - generic [ref=f21e356]: Картой
+            - generic [ref=f21e357]:
+              - paragraph [ref=f21e358]: Состав
+              - list [ref=f21e359]:
+                - listitem [ref=f21e360]:
+                  - generic [ref=f21e361]: 2 × Блинчики
+                  - generic [ref=f21e362]: 680 ₽
+              - generic [ref=f21e363]:
+                - generic [ref=f21e364]: Статус
+                - generic [ref=f21e365]:
+                  - button "Заказ создан" [ref=f21e366] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e367] [cursor=pointer]
+                  - button "Готовится" [ref=f21e368] [cursor=pointer]
+                  - button "В пути" [ref=f21e369] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e370] [cursor=pointer]
+                  - button "Отменён" [ref=f21e371] [cursor=pointer]
+          - generic [ref=f21e372]:
+            - generic [ref=f21e373]:
+              - generic [ref=f21e374]:
+                - generic [ref=f21e375]:
+                  - generic [ref=f21e376]: "#1"
+                  - generic [ref=f21e377]: ❌ Отменён
+                - paragraph [ref=f21e378]: 05.08.2026, 07:05:56
+                - paragraph [ref=f21e379]: Test User · +79991234567
+                - paragraph [ref=f21e380]: 📍 ,
+              - generic [ref=f21e381]:
+                - generic [ref=f21e382]: 340 ₽
+                - generic [ref=f21e383]: Нал.
+            - generic [ref=f21e384]:
+              - paragraph [ref=f21e385]: Состав
+              - list [ref=f21e386]:
+                - listitem [ref=f21e387]:
+                  - generic [ref=f21e388]: 1 × Блинчики
+                  - generic [ref=f21e389]: 340 ₽
+              - generic [ref=f21e390]:
+                - generic [ref=f21e391]: Статус
+                - generic [ref=f21e392]:
+                  - button "Заказ создан" [ref=f21e393] [cursor=pointer]
+                  - button "Подтверждён" [ref=f21e394] [cursor=pointer]
+                  - button "Готовится" [ref=f21e395] [cursor=pointer]
+                  - button "В пути" [ref=f21e396] [cursor=pointer]
+                  - button "Доставлен" [ref=f21e397] [cursor=pointer]
+                  - button "Отменён" [ref=f21e398] [cursor=pointer]
+  - contentinfo [ref=f21e32]:
+    - generic [ref=f21e33]:
+      - generic [ref=f21e34]:
+        - link "Рица" [ref=f21e35] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=f21e44]: "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз."
+      - navigation [ref=f21e45]:
+        - heading "Каталог" [level=3] [ref=f21e46]
+        - list [ref=f21e47]:
+          - listitem [ref=f21e48]:
+            - link "Сувлаки и шаурма" [ref=f21e49] [cursor=pointer]:
+              - /url: /menu?category=suvlaki
+          - listitem [ref=f21e50]:
+            - link "Морепродукты" [ref=f21e51] [cursor=pointer]:
+              - /url: /menu?category=seafood
+          - listitem [ref=f21e52]:
+            - link "Грузинская кухня" [ref=f21e53] [cursor=pointer]:
+              - /url: /menu?category=georgian
+          - listitem [ref=f21e54]:
+            - link "Пицца" [ref=f21e55] [cursor=pointer]:
+              - /url: /menu?category=pizza
+          - listitem [ref=f21e56]:
+            - link "Конструктор пиццы" [ref=f21e57] [cursor=pointer]:
+              - /url: /pizza-builder
+          - listitem [ref=f21e58]:
+            - link "Все блюда" [ref=f21e59] [cursor=pointer]:
+              - /url: /menu
+      - navigation [ref=f21e60]:
+        - heading "Компания" [level=3] [ref=f21e61]
+        - list [ref=f21e62]:
+          - listitem [ref=f21e63]:
+            - link "О кафе" [ref=f21e64] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f21e65]:
+            - link "Мои заказы" [ref=f21e66] [cursor=pointer]:
+              - /url: /orders
+          - listitem [ref=f21e67]:
+            - link "Личный кабинет" [ref=f21e68] [cursor=pointer]:
+              - /url: /account
+      - generic [ref=f21e69]:
+        - heading "Контакты" [level=3] [ref=f21e70]
+        - list [ref=f21e71]:
+          - listitem [ref=f21e72]: +7 (900) 000-00-00
+          - listitem [ref=f21e75]: Ежедневно 10:00–23:00
+          - listitem [ref=f21e79]: г. Сочи, ул. Примерная, 15
+    - paragraph [ref=f21e84]: © 2026 Рица. Кафе и доставка, Сочи.
+  - alert [ref=f21e85]

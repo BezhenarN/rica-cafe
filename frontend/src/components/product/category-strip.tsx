@@ -20,6 +20,11 @@ const ICONS: Record<string, string> = {
   drinks: '🥤',
 };
 
+// Отображаемые имена категорий (переопределяют DB-значения).
+const CATEGORY_LABELS: Record<string, string> = {
+  pizza: 'Пицца',
+};
+
 const HIGHLIGHT_SLUGS = ['breakfast', 'snacks', 'meat'];
 
 /** Горизонтальная лента категорий — обновлённый дизайн для «Рица». */
@@ -49,7 +54,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
               }`}>
                 {ICONS[c.slug] ?? '🍽️'}
               </span>
-              <span className="font-semibold">{c.name}</span>
+              <span className="font-semibold">{CATEGORY_LABELS[c.slug] ?? c.name}</span>
             </Link>
           </div>
         );

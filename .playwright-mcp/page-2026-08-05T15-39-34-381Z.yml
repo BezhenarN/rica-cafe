@@ -1,0 +1,7 @@
+- generic [active] [ref=f37e1]:
+  - button "Open Next.js Dev Tools" [ref=f37e7] [cursor=pointer]
+  - generic [ref=f37e12]:
+    - heading "This page couldn’t load" [level=1] [ref=f37e15]
+    - paragraph [ref=f37e16]: A server error occurred. Reload to try again.
+    - button "Reload" [ref=f37e19] [cursor=pointer]
+  - paragraph [ref=f37e20]: ERROR 2244145573

@@ -1,0 +1,200 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - generic [ref=f1e3]:
+      - link "Рица" [ref=f1e5] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=f1e14]:
+        - link "Меню" [ref=f1e15] [cursor=pointer]:
+          - /url: /menu
+        - link "Конструктор пиццы" [ref=f1e16] [cursor=pointer]:
+          - /url: /pizza-builder
+        - link "О кафе" [ref=f1e17] [cursor=pointer]:
+          - /url: /about
+        - link "Заказы" [ref=f1e18] [cursor=pointer]:
+          - /url: /orders
+      - generic [ref=f1e19]:
+        - button "Корзина" [ref=f1e20] [cursor=pointer]
+        - link "Личный кабинет" [ref=f1e24] [cursor=pointer]:
+          - /url: /account
+  - main [ref=f1e28]:
+    - generic [ref=f1e29]:
+      - generic [ref=f1e31]:
+        - generic [ref=f1e32]: Доставка по Сочи · 30–45 минут
+        - heading "Кафе «Рица» — доставка, завтраки и всё меню" [level=1] [ref=f1e38]
+        - paragraph [ref=f1e39]: Завтраки, закуски, салаты, супы, мясо, рыба, паста, бургеры, кавказская выпечка и напитки. Доставка и самовывоз по Сочи.
+        - generic [ref=f1e40]:
+          - link "Перейти в меню" [ref=f1e41] [cursor=pointer]:
+            - /url: /menu
+          - link "Собрать пиццу" [ref=f1e44] [cursor=pointer]:
+            - /url: /pizza-builder
+      - generic [ref=f1e51]:
+        - generic [ref=f1e52]:
+          - heading "30–45 минут" [level=3] [ref=f1e57]
+          - paragraph [ref=f1e58]: Доставляем быстро и в горячем виде
+        - generic [ref=f1e59]:
+          - heading "Бесплатная доставка" [level=3] [ref=f1e66]
+          - paragraph [ref=f1e67]: Доставка с 8:00 до 23:00
+        - generic [ref=f1e68]:
+          - heading "Самовывоз" [level=3] [ref=f1e73]
+          - paragraph [ref=f1e74]: Самовывоз — скидка 10%
+        - generic [ref=f1e75]:
+          - heading "Бронирование" [level=3] [ref=f1e79]
+          - paragraph [ref=f1e80]: Стол для теплой встречи или целый зал для вашего мероприятия
+      - generic [ref=f1e81]:
+        - generic [ref=f1e82]:
+          - heading "Категории" [level=2] [ref=f1e83]
+          - link "Весь каталог →" [ref=f1e84] [cursor=pointer]:
+            - /url: /menu
+        - generic [ref=f1e85]:
+          - link "🍳 Завтрак" [ref=f1e87] [cursor=pointer]:
+            - /url: /menu?category=breakfast
+            - generic [ref=f1e88]: 🍳
+            - generic [ref=f1e89]: Завтрак
+          - link "🥘 Закуски" [ref=f1e91] [cursor=pointer]:
+            - /url: /menu?category=snacks
+            - generic [ref=f1e92]: 🥘
+            - generic [ref=f1e93]: Закуски
+          - link "🥗 Салаты" [ref=f1e95] [cursor=pointer]:
+            - /url: /menu?category=salads
+            - generic [ref=f1e96]: 🥗
+            - generic [ref=f1e97]: Салаты
+          - link "🍲 Супы" [ref=f1e99] [cursor=pointer]:
+            - /url: /menu?category=soups
+            - generic [ref=f1e100]: 🍲
+            - generic [ref=f1e101]: Супы
+          - link "🍝 Паста" [ref=f1e103] [cursor=pointer]:
+            - /url: /menu?category=pasta
+            - generic [ref=f1e104]: 🍝
+            - generic [ref=f1e105]: Паста
+          - link "🥩 Мясные блюда" [ref=f1e107] [cursor=pointer]:
+            - /url: /menu?category=meat
+            - generic [ref=f1e108]: 🥩
+            - generic [ref=f1e109]: Мясные блюда
+          - link "🐟 Рыба и морепродукты" [ref=f1e111] [cursor=pointer]:
+            - /url: /menu?category=fish
+            - generic [ref=f1e112]: 🐟
+            - generic [ref=f1e113]: Рыба и морепродукты
+          - link "🍕 Пицца" [ref=f1e115] [cursor=pointer]:
+            - /url: /menu?category=pizza
+            - generic [ref=f1e116]: 🍕
+            - generic [ref=f1e117]: Пицца
+          - link "🍔 Бургеры и хот-доги" [ref=f1e119] [cursor=pointer]:
+            - /url: /menu?category=burgers
+            - generic [ref=f1e120]: 🍔
+            - generic [ref=f1e121]: Бургеры и хот-доги
+          - link "🫓 Кавказская кухня" [ref=f1e123] [cursor=pointer]:
+            - /url: /menu?category=caucasian-pastry
+            - generic [ref=f1e124]: 🫓
+            - generic [ref=f1e125]: Кавказская кухня
+          - link "🫙 Соусы" [ref=f1e127] [cursor=pointer]:
+            - /url: /menu?category=sauces
+            - generic [ref=f1e128]: 🫙
+            - generic [ref=f1e129]: Соусы
+          - link "🍰 Десерты" [ref=f1e131] [cursor=pointer]:
+            - /url: /menu?category=desserts
+            - generic [ref=f1e132]: 🍰
+            - generic [ref=f1e133]: Десерты
+          - link "🍺 Бар Меню" [ref=f1e135] [cursor=pointer]:
+            - /url: /menu?category=bar
+            - generic [ref=f1e136]: 🍺
+            - generic [ref=f1e137]: Бар Меню
+          - link "🥤 Напитки" [ref=f1e139] [cursor=pointer]:
+            - /url: /menu?category=drinks
+            - generic [ref=f1e140]: 🥤
+            - generic [ref=f1e141]: Напитки
+      - generic [ref=f1e142]:
+        - generic [ref=f1e143]:
+          - heading "Популярное" [level=2] [ref=f1e144]
+          - link "Смотреть все →" [ref=f1e145] [cursor=pointer]:
+            - /url: /menu
+        - generic [ref=f1e146]:
+          - article [ref=f1e147]:
+            - link "Блинчики" [ref=f1e148] [cursor=pointer]:
+              - /url: /menu/blinchiki
+            - generic [ref=f1e153]:
+              - link [ref=f1e154] [cursor=pointer]:
+                - /url: /menu/blinchiki
+                - heading "Блинчики" [level=3] [ref=f1e155]
+                - paragraph [ref=f1e156]: Тонкие блинчики со сметаной и джемом
+              - generic [ref=f1e157]:
+                - generic [ref=f1e158]: 340 ₽
+                - button "Добавить в корзину" [ref=f1e159] [cursor=pointer]
+          - article [ref=f1e161]:
+            - link "Скрембл с томатами" [ref=f1e162] [cursor=pointer]:
+              - /url: /menu/skrembl-s-tomatami
+            - generic [ref=f1e167]:
+              - link [ref=f1e168] [cursor=pointer]:
+                - /url: /menu/skrembl-s-tomatami
+                - heading "Скрембл с томатами" [level=3] [ref=f1e169]
+                - paragraph [ref=f1e170]: Мягкий яичный скрэмбл с помидорами, из 3 яиц
+              - generic [ref=f1e171]:
+                - generic [ref=f1e172]: 350 ₽
+                - button "Добавить в корзину" [ref=f1e173] [cursor=pointer]
+          - article [ref=f1e175]:
+            - link "Круассан с семгой с.с" [ref=f1e176] [cursor=pointer]:
+              - /url: /menu/kruassan-s-semgoy-ss
+            - generic [ref=f1e181]:
+              - link [ref=f1e182] [cursor=pointer]:
+                - /url: /menu/kruassan-s-semgoy-ss
+                - heading "Круассан с семгой с.с" [level=3] [ref=f1e183]
+                - paragraph [ref=f1e184]: Круассан с слабосолёной семгой
+              - generic [ref=f1e185]:
+                - generic [ref=f1e186]: 550 ₽
+                - button "Добавить в корзину" [ref=f1e187] [cursor=pointer]
+          - article [ref=f1e189]:
+            - link "Цезарь с семгой с.с" [ref=f1e190] [cursor=pointer]:
+              - /url: /menu/tsezar-semga
+            - generic [ref=f1e195]:
+              - link [ref=f1e196] [cursor=pointer]:
+                - /url: /menu/tsezar-semga
+                - heading "Цезарь с семгой с.с" [level=3] [ref=f1e197]
+                - paragraph [ref=f1e198]: Цезарь с слабосолёной сёмгой
+              - generic [ref=f1e199]:
+                - generic [ref=f1e200]: 590 ₽
+                - button "Добавить в корзину" [ref=f1e201] [cursor=pointer]
+  - contentinfo [ref=f1e203]:
+    - generic [ref=f1e204]:
+      - generic [ref=f1e205]:
+        - link "Рица" [ref=f1e206] [cursor=pointer]:
+          - /url: /
+        - paragraph [ref=f1e215]: "Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз."
+      - navigation [ref=f1e216]:
+        - heading "Каталог" [level=3] [ref=f1e217]
+        - list [ref=f1e218]:
+          - listitem [ref=f1e219]:
+            - link "Сувлаки и шаурма" [ref=f1e220] [cursor=pointer]:
+              - /url: /menu?category=suvlaki
+          - listitem [ref=f1e221]:
+            - link "Морепродукты" [ref=f1e222] [cursor=pointer]:
+              - /url: /menu?category=seafood
+          - listitem [ref=f1e223]:
+            - link "Грузинская кухня" [ref=f1e224] [cursor=pointer]:
+              - /url: /menu?category=georgian
+          - listitem [ref=f1e225]:
+            - link "Пицца" [ref=f1e226] [cursor=pointer]:
+              - /url: /menu?category=pizza
+          - listitem [ref=f1e227]:
+            - link "Конструктор пиццы" [ref=f1e228] [cursor=pointer]:
+              - /url: /pizza-builder
+          - listitem [ref=f1e229]:
+            - link "Все блюда" [ref=f1e230] [cursor=pointer]:
+              - /url: /menu
+      - navigation [ref=f1e231]:
+        - heading "Компания" [level=3] [ref=f1e232]
+        - list [ref=f1e233]:
+          - listitem [ref=f1e234]:
+            - link "О кафе" [ref=f1e235] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f1e236]:
+            - link "Мои заказы" [ref=f1e237] [cursor=pointer]:
+              - /url: /orders
+          - listitem [ref=f1e238]:
+            - link "Личный кабинет" [ref=f1e239] [cursor=pointer]:
+              - /url: /account
+      - generic [ref=f1e240]:
+        - heading "Контакты" [level=3] [ref=f1e241]
+        - list [ref=f1e242]:
+          - listitem [ref=f1e243]: +7 (900) 000-00-00
+          - listitem [ref=f1e246]: Ежедневно 10:00–23:00
+          - listitem [ref=f1e250]: г. Сочи, ул. Примерная, 15
+    - paragraph [ref=f1e255]: © 2026 Рица. Кафе и доставка, Сочи.

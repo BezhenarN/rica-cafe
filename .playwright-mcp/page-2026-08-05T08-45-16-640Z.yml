@@ -1,0 +1,19 @@
+- generic [ref=f11e3]:
+  - generic [ref=f11e6]:
+    - heading "Не удается получить доступ к сайту" [level=1] [ref=f11e7]
+    - paragraph [ref=f11e8]:
+      - text: Превышено время ожидания ответа от сайта
+      - strong [ref=f11e9]: 201.24.126.175
+      - text: .
+    - generic [ref=f11e10]:
+      - paragraph [ref=f11e11]: "Попробуйте сделать следующее:"
+      - list [ref=f11e12]:
+        - listitem [ref=f11e13]: Проверьте подключение к интернету.
+        - listitem [ref=f11e14]:
+          - link "Проверьте настройки прокси-сервера и брандмауэра" [ref=f11e15] [cursor=pointer]:
+            - /url: "#buttons"
+          - text: .
+    - generic [ref=f11e16]: ERR_CONNECTION_TIMED_OUT
+  - generic [ref=f11e17]:
+    - button "Перезагрузить" [ref=f11e19] [cursor=pointer]
+    - button "Сведения" [ref=f11e20] [cursor=pointer]
