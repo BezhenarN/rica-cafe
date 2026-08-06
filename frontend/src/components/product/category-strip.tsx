@@ -30,7 +30,7 @@ const HIGHLIGHT_SLUGS = ['breakfast', 'snacks'];
 /** Горизонтальная лента категорий — обновлённый дизайн для «Рица». */
 export function CategoryStrip({ categories }: { categories: Category[] }) {
   return (
-    <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-12">
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
       {categories.map((c, i) => {
         const isHighlight = HIGHLIGHT_SLUGS.includes(c.slug);
         const label = CATEGORY_LABELS[c.slug] ?? c.name;
