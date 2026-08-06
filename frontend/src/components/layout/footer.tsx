@@ -13,7 +13,7 @@ export function Footer() {
             <span className="text-lg font-extrabold tracking-tight">Рица</span>
           </Link>
           <p className="max-w-xs text-sm text-muted">
-            Кафе «Рица» в Сочи: сувлаки, морепродукты, грузинская кухня, пицца и напитки. Доставка и самовывоз.
+            Завтраки, обеды, ужины, доставка по Сочи и банкетное меню для ваших праздников.
           </p>
         </div>
 
@@ -22,7 +22,7 @@ export function Footer() {
           <ul className="space-y-1.5 text-sm text-muted">
             <li><Link href="/menu?category=suvlaki" className="hover:text-ink">Сувлаки и шаурма</Link></li>
             <li><Link href="/menu?category=seafood" className="hover:text-ink">Морепродукты</Link></li>
-            <li><Link href="/menu?category=georgian" className="hover:text-ink">Грузинская кухня</Link></li>
+            <li><Link href="/menu?category=georgian" className="hover:text-ink">Кавказская кухня</Link></li>
             <li><Link href="/menu?category=pizza" className="hover:text-ink">Пицца</Link></li>
             <li><Link href="/pizza-builder" className="hover:text-ink">Конструктор пиццы</Link></li>
             <li><Link href="/menu" className="hover:text-ink">Все блюда</Link></li>

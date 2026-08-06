@@ -89,7 +89,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
       <div className="flex flex-1 flex-col gap-2 p-3">
         <Link href={`/menu/${product.slug}`} className="space-y-1">
-          <h3 className="line-clamp-1 font-semibold">{product.name}</h3>
+          <h3 className="line-clamp-1 text-base font-semibold text-ink">{product.name}</h3>
           {product.description && (
             <p className="line-clamp-2 text-xs text-muted">{product.description}</p>
           )}
