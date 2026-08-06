@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, UtensilsCrossed, Pizza, ShoppingBag } from 'lucide-react';
+import { Home, UtensilsCrossed, Pizza, ShoppingBag, User } from 'lucide-react';
 import { useUIStore } from '@/store/ui-store';
 import { useCartStore } from '@/store/cart-store';
 import { cn } from '@/lib/cn';
@@ -29,24 +29,24 @@ export function MobileNav() {
 
   return (
     <nav className="pb-safe-nav fixed inset-x-0 bottom-0 z-30 border-t border-line bg-surface/95 backdrop-blur-lg lg:hidden">
-      <div className="container-page grid grid-cols-4 items-center">
+      <div className="container-page grid grid-cols-5 items-center">
         {items.map(({ href, label, icon: Icon, active }) => (
           <Link
             key={href}
             href={href}
             className={cn(
-              'flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition',
+              'flex flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-medium transition',
               active ? 'text-primary' : 'text-muted',
             )}
           >
             <Icon className="h-5 w-5" />
-            {label}
+            <span className="truncate text-center">{label}</span>
           </Link>
         ))}
         <button
           onClick={openCart}
           className={cn(
-            'relative flex flex-col items-center gap-1 py-2.5 text-[11px] font-medium transition',
+            'relative flex flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-medium transition',
             'text-muted',
           )}
         >
@@ -58,8 +58,18 @@ export function MobileNav() {
               </span>
             )}
           </span>
-          Корзина
+          <span className="truncate text-center">Корзина</span>
         </button>
+        <Link
+          href="/profile"
+          className={cn(
+            'flex flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-medium transition',
+            pathname?.startsWith('/profile') ? 'text-primary' : 'text-muted',
+          )}
+        >
+          <User className="h-5 w-5" />
+          <span className="truncate text-center">Профиль</span>
+        </Link>
       </div>
     </nav>
   );

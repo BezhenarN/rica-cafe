@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Clock, Truck, MapPin, Calendar } from 'lucide-react';
+import { Clock, Truck, Star, MapPin, Calendar } from 'lucide-react';
 import type { Metadata } from 'next';
 import { CategoryStrip } from '@/components/product/category-strip';
 import { ProductCard } from '@/components/product/product-card';
@@ -45,16 +45,16 @@ export default async function HomePage() {
         className="relative overflow-hidden rounded-3xl text-white"
         style={{ backgroundImage: "url('/mainrica.webp')", backgroundSize: "cover", backgroundPosition: "center" }}
       >
-        <div className="absolute inset-0 bg-primary/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary/40" />
         <div className="relative z-10 px-6 pt-12 pb-8 text-white sm:px-12 sm:pt-16 sm:pb-10">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">
-            <Truck className="h-3.5 w-3.5" /> Доставка по Сочи · 30–45 минут
+            <Star className="h-3.5 w-3.5" /> Добро пожаловать!
           </span>
           <h1 className="mt-4 text-3xl font-extrabold leading-tight sm:text-5xl">
-            Кафе «Рица» — доставка, завтраки и всё меню
+            Рица — от завтрака до праздничного банкета!
           </h1>
           <p className="mt-3 max-w-lg text-white/80 sm:text-lg">
-            Завтраки, закуски, салаты, супы, мясо, рыба, паста, бургеры, кавказская выпечка и напитки. Доставка и самовывоз по Сочи.
+            Завтраки, обеды, ужины, доставка по Сочи и банкетное меню для ваших праздников.
           </p>
         </div>
         <div className="relative z-10 grid grid-cols-2 gap-3 px-6 pb-8 sm:gap-4 sm:px-12 sm:pb-10 lg:grid-cols-4">
@@ -83,7 +83,9 @@ export default async function HomePage() {
               Весь каталог →
             </Link>
           </div>
-          <CategoryStrip categories={categories} />
+          <CategoryStrip
+            categories={categories.filter((c) => !['bar', 'sauces'].includes(c.slug))}
+          />
         </section>
       )}
 

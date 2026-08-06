@@ -24,7 +24,7 @@ export function Header() {
   const user = useAuthStore((s) => s.user);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line bg-canvas/85 backdrop-blur-lg">
+    <header className="sticky top-0 z-30 hidden lg:block lg:sticky border-b border-line bg-canvas/85 backdrop-blur-lg">
       <div className="container-page flex h-16 items-center justify-between gap-4">
         {/* Лого + бургер (мобайл) */}
         <div className="flex items-center gap-2">
