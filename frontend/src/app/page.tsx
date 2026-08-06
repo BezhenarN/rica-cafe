@@ -40,13 +40,13 @@ export default async function HomePage() {
 
   return (
     <div className="container-page space-y-16 py-6 sm:py-10">
-      {/* HERO */}
+      {/* HERO + ПРЕИМУЩЕСТВА */}
       <section
-        className="relative overflow-hidden rounded-3xl px-6 py-12 text-white sm:px-12 sm:py-16"
+        className="relative overflow-hidden rounded-3xl text-white sm:rounded-b-none"
         style={{ backgroundImage: "url('/mainrica.webp')", backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="absolute inset-0 bg-primary/50" />
-        <div className="relative z-10 max-w-2xl">
+        <div className="relative z-10 px-6 pt-12 pb-8 text-white sm:px-12 sm:pt-16 sm:pb-10">
           <span className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold backdrop-blur">
             <Truck className="h-3.5 w-3.5" /> Доставка по Сочи · 30–45 минут
           </span>
@@ -56,24 +56,23 @@ export default async function HomePage() {
           <p className="mt-3 max-w-lg text-white/80 sm:text-lg">
             Завтраки, закуски, салаты, супы, мясо, рыба, паста, бургеры, кавказская выпечка и напитки. Доставка и самовывоз по Сочи.
           </p>
-          
+        </div>
+        <div className="relative z-10 grid grid-cols-2 gap-3 px-6 pb-8 sm:gap-4 sm:px-12 sm:pb-10 lg:grid-cols-4">
+          {PERKS.map(({ icon: Icon, title, text }) => (
+            <div key={title} className="rounded-2xl bg-white/10 p-4 backdrop-blur-sm sm:p-5">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white">
+                <Icon className="h-5 w-5" />
+              </span>
+              <h3 className="mt-3 text-sm font-bold sm:text-base">{title}</h3>
+              <p className="mt-1 text-xs text-white/70 sm:text-sm">{text}</p>
+            </div>
+          ))}
         </div>
         <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 right-24 h-64 w-64 rounded-full bg-accent/10 blur-3xl" />
       </section>
 
-      {/* ПРЕИМУЩЕСТВА */}
-      <section className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-        {PERKS.map(({ icon: Icon, title, text }) => (
-          <div key={title} className="card p-4 sm:p-5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-              <Icon className="h-5 w-5" />
-            </span>
-            <h3 className="mt-3 text-sm font-bold sm:text-base">{title}</h3>
-            <p className="mt-1 text-xs text-muted sm:text-sm">{text}</p>
-          </div>
-        ))}
-      </section>
+      {/* продолжает фон за счёт визуального continuity */}
 
       {/* КАТЕГОРИИ */}
       {categories.length > 0 && (
