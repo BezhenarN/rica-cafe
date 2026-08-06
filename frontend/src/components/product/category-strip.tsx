@@ -30,7 +30,7 @@ const HIGHLIGHT_SLUGS = ['breakfast', 'snacks'];
 /** Горизонтальная лента категорий — обновлённый дизайн для «Рица». */
 export function CategoryStrip({ categories }: { categories: Category[] }) {
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+    <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-12">
       {categories.map((c, i) => {
         const isHighlight = HIGHLIGHT_SLUGS.includes(c.slug);
         const label = CATEGORY_LABELS[c.slug] ?? c.name;
@@ -48,7 +48,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/breakfast.webp"
                   alt={label}
@@ -71,7 +71,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/snacks.webp"
                   alt={label}
@@ -94,7 +94,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/salads.webp"
                   alt={label}
@@ -117,7 +117,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/soups.webp"
                   alt={label}
@@ -140,7 +140,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/pasta.webp"
                   alt={label}
@@ -163,7 +163,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/meat.webp"
                   alt={label}
@@ -186,7 +186,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/fish.webp"
                   alt={label}
@@ -209,7 +209,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/pizza.webp"
                   alt={label}
@@ -232,7 +232,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/burgers.webp"
                   alt={label}
@@ -255,7 +255,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/caucasian-pastry.webp"
                   alt={label}
@@ -278,7 +278,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/desserts.webp"
                   alt={label}
@@ -301,7 +301,7 @@ export function CategoryStrip({ categories }: { categories: Category[] }) {
                 href={`/menu?category=${c.slug}`}
                 className="group relative flex h-28 sm:h-36 w-full items-start justify-end overflow-hidden rounded-2xl border border-line bg-surface shadow-card transition hover:shadow-pop hover:bg-surface/90"
               >
-                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 break-words text-base font-semibold text-ink">{label}</span>
+                <span className="absolute top-2 right-2 max-w-[50%] line-clamp-2 text-right text-base font-semibold text-ink">{label}</span>
                 <img
                   src="/images/categories/drinks.webp"
                   alt={label}
