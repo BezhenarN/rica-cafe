@@ -42,7 +42,7 @@ export default async function HomePage() {
     <div className="container-page space-y-16 py-6 sm:py-10">
       {/* HERO + ПРЕИМУЩЕСТВА */}
       <section
-        className="relative overflow-hidden rounded-3xl text-white sm:rounded-b-none"
+        className="relative overflow-hidden rounded-3xl text-white"
         style={{ backgroundImage: "url('/mainrica.webp')", backgroundSize: "cover", backgroundPosition: "center" }}
       >
         <div className="absolute inset-0 bg-primary/50" />
